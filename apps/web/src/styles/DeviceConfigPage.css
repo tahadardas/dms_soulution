@@ -1,0 +1,50 @@
+.device-config {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.device-config__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.device-config__row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    padding: var(--space-3) 0;
+    border-top: 1px solid var(--border-default);
+}
+
+.device-config__label {
+    font-weight: var(--font-medium);
+    color: var(--text-main);
+}
+
+.device-config__hint {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+}
+
+.device-config__actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-2);
+}
+
+.device-config__note {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    background: var(--surface-muted);
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+}
+
+.device-config__loading {
+    color: var(--text-muted);
+}

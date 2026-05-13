@@ -1,0 +1,40 @@
+.dms-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+    padding-inline: var(--space-6);
+    background-color: var(--bg-surface);
+    border-bottom: 1px solid var(--border-default);
+}
+
+.dms-topbar__left {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.dms-topbar__logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dms-topbar__title {
+    font-size: var(--text-lg);
+    font-weight: var(--font-bold);
+    color: var(--text-main);
+    margin: 0;
+}
+
+.dms-topbar__center {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.dms-topbar__right {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}

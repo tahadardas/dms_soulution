@@ -1,0 +1,35 @@
+.inventory-adjust-page {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.inventory-adjust-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--space-3);
+}
+
+.inventory-adjust-form__hint {
+    grid-column: 1 / -1;
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+    padding-top: var(--space-2);
+}
+
+.inventory-adjust-page__error {
+    background-color: var(--color-danger-bg);
+    color: var(--color-danger);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+}
+
+.inventory-adjust-page__empty {
+    padding: var(--space-3);
+    border: 1px dashed var(--border-default);
+    border-radius: var(--radius-md);
+    text-align: center;
+    color: var(--text-muted);
+}

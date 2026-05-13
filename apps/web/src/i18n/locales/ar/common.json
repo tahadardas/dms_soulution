@@ -1,0 +1,2132 @@
+{
+  "invoices": {
+    "actions": {
+      "newPurchase": "فاتورة شراء جديدة",
+      "newSale": "فاتورة مبيع جديدة",
+      "post": "ترحيل الفاتورة",
+      "saveDraft": "حفظ كمسودة"
+    },
+    "fields": {
+      "customer": "العميل",
+      "date": "التاريخ",
+      "invoiceNumber": "رقم الفاتورة",
+      "notes": "ملاحظات",
+      "product": "المنتج",
+      "quantity": "الكمية",
+      "supplier": "المورد",
+      "tax": "الضريبة",
+      "total": "الإجمالي",
+      "unitPrice": "سعر الوحدة"
+    },
+    "payment": {
+      "paid": "مدفوع",
+      "partial": "مدفوع جزئياً",
+      "unpaid": "غير مدفوع"
+    },
+    "stats": {
+      "pendingInvoices": "فواتير معلقة",
+      "totalPurchases": "إجمالي المشتريات",
+      "totalSales": "إجمالي المبيعات",
+      "unpaidAmount": "مبالغ غير محصلة"
+    },
+    "status": {
+      "cancelled": "ملغاة",
+      "draft": "مسودة",
+      "posted": "مرحلة"
+    },
+    "table": {
+      "amount": "المبلغ",
+      "customer": "العميل",
+      "date": "التاريخ",
+      "number": "الرقم",
+      "payment": "الدفع",
+      "supplier": "المورد"
+    }
+  },
+  "suppliers": {
+    "title": "الموردين",
+    "subtitle": "إدارة الموردين وحساباتهم المالية",
+    "actions": {
+      "newSupplier": "مورد جديد",
+      "editSupplier": "تعديل مورد",
+      "viewStatement": "كشف حساب",
+      "recordPayment": "تسجيل دفعة"
+    },
+    "payment": {
+      "details": "تفاصيل الدفعة",
+      "method": "طريقة الدفع"
+    },
+    "paymentMethods": {
+      "cash": "نقداً",
+      "bank": "تحويل بنكي",
+      "check": "شيك"
+    },
+    "hints": {
+      "sourceAccount": "الحساب الذي سيتم الخصم منه (الصندوق أو البنك)"
+    },
+    "fields": {
+      "name": "الاسم",
+      "phone": "الهاتف",
+      "email": "البريد الإلكتروني",
+      "address": "العنوان",
+      "taxNumber": "الرقم الضريبي",
+      "openingBalance": "الرصيد الافتتاحي",
+      "currency": "العملة",
+      "payableAccount": "حساب الذمم",
+      "advanceAccount": "حساب الدفعات المقدمة",
+      "amount": "المبلغ",
+      "sourceAccount": "حساب الدفع",
+      "paymentMethod": "طريقة الدفع",
+      "referenceNumber": "رقم المرجع"
+    },
+    "stats": {
+      "totalSuppliers": "إجمالي الموردين",
+      "activePayables": "إجمالي الذمم الدائنة"
+    },
+    "empty": {
+      "title": "لا يوجد موردين",
+      "description": "ابدأ بإضافة أول مورد لربطه بفواتير الشراء."
+    }
+  },
+  "customers": {
+    "title": "الزبائن",
+    "subtitle": "إدارة الزبائن وحساباتهم المالية",
+    "actions": {
+      "newCustomer": "زبون جديد",
+      "editCustomer": "تعديل زبون",
+      "viewStatement": "كشف حساب",
+      "recordReceipt": "تسجيل دفعة"
+    },
+    "receipt": {
+      "details": "تفاصيل القبض",
+      "method": "طريقة القبض"
+    },
+    "paymentMethods": {
+      "cash": "نقداً",
+      "bank": "تحويل بنكي",
+      "check": "شيك"
+    },
+    "hints": {
+      "destinationAccount": "الحساب الذي سيتم الإيداع فيه (الصندوق أو البنك)"
+    },
+    "fields": {
+      "name": "الاسم",
+      "phone": "الهاتف",
+      "email": "البريد الإلكتروني",
+      "address": "العنوان",
+      "taxNumber": "الرقم الضريبي",
+      "openingBalance": "الرصيد الافتتاحي",
+      "currency": "العملة",
+      "receivableAccount": "حساب الذمم",
+      "advanceAccount": "حساب الدفعات المقدمة",
+      "amount": "المبلغ",
+      "destinationAccount": "حساب القبض",
+      "paymentMethod": "طريقة القبض",
+      "referenceNumber": "رقم المرجع"
+    },
+    "stats": {
+      "totalCustomers": "إجمالي الزبائن",
+      "activeReceivables": "إجمالي الذمم المدينة"
+    },
+    "empty": {
+      "title": "لا يوجد زبائن",
+      "description": "ابدأ بإضافة أول زبون لربطه بفواتير المبيع."
+    }
+  },
+  "accounts": {
+    "actions": {
+      "newAccount": "جديد حساب"
+    },
+    "deleteConfirm": "حذف الحساب {{code}}؟",
+    "editTitle": "تعديل",
+    "empty": "لا توجد بيانات الحسابات",
+    "fields": {
+      "code": "الكود",
+      "name": "الاسم",
+      "parent": "parent",
+      "status": "الحالة",
+      "type": "النوع"
+    },
+    "listTitle": "قائمة",
+    "loading": "جاري تحميل الحسابات...",
+    "newTitle": "جديد",
+    "noParent": "لا Parent",
+    "searchLabel": "بحث",
+    "searchPlaceholder": "أدخل بحث",
+    "subtitle": "الحسابات",
+    "system": "نظام",
+    "table": {
+      "account": "حساب"
+    },
+    "title": "الحسابات",
+    "types": {
+      "asset": "أصول",
+      "equity": "حقوق الملكية",
+      "expense": "مصروفات",
+      "liability": "التزامات",
+      "revenue": "إيرادات"
+    }
+  },
+  "audit": {
+    "title": "سجل المراجعة",
+    "subtitle": "تتبع العمليات الحساسة في النظام",
+    "allActions": "كل العمليات",
+    "fields": {
+      "timestamp": "التوقيت",
+      "user": "المستخدم",
+      "action": "العملية",
+      "details": "التفاصيل"
+    }
+  },
+  "common": {
+    "actions": "إجراءات",
+    "active": "نشط",
+    "all": "الكل",
+    "allBranches": "الكل الفروع",
+    "appTitle": "DMS Soulution",
+    "back": "رجوع",
+    "branch": "الفرع",
+    "cancel": "إلغاء",
+    "close": "إغلاق",
+    "default": "افتراضي",
+    "delete": "حذف",
+    "disable": "تعطيل",
+    "disabled": "معطل",
+    "edit": "تعديل",
+    "enabled": "مفعل",
+    "endDate": "نهاية التاريخ",
+    "exportCsv": "تصدير CSV",
+    "filters": "عوامل تصفية",
+    "groupBy": "تجميع حسب",
+    "inactive": "غير نشط",
+    "language": {
+      "ar": "AR",
+      "en": "EN"
+    },
+    "login": {
+      "cardTitle": "مرحبًا بعودتك",
+      "password": "كلمة المرور",
+      "passwordPlaceholder": "أدخل كلمة المرور",
+      "signIn": "تسجيل الدخول",
+      "subtitle": "أدخل بياناتك للمتابعة.",
+      "title": "تسجيل الدخول",
+      "username": "اسم المستخدم",
+      "usernamePlaceholder": "أدخل اسم المستخدم"
+    },
+    "next": "التالي",
+    "no": "لا",
+    "none": "none",
+    "notes": "ملاحظات",
+    "optional": "اختياري",
+    "page": "صفحة",
+    "pageOf": "{{page}} من {{totalPages}}",
+    "paymentMethods": {
+      "cash": "نقد",
+      "card": "بطاقة",
+      "transfer": "تحويل"
+    },
+    "placeholder": "--",
+    "previous": "السابق",
+    "print": "طباعة",
+    "refresh": "تحديث",
+    "remove": "إزالة",
+    "rowsCount": "{{count}} صف",
+    "save": "حفظ",
+    "saveChanges": "حفظ التغييرات",
+    "search": "بحث",
+    "searchMinHint": "اكتب حرفين على الأقل للبحث.",
+    "standardPage": {
+      "contentTitle": "المحتوى",
+      "emptyDescription": "اربط مصدر بيانات أو أنشئ سجلًا جديدًا للبدء.",
+      "emptyTitle": "لا يوجد ما يعرض بعد",
+      "errorMessage": "تعذر تحميل أحدث البيانات.",
+      "errorTitle": "حدث خطأ ما",
+      "fallbackOwnerHint": "عيّن عضو فريق",
+      "fallbackOwnerLabel": "المالك",
+      "fallbackOwnerValue": "--",
+      "fallbackStatusHint": "بانتظار البيانات",
+      "fallbackStatusLabel": "الحالة",
+      "fallbackStatusValue": "مسودة",
+      "fallbackUpdateHint": "اربط مصدر بيانات",
+      "fallbackUpdateLabel": "آخر تحديث",
+      "fallbackUpdateValue": "--",
+      "loadingDescription": "جارٍ جلب أحدث البيانات.",
+      "loadingTitle": "جاري التحميل",
+      "readyDescription": "هذا القسم جاهز للبيانات الفعلية.",
+      "readyTitle": "جاهز",
+      "summaryTitle": "الملخص"
+    },
+    "startDate": "بداية التاريخ",
+    "startTime": "وقت البدء",
+    "endTime": "وقت النهاية",
+    "status": "الحالة",
+    "to": "إلى",
+    "total": "الإجمالي",
+    "type": "النوع",
+    "unassigned": "غير محدد",
+    "uncategorized": "غير مصنف",
+    "unknown": "غير معروف",
+    "unmapped": "غير مربوط",
+    "viewEntry": "عرض القيد",
+    "viewJournalEntry": "عرض قيد اليومية",
+    "yes": "نعم"
+  },
+  "errors": {
+    "accounts": {
+      "createDenied": "لا تملك صلاحية إنشاء الحسابات.",
+      "deleteDenied": "لا تملك صلاحية حذف الحسابات.",
+      "deleteFailed": "تعذر حذف الحسابات.",
+      "editDenied": "لا تملك صلاحية تعديل الحسابات.",
+      "loadFailed": "تعذر تحميل الحسابات.",
+      "missingFields": "الحقول مفقود.",
+      "saveDenied": "لا تملك صلاحية حفظ الحسابات.",
+      "saveFailed": "تعذر حفظ الحسابات."
+    },
+    "audit": {
+      "loadFailed": "تعذر تحميل سجل المراجعة."
+    },
+    "auth": {
+      "loginFailed": "تعذر إكمال العملية لـ مصادقة."
+    },
+    "dashboard": {
+      "loadFailed": "تعذر تحميل لوحة التحكم."
+    },
+    "deviceConfig": {
+      "saveFailed": "تعذر حفظ الجهاز الإعدادات."
+    },
+    "inventory": {
+      "adjustDenied": "لا تملك صلاحية تسوية المخزون.",
+      "adjustQuantityRequired": "الكمية مطلوب.",
+      "adjustReasonRequired": "السبب مطلوب.",
+      "adjustSaveFailed": "تعذر تسوية حفظ.",
+      "adjustSelectProduct": "يرجى اختيار منتج.",
+      "loadFailed": "تعذر تحميل المخزون.",
+      "loadFiltersFailed": "تعذر تحميل عوامل تصفية.",
+      "movementsLoadFailed": "تعذر تحميل Movements.",
+      "transferBranchMismatch": "يجب أن يختلف فرع المصدر عن فرع الوجهة.",
+      "transferCreateFailed": "تعذر تحويل إنشاء.",
+      "transferDenied": "لا تملك صلاحية تحويل المخزون.",
+      "transferQuantityRequired": "الكمية مطلوب.",
+      "transferReasonRequired": "السبب مطلوب.",
+      "transferSelectProduct": "يرجى اختيار منتج."
+    },
+    "journals": {
+      "accountRequired": "حساب مطلوب.",
+      "accountsLoadFailed": "تعذر تحميل الحسابات.",
+      "createDenied": "لا تملك صلاحية إنشاء قيود اليومية.",
+      "descriptionRequired": "الوصف مطلوب.",
+      "draftSaveFailed": "تعذر حفظ مسودة.",
+      "loadFailed": "تعذر تحميل قيود اليومية.",
+      "minimumLines": "minimum سطور",
+      "postDenied": "لا تملك صلاحية ترحيل قيود اليومية.",
+      "postFailed": "تعذر ترحيل قيود اليومية.",
+      "reverseDenied": "لا تملك صلاحية عكس قيود اليومية.",
+      "reverseFailed": "تعذر عكس قيود اليومية.",
+      "saveDenied": "لا تملك صلاحية حفظ قيود اليومية."
+    },
+    "languageSync": "تعذر مزامنة تفضيل اللغة.",
+    "noAccess": {
+      "contactAdmin": "تواصل مع المسؤول لطلب صلاحية الوصول.",
+      "contentDescription": "ليس لديك صلاحية لعرض هذه الصفحة.",
+      "contentTitle": "تم رفض الوصول",
+      "errorTitle": "تم رفض الصلاحيات",
+      "goHome": "الانتقال إلى لوحة التحكم",
+      "requiredPermissions": "الصلاحيات المطلوبة: {{perms}}",
+      "subtitle": "ليست لديك الصلاحيات المطلوبة.",
+      "summary": {
+        "destination": "الوجهة",
+        "destinationHint": "المسار المقترح",
+        "requiredPerms": "الصلاحيات المطلوبة",
+        "requiredPermsHint": "الصلاحيات الناقصة",
+        "role": "الدور",
+        "roleHint": "الدور الحالي"
+      },
+      "summaryTitle": "تفاصيل الوصول",
+      "title": "الوصول مقيّد",
+      "unknownRole": "غير معروف"
+    },
+    "notFound": {
+      "contentDescription": "الصفحة المطلوبة غير موجودة.",
+      "contentTitle": "لا يوجد محتوى",
+      "emptyDescription": "يمكنك العودة إلى لوحة التحكم.",
+      "emptyTitle": "صفحة غير موجودة",
+      "goHome": "الانتقال إلى لوحة التحكم",
+      "returnHome": "العودة للرئيسية",
+      "subtitle": "لم نعثر على هذه الصفحة.",
+      "summary": {
+        "errorCode": "رمز الخطأ",
+        "errorHint": "مسار غير صالح",
+        "path": "المسار",
+        "pathHint": "العنوان المطلوب",
+        "suggested": "المقترح",
+        "suggestedHint": "استخدم الشريط الجانبي للتنقل"
+      },
+      "summaryTitle": "تفاصيل الصفحة",
+      "title": "الصفحة غير موجودة"
+    },
+    "permissionDenied": "لا تملك صلاحية تنفيذ هذا الإجراء.",
+    "pos": {
+      "cashOverage": "المبلغ المدخل أكبر من المتوقع بمقدار {{amount}}.",
+      "cashShortage": "المبلغ المدخل أقل من المتوقع بمقدار {{amount}}.",
+      "cashDifferenceReasonRequired": "يجب إدخال سبب فرق الصندوق قبل إغلاق الجلسة.",
+      "invalidCash": "مبلغ النقد غير صالح.",
+      "invalidCashMovementAmount": "مبلغ الحركة النقدية يجب أن يكون أكبر من صفر.",
+      "cashMovementFailed": "تعذر حفظ الحركة النقدية.",
+      "cashMovementReasonRequired": "سبب الحركة النقدية مطلوب.",
+      "closeFailed": "تعذر إغلاق نقاط البيع.",
+      "kitchenPrintFailed": "تعذر إرسال طلب المطبخ.",
+      "loadOrderFailed": "تعذر تحميل طلب.",
+      "loadProductsFailed": "تعذر تحميل المنتجات.",
+      "noClosePermission": "لا تملك صلاحية إغلاق.",
+      "noLastOrderToPrint": "احفظ طلباً قبل الطباعة.",
+      "noOpenPermission": "لا تملك صلاحية فتح.",
+      "noPrintPermission": "لا تملك صلاحية طباعة الطلبات.",
+      "noReturnPermission": "لا تملك صلاحية تنفيذ.",
+      "noSubmitPermission": "لا تملك صلاحية إرسال.",
+      "openFailed": "تعذر فتح نقاط البيع.",
+      "orderNotFound": "تعذر العثور على طلب.",
+      "printFailed": "تعذر طباعة الطلب.",
+      "returnFailed": "فشل الإرجاع.",
+      "returnReasonRequired": "السبب مطلوب.",
+      "returnSelectItems": "اختر عنصرًا واحدًا على الأقل للإرجاع.",
+      "settingsSaveFailed": "تعذر حفظ الإعدادات.",
+      "submitFailed": "تعذر إرسال نقاط البيع."
+    },
+    "printJobs": {
+      "loadFailed": "تعذر تحميل طباعة مهام.",
+      "processDenied": "لا تملك صلاحية معالجة طباعة مهام.",
+      "processFailed": "تعذر معالجة طباعة مهام.",
+      "retryDenied": "لا تملك صلاحية إعادة المحاولة طباعة مهام.",
+      "retryFailed": "تعذر إعادة المحاولة طباعة مهام."
+    },
+    "printTemplates": {
+      "contentRequired": "المحتوى مطلوب.",
+      "disableFailed": "تعذر إكمال العملية لـ طباعة قوالب.",
+      "loadFailed": "تعذر تحميل طباعة قوالب.",
+      "manageDenied": "لا تملك صلاحية إدارة طباعة قوالب.",
+      "nameRequired": "الاسم مطلوب.",
+      "saveFailed": "تعذر حفظ طباعة قوالب."
+    },
+    "printerRoutes": {
+      "deleteFailed": "تعذر حذف طابعة المسارات.",
+      "loadFailed": "تعذر تحميل طابعة المسارات.",
+      "manageDenied": "لا تملك صلاحية إدارة طابعة المسارات.",
+      "saveFailed": "تعذر حفظ طابعة المسارات.",
+      "selectCategory": "يرجى اختيار تصنيف.",
+      "selectPrinter": "يرجى اختيار طابعة.",
+      "selectReport": "يرجى اختيار تقرير.",
+      "selectStation": "يرجى اختيار محطة."
+    },
+    "printers": {
+      "disableFailed": "تعذر إكمال العملية لـ الطابعات.",
+      "loadFailed": "تعذر تحميل الطابعات.",
+      "manageDenied": "لا تملك صلاحية إدارة الطابعات.",
+      "nameRequired": "الاسم مطلوب.",
+      "saveFailed": "تعذر حفظ الطابعات."
+    },
+    "products": {
+      "archiveDenied": "لا تملك صلاحية أرشفة المنتجات.",
+      "archiveFailed": "تعذر أرشفة المنتجات.",
+      "categories": {
+        "archiveFailed": "تعذر أرشفة التصنيفات.",
+        "createFailed": "تعذر إنشاء التصنيفات.",
+        "loadFailed": "تعذر تحميل التصنيفات.",
+        "nameRequired": "الاسم مطلوب.",
+        "updateFailed": "تعذر تحديث التصنيفات."
+      },
+      "createDenied": "لا تملك صلاحية إنشاء المنتجات.",
+      "loadCategoriesFailed": "تعذر تحميل التصنيفات.",
+      "loadFailed": "تعذر تحميل المنتجات.",
+      "manageCategoriesDenied": "لا تملك صلاحية إدارة التصنيفات.",
+      "manageUnitsDenied": "لا تملك صلاحية إدارة وحدات.",
+      "missingId": "ID مفقود.",
+      "notFound": "not تم العثور",
+      "recipeValidation": "فشل التحقق من الوصفة. يجب اختيار مكوّن وتحديد كمية أكبر من صفر لكل عنصر.",
+      "referencesLoadFailed": "تعذر تحميل References.",
+      "saveDenied": "لا تملك صلاحية حفظ المنتجات.",
+      "saveFailed": "تعذر حفظ المنتجات.",
+      "units": {
+        "archiveFailed": "تعذر أرشفة وحدات.",
+        "conversionDeleteFailed": "تعذر حذف تحويل.",
+        "conversionFieldsRequired": "تحويل الحقول مطلوب.",
+        "conversionSameUnit": "يجب أن تختلف وحدتا التحويل.",
+        "conversionSaveFailed": "تعذر حفظ تحويل.",
+        "createFailed": "تعذر إنشاء وحدات.",
+        "loadFailed": "تعذر تحميل وحدات.",
+        "nameRequired": "الاسم مطلوب.",
+        "updateFailed": "تعذر تحديث وحدات."
+      },
+      "validation": {
+        "minStockInvalid": "قيمة Min Stock غير صالحة.",
+        "nameRequired": "الاسم مطلوب.",
+        "priceInvalid": "قيمة السعر غير صالحة.",
+        "skuRequired": "SKU مطلوب.",
+        "typeRequired": "النوع مطلوب."
+      },
+      "validationFix": "يرجى تصحيح الحقول المظللة."
+    },
+    "reports": {
+      "inventoryLoadFailed": "تعذر تحميل المخزون.",
+      "ledgerLoadFailed": "تعذر تحميل دفتر الأستاذ.",
+      "marginsLoadFailed": "تعذر تحميل الهوامش.",
+      "salesLoadFailed": "تعذر تحميل المبيعات.",
+      "sessionsLoadFailed": "تعذر تحميل جلسات.",
+      "sessionsOrdersLoadFailed": "تعذر تحميل جلسات طلبات.",
+      "transactionsLoadFailed": "تعذر تحميل Transactions.",
+      "trialBalanceLoadFailed": "تعذر تحميل ميزان المراجعة."
+    },
+    "settings": {
+      "loadFailed": "تعذر تحميل الإعدادات.",
+      "manageDenied": "لا تملك صلاحية إدارة الإعدادات.",
+      "saveFailed": "تعذر حفظ الإعدادات."
+    },
+    "users": {
+      "fetchFailed": "تعذر تحميل قائمة المستخدمين.",
+      "saveFailed": "فشل حفظ بيانات المستخدم.",
+      "deleteFailed": "تعذر حذف المستخدم."
+    }
+  },
+  "inventory": {
+    "actions": {
+      "newAdjustment": "جديد تسوية",
+      "newTransfer": "جديد تحويل"
+    },
+    "adjust": {
+      "actions": {
+        "save": "حفظ"
+      },
+      "currentOnHand": "المتاح: {{quantity}} {{unit}}",
+      "defaultBranch": "افتراضي الفرع",
+      "direction": {
+        "decrease": "تقليل",
+        "increase": "زيادة"
+      },
+      "emptyRecent": "فارغ Recent",
+      "fields": {
+        "branch": "الفرع",
+        "description": "الوصف",
+        "direction": "الاتجاه",
+        "product": "منتج",
+        "quantity": "الكمية",
+        "reason": "السبب",
+        "reference": "مرجع",
+        "type": "النوع",
+        "unitCost": "وحدة التكلفة"
+      },
+      "newMovement": "جديد Movement",
+      "productOption": "{{name}} (المتاح: {{onHand}})",
+      "reasonPlaceholder": "أدخل السبب",
+      "recentTitle": "recent",
+      "selectProduct": "select منتج",
+      "subtitle": "تسوية",
+      "table": {
+        "date": "التاريخ",
+        "item": "عنصر",
+        "quantity": "الكمية",
+        "reason": "السبب"
+      },
+      "title": "تسوية",
+      "types": {
+        "adjust": "تسوية",
+        "in": "داخل",
+        "out": "خارج"
+      }
+    },
+    "alerts": {
+      "emptyDescription": "لا توجد بيانات التنبيهات بعد.",
+      "emptyTitle": "لا توجد بيانات التنبيهات",
+      "item": "عنصر",
+      "onHand": "on يد",
+      "threshold": "الحد الأدنى",
+      "title": "التنبيهات"
+    },
+    "empty": {
+      "description": "الوصف",
+      "title": "فارغ"
+    },
+    "filters": {
+      "allBranches": "الكل الفروع",
+      "allCategories": "الكل التصنيفات",
+      "branch": "الفرع",
+      "category": "تصنيف"
+    },
+    "loading": "جاري تحميل المخزون...",
+    "movements": {
+      "empty": "لا توجد بيانات movements",
+      "filters": {
+        "allBranches": "الكل الفروع",
+        "allTypes": "الكل Types",
+        "branch": "الفرع",
+        "type": "النوع"
+      },
+      "loading": "جاري تحميل movements...",
+      "subtitle": "movements",
+      "summary": {
+        "inbound": "داخل",
+        "outbound": "خارج",
+        "title": "الحركات",
+        "total": "الإجمالي"
+      },
+      "table": {
+        "branch": "الفرع",
+        "date": "التاريخ",
+        "item": "الصنف",
+        "itemFallback": "صنف رقم {{id}}",
+        "quantity": "الكمية",
+        "reason": "السبب",
+        "title": "الحركات",
+        "type": "النوع"
+      },
+      "title": "حركات المخزون"
+    },
+    "searchPlaceholder": "أدخل بحث",
+    "snapshotTitle": "snapshot",
+    "subtitle": "المخزون",
+    "summary": {
+      "items": "عناصر",
+      "itemsHint": "عناصر",
+      "lowStock": "انخفاض المخزون",
+      "lowStockHint": "انخفاض المخزون",
+      "pageHint": "صفحة"
+    },
+    "table": {
+      "category": "تصنيف",
+      "item": "عنصر",
+      "low": "منخفض",
+      "min": "min",
+      "ok": "ok",
+      "onHand": "on يد",
+      "sku": "SKU: {{sku}}",
+      "title": "المخزون",
+      "uncategorized": "uncategorized",
+      "unit": "وحدة"
+    },
+    "title": "المخزون",
+    "transfers": {
+      "actions": {
+        "create": "إنشاء"
+      },
+      "currentOnHand": "المتاح: {{quantity}} {{unit}}",
+      "detailsTitle": "تفاصيل",
+      "emptyRecent": "فارغ Recent",
+      "fields": {
+        "description": "الوصف",
+        "fromBranch": "من الفرع",
+        "product": "منتج",
+        "quantity": "الكمية",
+        "reason": "السبب",
+        "reference": "مرجع",
+        "toBranch": "to الفرع"
+      },
+      "productOption": "{{name}} (المتاح: {{onHand}})",
+      "recentTitle": "recent",
+      "selectDestination": "select الوجهة",
+      "selectProduct": "select منتج",
+      "selectSource": "select المصدر",
+      "subtitle": "transfers",
+      "table": {
+        "date": "التاريخ",
+        "fromBranch": "من الفرع",
+        "item": "عنصر",
+        "quantity": "الكمية",
+        "reason": "السبب"
+      },
+      "title": "transfers"
+    }
+  },
+  "journals": {
+    "actions": {
+      "new": "جديد",
+      "postEntry": "ترحيل قيد",
+      "reverse": "عكس",
+      "saveDraft": "حفظ مسودة"
+    },
+    "detail": {
+      "balanced": "متوازن",
+      "openSource": "فتح المصدر",
+      "postedAt": "مرحّل At",
+      "source": "المصدر",
+      "statusTitle": "الحالة",
+      "subtitle": "تفاصيل",
+      "subtitleWithId": "قيد رقم {{id}}"
+    },
+    "editor": {
+      "account": "حساب",
+      "addLine": "إضافة سطر",
+      "credit": "دائن",
+      "debit": "مدين",
+      "memo": "مذكرة",
+      "selectAccount": "select حساب"
+    },
+    "empty": "لا توجد بيانات قيود اليومية",
+    "entry": {
+      "balanced": "متوازن",
+      "description": "الوصف",
+      "descriptionPlaceholder": "أدخل الوصف",
+      "detailsTitle": "تفاصيل",
+      "linesTitle": "سطور",
+      "postingDate": "ترحيل التاريخ",
+      "totalCredit": "إجمالي الدائن: {{value}}",
+      "totalDebit": "إجمالي المدين: {{value}}",
+      "unbalanced": "unbalanced"
+    },
+    "loading": "جاري تحميل قيود اليومية...",
+    "loadingAccounts": "جاري التحميل الحسابات",
+    "loadingEntry": "جاري التحميل قيد",
+    "modals": {
+      "confirmPost": "تأكيد ترحيل",
+      "confirmReverse": "تأكيد عكس",
+      "postBody": "ترحيل Body",
+      "postTitle": "ترحيل",
+      "reverseBody": "عكس Body",
+      "reverseTitle": "عكس"
+    },
+    "searchPlaceholder": "أدخل بحث",
+    "status": {
+      "draft": "مسودة",
+      "posted": "مرحّل"
+    },
+    "summary": {
+      "drafts": "مسودات",
+      "posted": "مرحّل",
+      "title": "قيود اليومية",
+      "unbalanced": "unbalanced"
+    },
+    "table": {
+      "credit": "دائن",
+      "date": "التاريخ",
+      "debit": "مدين",
+      "description": "الوصف",
+      "source": "{{type}} رقم {{id}}",
+      "title": "قيود اليومية"
+    }
+  },
+  "nav": {
+    "routes": {
+      "accounts": {
+        "navLabel": "دليل الحسابات",
+        "subtitle": "دليل الحسابات",
+        "title": "الحسابات"
+      },
+      "deliveryCouriers": {
+        "navLabel": "مناديب التوصيل",
+        "subtitle": "إدارة وحساب عمولات المناديب",
+        "title": "مناديب التوصيل"
+      },
+      "dashboard": {
+        "navLabel": "لوحة التحكم",
+        "subtitle": "لوحة التحكم",
+        "title": "لوحة التحكم"
+      },
+      "inventory": {
+        "navLabel": "المخزون",
+        "subtitle": "المخزون",
+        "title": "المخزون"
+      },
+      "inventoryAdjust": {
+        "navLabel": "تعديل المخزون",
+        "subtitle": "تعديل المخزون",
+        "title": "تعديل المخزون"
+      },
+      "inventoryMovements": {
+        "navLabel": "حركات المخزون",
+        "subtitle": "حركات المخزون",
+        "title": "حركات المخزون"
+      },
+      "inventoryTransfers": {
+        "navLabel": "تحويلات المخزون",
+        "subtitle": "تحويلات المخزون",
+        "title": "تحويلات المخزون"
+      },
+      "journals": {
+        "navLabel": "قيود اليومية",
+        "subtitle": "قيود اليومية",
+        "title": "قيود اليومية"
+      },
+      "journalsDetail": {
+        "subtitle": "تفاصيل القيد",
+        "title": "تفاصيل القيد"
+      },
+      "journalsNew": {
+        "subtitle": "قيد جديد",
+        "title": "قيد جديد"
+      },
+      "ledger": {
+        "navLabel": "دفتر الأستاذ",
+        "subtitle": "دفتر الأستاذ",
+        "title": "دفتر الأستاذ"
+      },
+      "login": {
+        "title": "تسجيل الدخول"
+      },
+      "pos": {
+        "navLabel": "نقطة البيع",
+        "subtitle": "واجهة المبيعات السريعة",
+        "title": "نقطة البيع"
+      },
+      "posSessions": {
+        "navLabel": "إدارة الجلسات",
+        "subtitle": "عرض وإغلاق الجلسات المفتوحة",
+        "title": "الجلسات المفتوحة"
+      },
+      "purchaseInvoices": {
+        "navLabel": "فواتير المشتريات",
+        "subtitle": "إدارة مشتريات المخزون",
+        "title": "المشتريات"
+      },
+      "suppliers": {
+        "navLabel": "الموردين",
+        "subtitle": "إدارة الموردين وحساباتهم المالية",
+        "title": "الموردين"
+      },
+      "customers": {
+        "navLabel": "الزبائن",
+        "subtitle": "إدارة الزبائن وحساباتهم المالية",
+        "title": "الزبائن"
+      },
+      "salesInvoices": {
+        "navLabel": "فواتير المبيعات",
+        "subtitle": "إدارة المبيعات المتعددة الأسطر",
+        "title": "المبيعات"
+      },
+      "printers": {
+        "navLabel": "الطابعات",
+        "subtitle": "الطابعات",
+        "title": "الطابعات"
+      },
+      "printersJobs": {
+        "navLabel": "مهام الطباعة",
+        "subtitle": "مهام الطباعة",
+        "title": "مهام الطباعة"
+      },
+      "printersRoutes": {
+        "navLabel": "مسارات الطباعة",
+        "subtitle": "مسارات الطباعة",
+        "title": "مسارات الطباعة"
+      },
+      "printersTemplates": {
+        "navLabel": "قوالب الطباعة",
+        "subtitle": "قوالب الطباعة",
+        "title": "قوالب الطباعة"
+      },
+      "products": {
+        "navLabel": "المنتجات",
+        "subtitle": "المنتجات",
+        "title": "المنتجات"
+      },
+      "productsDetail": {
+        "subtitle": "تفاصيل المنتج",
+        "title": "تفاصيل المنتج"
+      },
+      "productsNew": {
+        "subtitle": "منتج جديد",
+        "title": "منتج جديد"
+      },
+      "reports": {
+        "navLabel": "التقارير",
+        "subtitle": "التقارير",
+        "title": "التقارير"
+      },
+      "reportsInventory": {
+        "navLabel": "تقرير المخزون",
+        "subtitle": "تقرير المخزون",
+        "title": "تقرير المخزون"
+      },
+      "reportsMargins": {
+        "navLabel": "تقرير الهوامش",
+        "subtitle": "تقرير الهوامش",
+        "title": "تقرير الهوامش"
+      },
+      "reportsSales": {
+        "navLabel": "تقرير المبيعات",
+        "subtitle": "تقرير المبيعات",
+        "title": "تقرير المبيعات"
+      },
+      "reportsSessionsZ": {
+        "navLabel": "تقرير Z للجلسات",
+        "subtitle": "تقرير Z للجلسات",
+        "title": "تقرير Z"
+      },
+      "reportsTrialBalance": {
+        "navLabel": "ميزان المراجعة",
+        "subtitle": "ميزان المراجعة",
+        "title": "ميزان المراجعة"
+      },
+      "settings": {
+        "navLabel": "الإعدادات",
+        "subtitle": "الإعدادات",
+        "title": "الإعدادات"
+      },
+      "users": {
+        "navLabel": "إدارة المستخدمين",
+        "subtitle": "إدارة مستخدمي النظام والصلاحيات",
+        "title": "المستخدمين"
+      },
+      "backups": {
+        "navLabel": "إدارة النسخ الاحتياطي",
+        "subtitle": "النسخ الاحتياطي واستعادة البيانات",
+        "title": "النسخ الاحتياطي"
+      },
+      "auditLogs": {
+        "navLabel": "سجل المراجعة",
+        "subtitle": "تتبع العمليات الحساسة في النظام",
+        "title": "سجل المراجعة"
+      },
+      "trialBalance": {
+        "navLabel": "ميزان المراجعة",
+        "subtitle": "ميزان المراجعة",
+        "title": "ميزان المراجعة"
+      }
+    },
+    "sections": {
+      "accounting": "المحاسبة",
+      "administration": "الإدارة",
+      "catalog": "الكتالوج",
+      "general": "عام",
+      "inventory": "المخزون",
+      "operations": "العمليات",
+      "printing": "الطباعة",
+      "reports": "التقارير",
+      "delivery": "التوصيل"
+    },
+    "topbar": {
+      "apiChecking": "API جارٍ التحقق",
+      "apiOffline": "API Offline",
+      "apiOnline": "API Online",
+      "launchPos": "تشغيل نقاط البيع",
+      "signOut": "تسجيل خارج"
+    }
+  },
+  "pos": {
+    "addNote": "إضافة ملاحظة",
+    "apiBaseUrl": "رابط API الأساسي",
+    "closeSession": "إغلاق الجلسة",
+    "closeSessionTitle": "إغلاق الجلسة",
+    "closingCash": "النقد عند الإغلاق",
+    "closingNotes": "ملاحظات الإغلاق",
+    "delivery": {
+      "title": "معلومات التوصيل",
+      "personName": "اسم المستلم/المندوب",
+      "personNamePlaceholder": "أدخل الاسم",
+      "phone": "رقم الهاتف",
+      "phonePlaceholder": "09...",
+      "address": "العنوان",
+      "addressPlaceholder": "أدخل تفاصيل العنوان",
+      "notes": "ملاحظات",
+      "notesPlaceholder": "ملاحظات إضافية",
+      "courier": "المندوب",
+      "searchCourier": "بحث عن مندوب...",
+      "addNewCourier": "إضافة مندوب جديد",
+      "newCourierTitle": "إضافة مندوب",
+      "newCourierConfirm": "هل تريد حفظ المندوب \"{{name}}\" في النظام أم استخدامه لهذه المرة فقط؟",
+      "useOnce": "استخدام لمرة واحدة",
+      "savePermanently": "حفظ دائم"
+    },
+    "closingNotesPlaceholder": "أدخل ملاحظات الإغلاق",
+    "customerSelection": "اختر العميل",
+    "customerSearchPlaceholder": "ابحث بالاسم أو الهاتف...",
+    "payments": {
+        "cash": "نقدي",
+        "card": "بطاقة",
+        "transfer": "تحويل",
+        "credit": "على الحساب"
+    },
+    "paymentMethod": "طريقة الدفع",
+    "submitCreditOrder": "تنفيذ كآجل/ذمم",
+    "confirmRefund": "تأكيد استرداد {{count}} عنصر بإجمالي {{total}}؟",
+    "currentOrder": "الطلب الحالي",
+    "exitPos": "خروج من نقطة البيع",
+    "issueRefund": "إصدار استرداد",
+    "kioskHint": "وضع الكشك",
+    "kioskMode": "وضع الكشك",
+    "loadMore": "تحميل المزيد",
+    "loadOrder": "تحميل طلب",
+    "loading": "جاري تحميل نقطة البيع...",
+    "loadingProducts": "جاري تحميل المنتجات",
+    "noProducts": "لا توجد منتجات",
+    "noSession": "لا توجد جلسة",
+    "openingCash": "النقد الافتتاحي",
+    "orderNotes": "ملاحظات الطلب",
+    "orderNotesPlaceholder": "أدخل ملاحظات الطلب",
+    "orderNumber": "رقم الطلب",
+    "orderNumberPlaceholder": "أدخل رقم الطلب",
+    "orderSummary": "طلب رقم {{orderNumber}}",
+    "processReturn": "معالجة إرجاع",
+    "productSearchLabel": "بحث عن منتج",
+    "productSearchPlaceholder": "ابحث بالاسم أو الكود...",
+    "refundTotal": "إجمالي الاسترداد: {{total}}",
+    "remove": "إزالة",
+    "returnQtyPlaceholder": "الحد الأقصى {{max}}",
+    "returnReason": "سبب الإرجاع",
+    "returnReasonPlaceholder": "أدخل سبب الإرجاع",
+    "returns": "المرتجعات",
+    "saveSettings": "حفظ الإعدادات",
+    "searchMinHint": "اكتب حرفين على الأقل للبحث.",
+    "selectItems": "اختر العناصر",
+    "sessionLabel": "جلسة {{id}}",
+    "soldReturned": "{{sold}} مبيع - {{returned}} مرتجع",
+    "startSession": "بدء جلسة",
+    "stationSettings": "إعدادات المحطة",
+    "submitOrder": "إرسال الطلب",
+    "lineNote": "ملاحظة المنتج",
+    "lineNotePlaceholder": "أضف ملاحظة...",
+    "subtitle": "نقطة البيع",
+    "tableTicket": "تذكرة الطاولة",
+    "title": "نقطة البيع",
+    "totalSales": "إجمالي المبيعات",
+    "totalReturns": "إجمالي المرتجعات",
+    "totalDiscounts": "إجمالي الحسومات",
+    "totalCash": "إجمالي النقد",
+    "subtotal": "المجموع الفرعي",
+    "discount": "الحسم",
+    "serviceCharge": "خدمة صالة",
+    "tips": "إكراميات",
+    "currentCash": "النقد الحالي",
+    "netCashFlow": "صافي التدفق النقدي",
+    "expectedTotal": "الإجمالي المتوقع",
+    "cashDifference": "فرق الصندوق",
+    "cashDifferenceReason": "سبب فرق الصندوق",
+    "cashDifferenceReasonPlaceholder": "اكتب سبب النقص أو الزيادة",
+    "cashIn": "إدخل نقد",
+    "cashOut": "إخرج نقد",
+    "cashInTitle": "إدخال نقد",
+    "cashOutTitle": "إخراج نقد",
+    "cashMovementAmount": "المبلغ",
+    "cashMovementReason": "السبب",
+    "cashMovementReasonPlaceholder": "اكتب سبب الحركة النقدية",
+    "managerUsername": "اسم مستخدم المدير",
+    "managerUsernamePlaceholder": "أدخل اسم مستخدم المدير عند الحاجة",
+    "managerPassword": "كلمة مرور المدير",
+    "noOpenSessions": "لا توجد جلسات مفتوحة حالياً",
+    "user": "المستخدم",
+    "branch": "الفرع",
+    "station": "المحطة",
+    "startTime": "وقت البدء",
+    "closeSessionConfirm": "هل أنت متأكد من إغلاق جلسة المستخدم",
+    "toolbar": {
+      "save": "حفظ الطلب",
+      "saveDelivery": "حفظ كديلفري معلق",
+      "print": "طباعة الإيصال",
+      "sendKitchen": "إرسال للمطبخ",
+      "reprintReceipt": "إعادة طباعة الإيصال",
+      "reprintKOT": "إعادة طباعة أمر التحضير",
+      "sales": "المبيعات",
+      "returns": "المرتجعات",
+      "pendingDelivery": "طلبات معلقة",
+      "cashIn": "إدخال نقد",
+      "cashOut": "إخراج نقد"
+    },
+    "categories": {
+      "loading": "جاري تحميل التصنيفات..."
+    },
+    "orderType": {
+      "label": "نوع الطلب",
+      "DINE_IN": "صالة",
+      "TAKEAWAY": "سفري",
+      "DELIVERY": "ديلفري"
+    },
+    "paymentMode": {
+      "label": "طريقة الدفع",
+      "PAY_NOW": "دفع فوري",
+      "PAY_LATER": "دفع لاحق (عند التحصيل)"
+    },
+    "paymentMethod": {
+      "label": "وسيلة التحصيل",
+      "CASH": "نقد",
+      "CARD": "بطاقة",
+      "TRANSFER": "تحويل"
+    },
+    "pendingOrders": {
+      "title": "الطلبات المعلقة",
+      "empty": "لا توجد طلبات معلقة",
+      "collectBtn": "تحصيل",
+      "collectTitle": "تحصيل طلب ديلفري",
+      "confirmCollect": "تأكيد التحصيل",
+      "collectAmount": "المبلغ المحصّل",
+      "collectSuccess": "تم تحصيل الطلب بنجاح ✓",
+      "collectFailed": "فشل تحصيل الطلب",
+      "orderTotal": "إجمالي الطلب",
+      "deliveryPerson": "المندوب",
+      "itemsCount": "{{count}} صنف"
+    },
+    "salesDrawer": {
+      "title": "مبيعات الجلسة",
+      "empty": "لا توجد مبيعات بعد",
+      "orderNumber": "رقم الطلب",
+      "total": "الإجمالي",
+      "status": "الحالة",
+      "type": "النوع",
+      "date": "التاريخ",
+      "actions": "الإجراءات",
+      "returnBtn": "إرجاع"
+    },
+    "returnsDrawer": {
+      "title": "المرتجعات",
+      "empty": "لا توجد مرتجعات",
+      "orderNumber": "رقم الطلب الأصلي",
+      "refund": "مبلغ الاسترداد",
+      "reason": "السبب",
+      "cashier": "الكاشير",
+      "date": "التاريخ"
+    },
+    "quantity": {
+      "increase": "زيادة",
+      "decrease": "تقليل"
+    },
+    "status": {
+      "COMPLETED": "مكتمل",
+      "VOID": "ملغي",
+      "RETURNED": "مرتجع",
+      "PENDING_DELIVERY": "بانتظار التوصيل",
+      "PAID": "مدفوع",
+      "UNPAID": "غير مدفوع"
+    },
+    "lastOrder": "آخر طلب: {{orderNumber}} — {{total}}",
+    "orderSaved": "تم حفظ الطلب بنجاح ✓"
+  },
+  "products": {
+    "actions": {
+      "manageCategories": "إدارة التصنيفات",
+      "manageUnits": "إدارة الوحدات",
+      "newProduct": "منتج جديد"
+    },
+    "categories": {
+      "actions": {
+        "archive": "أرشفة",
+        "create": "إنشاء"
+      },
+      "empty": "لا توجد بيانات التصنيفات",
+      "existingTitle": "حالي",
+      "fields": {
+        "description": "الوصف",
+        "name": "الاسم"
+      },
+      "loading": "جاري تحميل التصنيفات...",
+      "newTitle": "جديد",
+      "title": "التصنيفات"
+    },
+    "empty": {
+      "description": "الوصف",
+      "title": "فارغ"
+    },
+    "filters": {
+      "allCategories": "الكل التصنيفات",
+      "category": "تصنيف"
+    },
+    "form": {
+      "actions": {
+        "archive": "أرشفة",
+        "create": "إنشاء"
+      },
+      "archiveConfirm": "أرشفة تأكيد",
+      "audit": {
+        "created": "تم الإنشاء",
+        "status": "الحالة",
+        "updated": "updated"
+      },
+      "emptyCategories": "فارغ التصنيفات",
+      "emptyUnits": "فارغ وحدات",
+      "fields": {
+        "category": "تصنيف",
+        "description": "الوصف",
+        "minStock": "min Stock",
+        "name": "الاسم",
+        "price": "السعر",
+        "sku": "SKU",
+        "type": "النوع",
+        "unit": "وحدة"
+      },
+      "loadingEdit": "جاري التحميل تعديل",
+      "loadingNew": "جاري التحميل جديد",
+      "readOnlyNotice": "read Only Notice",
+      "recipeHint": "الوصفة متاحة فقط للمنتجات النهائية. قم بتغيير نوع المنتج لإضافة المكونات.",
+      "recipeUnavailable": "الوصفة غير متاحة",
+      "sections": {
+        "audit": "تدقيق",
+        "basics": "الأساسيات",
+        "basicsSubtitle": "الأساسيات",
+        "inventoryPricing": "المخزون Pricing",
+        "inventoryPricingSubtitle": "المخزون Pricing",
+        "recipe": "recipe"
+      },
+      "selectUnit": "select وحدة",
+      "subtitleEdit": "subtitle تعديل",
+      "subtitleNew": "subtitle جديد",
+      "titleEdit": "العنوان تعديل",
+      "titleNew": "العنوان جديد",
+      "types": {
+        "finishedGood": "منتج نهائي",
+        "rawMaterial": "مادة خام",
+        "service": "خدمة"
+      },
+      "uncategorized": "غير مصنف"
+    },
+    "loading": "جاري تحميل المنتجات...",
+    "recipe": {
+      "actions": {
+        "addIngredient": "إضافة مكوّن"
+      },
+      "defaultUnit": "افتراضي وحدة",
+      "empty": "لا توجد بيانات recipe",
+      "selectIngredient": "select مكوّن",
+      "subtitle": "recipe",
+      "table": {
+        "ingredient": "مكوّن",
+        "quantity": "الكمية",
+        "unit": "وحدة",
+        "waste": "هدر"
+      },
+      "createIngredient": "إنشاء مادة خام",
+      "noIngredients": "لا توجد مواد خام. قم بإنشاء واحدة لبناء الوصفات."
+    },
+    "searchPlaceholder": "أدخل بحث",
+    "summary": {
+      "pageHint": "صفحة",
+      "results": "results",
+      "resultsHint": "results",
+      "showing": "showing",
+      "showingHint": "showing",
+      "title": "المنتجات"
+    },
+    "table": {
+      "category": "تصنيف",
+      "price": "السعر",
+      "product": "منتج",
+      "sku": "SKU: {{sku}}",
+      "title": "المنتجات",
+      "uncategorized": "uncategorized",
+      "unit": "وحدة",
+      "updated": "updated"
+    },
+    "units": {
+      "actions": {
+        "archive": "أرشفة",
+        "create": "إنشاء",
+        "saveConversion": "حفظ تحويل"
+      },
+      "conversions": {
+        "arrow": "arrow",
+        "empty": "لا توجد بيانات تحويلات",
+        "from": "من",
+        "multiplier": "multiplier",
+        "multiplierValue": "x {{value}}",
+        "to": "to"
+      },
+      "conversionsTitle": "تحويلات",
+      "empty": "لا توجد بيانات وحدات",
+      "existingTitle": "حالي",
+      "fields": {
+        "abbreviation": "abbreviation",
+        "name": "الاسم"
+      },
+      "loading": "جاري تحميل وحدات...",
+      "newTitle": "جديد",
+      "title": "وحدات"
+    }
+  },
+  "reports": {
+    "dashboard": {
+      "actions": {
+        "viewInventory": "عرض المخزون",
+        "viewMargins": "عرض الهوامش",
+        "viewSales": "عرض المبيعات",
+        "viewSessions": "عرض جلسات"
+      },
+      "alerts": {
+        "allClear": "الكل مسح",
+        "badge": {
+          "success": "ناجح",
+          "warning": "تحذير"
+        },
+        "lowStock": "{{count}} عنصر منخفض المخزون",
+        "lowStockFallback": "منخفض Stock افتراضي",
+        "lowStockItem": "{{name}} أقل من الحد الأدنى ({{current}}/{{min}})",
+        "noCritical": "لا حرج",
+        "title": "التنبيهات"
+      },
+      "dailySales": "يومي المبيعات",
+      "kpiBadges": {
+        "action": "إجراء",
+        "clear": "مسح",
+        "custom": "مخصص",
+        "live": "مباشر",
+        "month": "شهر",
+        "perOrder": "per طلب",
+        "tickets": "فواتير",
+        "today": "اليوم",
+        "week": "أسبوع"
+      },
+      "kpiHints": {
+        "avgOrder": "متوسط الطلب",
+        "avgOrderValue": "متوسط قيمة الطلب: {{value}}",
+        "itemsBelowMin": "عناصر أقل من Min",
+        "marginRate": "نسبة الهامش: {{value}}%",
+        "openSessionsCash": "فتح جلسات نقد",
+        "postedRevenue": "مرحّل الإيرادات"
+      },
+      "kpis": {
+        "avgTicket": "متوسط الفاتورة",
+        "cashOnHand": "النقد المتاح",
+        "grossMargin": "الهامش الإجمالي",
+        "lowStock": "انخفاض المخزون",
+        "orders": "طلبات",
+        "sales": "المبيعات"
+      },
+      "loading": "جاري تحميل لوحة التحكم...",
+      "quick": {
+        "month": "شهر",
+        "today": "today",
+        "week": "أسبوع"
+      },
+      "table": {
+        "date": "التاريخ",
+        "revenue": "الإيرادات"
+      }
+    },
+    "hub": {
+      "actions": {
+        "openReport": "فتح تقرير"
+      },
+      "cards": {
+        "inventory": {
+          "description": "الوصف",
+          "title": "المخزون"
+        },
+        "margins": {
+          "description": "الوصف",
+          "title": "الهوامش"
+        },
+        "sales": {
+          "description": "الوصف",
+          "title": "المبيعات"
+        },
+        "sessionsZ": {
+          "description": "الوصف",
+          "title": "تقرير Z للجلسات"
+        },
+        "trialBalance": {
+          "description": "الوصف",
+          "title": "ميزان المراجعة"
+        }
+      },
+      "libraryTitle": "المكتبة",
+      "noAccessDescription": "لا Access",
+      "noAccessTitle": "لا Access",
+      "overviewTitle": "overview",
+      "subtitle": "مركز",
+      "summary": {
+        "accessEnabled": "access مفعل",
+        "accessHint": "access",
+        "accessLabel": "access",
+        "accessRestricted": "access Restricted",
+        "availableHint": "متاح",
+        "availableLabel": "متاح",
+        "tipHint": "معلومة",
+        "tipLabel": "تلميح",
+        "tipValue": "تلميح"
+      },
+      "title": "مركز"
+    },
+    "inventory": {
+      "details": {
+        "branchLabel": "الفرع: {{branch}}",
+        "empty": "لا توجد بيانات المخزون",
+        "emptyDescription": "لا توجد بيانات المخزون بعد.",
+        "emptyTitle": "لا توجد بيانات المخزون",
+        "groupSubtitle": "تجميع",
+        "loading": "جاري تحميل المخزون...",
+        "movementFallback": "movement افتراضي",
+        "movementSubtitle": "{{date}} | {{type}} | الكمية {{quantity}}",
+        "reasonLabel": "السبب: {{reason}}",
+        "title": "المخزون"
+      },
+      "emptyDescription": "لا توجد بيانات المخزون بعد.",
+      "emptyTitle": "لا توجد بيانات المخزون",
+      "groupBy": {
+        "detail": "تفاصيل",
+        "product": "منتج",
+        "type": "النوع"
+      },
+      "loading": "جاري تحميل المخزون...",
+      "results": {
+        "title": "المخزون"
+      },
+      "subtitle": "المخزون",
+      "summary": {
+        "entriesHint": "قيود",
+        "entriesLabel": "قيود",
+        "netHint": "صافي",
+        "netLabel": "صافي",
+        "qtyInHint": "qty داخل",
+        "qtyInLabel": "qty داخل",
+        "qtyOutHint": "qty خارج",
+        "qtyOutLabel": "qty خارج",
+        "title": "المخزون"
+      },
+      "table": {
+        "branch": "الفرع",
+        "date": "التاريخ",
+        "journal": "يومية",
+        "movementType": "نوع الحركة",
+        "net": "صافي",
+        "netQty": "صافي الكمية",
+        "product": "المنتج",
+        "qtyIn": "داخل",
+        "qtyOut": "خارج",
+        "quantity": "الكمية",
+        "type": "النوع"
+      },
+      "title": "المخزون"
+    },
+    "ledger": {
+      "empty": "لا Ledger",
+      "emptyAccount": "فارغ حساب",
+      "export": {
+        "line": "سطر",
+        "source": "مصدر"
+      },
+      "filters": {
+        "account": "حساب",
+        "accountPlaceholder": "أدخل حساب",
+        "journalType": "يومية النوع"
+      },
+      "loading": "جاري تحميل دفتر الأستاذ...",
+      "meta": {
+        "posting": "ترحيل",
+        "sourceId": "مرجع: {{id}}",
+        "sourceType": "المصدر: {{type}}"
+      },
+      "results": {
+        "title": "دفتر الأستاذ"
+      },
+      "sourceTypes": {
+        "all": "الكل",
+        "inventory": "المخزون",
+        "manual": "يدوي",
+        "posReturns": "مرتجعات نقاط البيع",
+        "posSales": "مبيعات نقاط البيع",
+        "reversal": "عكس",
+        "system": "نظام"
+      },
+      "subtitle": "دفتر الأستاذ",
+      "summary": {
+        "closing": "إغلاق",
+        "credits": "دائن",
+        "debits": "مدين",
+        "opening": "افتتاحي",
+        "title": "دفتر الأستاذ"
+      },
+      "table": {
+        "balance": "رصيد",
+        "credit": "دائن",
+        "date": "التاريخ",
+        "debit": "مدين",
+        "description": "الوصف",
+        "entry": "قيد"
+      },
+      "title": "دفتر الأستاذ"
+    },
+    "margins": {
+      "emptyDescription": "لا توجد بيانات الهوامش بعد.",
+      "emptyTitle": "لا توجد بيانات الهوامش",
+      "groupBy": {
+        "category": "تصنيف",
+        "item": "عنصر"
+      },
+      "loading": "جاري تحميل الهوامش...",
+      "results": {
+        "title": "الهوامش"
+      },
+      "subtitle": "الهوامش",
+      "summary": {
+        "cogsHint": "COGS",
+        "cogsLabel": "COGS",
+        "marginHint": "نسبة الهامش: {{value}}%",
+        "marginLabel": "الهامش",
+        "revenueHint": "الإيرادات",
+        "revenueLabel": "الإيرادات",
+        "title": "الهوامش",
+        "unitsHint": "وحدات",
+        "unitsLabel": "وحدات"
+      },
+      "table": {
+        "category": "تصنيف",
+        "cogs": "COGS",
+        "date": "التاريخ",
+        "item": "عنصر",
+        "journal": "يومية",
+        "label": "تسمية",
+        "margin": "هامش",
+        "order": "طلب",
+        "product": "منتج",
+        "qty": "كمية",
+        "quantity": "الكمية",
+        "revenue": "الإيرادات",
+        "total": "الإجمالي"
+      },
+      "title": "الهوامش",
+      "transactions": {
+        "empty": "لا توجد بيانات Transactions",
+        "emptyDescription": "لا توجد بيانات Transactions بعد.",
+        "emptyTitle": "لا توجد بيانات Transactions",
+        "loading": "جاري تحميل Transactions...",
+        "subtitle": "Transactions",
+        "title": "Transactions"
+      }
+    },
+    "sales": {
+      "emptyDescription": "لا توجد بيانات المبيعات بعد.",
+      "emptyTitle": "لا توجد بيانات المبيعات",
+      "groupBy": {
+        "category": "تصنيف",
+        "item": "عنصر",
+        "payment": "دفع"
+      },
+      "loading": "جاري تحميل المبيعات...",
+      "results": {
+        "title": "المبيعات"
+      },
+      "subtitle": "المبيعات",
+      "summary": {
+        "marginHint": "نسبة الهامش: {{value}}%",
+        "marginLabel": "الهامش",
+        "ordersHint": "طلبات",
+        "ordersLabel": "طلبات",
+        "quantityHint": "الكمية",
+        "quantityLabel": "الكمية",
+        "revenueHint": "الإيرادات",
+        "revenueLabel": "الإيرادات",
+        "rowsHint": "صفوف",
+        "rowsLabel": "صفوف",
+        "title": "المبيعات"
+      },
+      "table": {
+        "category": "تصنيف",
+        "cost": "تكلفة",
+        "date": "التاريخ",
+        "item": "عنصر",
+        "journal": "يومية",
+        "label": "تسمية",
+        "margin": "هامش",
+        "order": "طلب",
+        "orders": "طلبات",
+        "payment": "دفع",
+        "paymentMethod": "طريقة الدفع",
+        "product": "منتج",
+        "qty": "كمية",
+        "quantity": "الكمية",
+        "revenue": "الإيرادات",
+        "total": "الإجمالي"
+      },
+      "title": "المبيعات",
+      "transactions": {
+        "empty": "لا توجد بيانات Transactions",
+        "emptyDescription": "لا توجد بيانات Transactions بعد.",
+        "emptyTitle": "لا توجد بيانات Transactions",
+        "loading": "جاري تحميل Transactions...",
+        "subtitle": "Transactions",
+        "title": "Transactions"
+      }
+    },
+    "sessionsZ": {
+      "emptyDescription": "لا توجد بيانات تقرير Z للجلسات بعد.",
+      "emptyTitle": "لا توجد بيانات تقرير Z للجلسات",
+      "groupBy": {
+        "branch": "الفرع",
+        "cashier": "الكاشير",
+        "none": "لا يوجد",
+        "status": "الحالة"
+      },
+      "groupLabels": {
+        "all": "الكل"
+      },
+      "loading": "جاري تحميل تقرير Z للجلسات...",
+      "orders": {
+        "empty": "لا توجد بيانات طلبات",
+        "emptyDescription": "لا توجد بيانات طلبات بعد.",
+        "emptyTitle": "لا توجد بيانات طلبات",
+        "loading": "جاري تحميل طلبات...",
+        "sessionTitle": "جلسة {{id}}",
+        "subtitle": "طلبات",
+        "title": "طلبات"
+      },
+      "results": {
+        "count": "{{count}} جلسات",
+        "title": "تقرير Z للجلسات"
+      },
+      "subtitle": "تقرير Z للجلسات",
+      "summary": {
+        "avgSalesHint": "متوسط المبيعات",
+        "avgSalesLabel": "متوسط المبيعات",
+        "closingHint": "إغلاق",
+        "closingLabel": "إغلاق",
+        "ordersHint": "متوسط الطلبات: {{value}}",
+        "ordersLabel": "طلبات",
+        "salesHint": "المبيعات",
+        "salesLabel": "المبيعات",
+        "sessionsHint": "جلسات",
+        "sessionsLabel": "جلسات",
+        "title": "تقرير Z للجلسات"
+      },
+      "table": {
+        "branch": "الفرع",
+        "cashier": "الكاشير",
+        "actualCash": "النقد الفعلي",
+        "closing": "إغلاق",
+        "closingCash": "نقد الإغلاق",
+        "cashDifference": "فرق الصندوق",
+        "cashIn": "إدخال نقد",
+        "cashOut": "إخراج نقد",
+        "cashRefunds": "مرتجعات نقدية",
+        "cashSales": "مبيعات نقدية",
+        "cardSales": "مبيعات بطاقة",
+        "date": "التاريخ",
+        "deliveryCollected": "تحصيل ديلفري",
+        "deliveryPending": "ديلفري معلق",
+        "end": "نهاية",
+        "expectedCash": "النقد المتوقع",
+        "journal": "يومية",
+        "opening": "افتتاحي",
+        "openingCash": "نقد الافتتاح",
+        "order": "طلب",
+        "orders": "طلبات",
+        "payment": "دفع",
+        "sales": "المبيعات",
+        "session": "جلسة",
+        "start": "بدء",
+        "status": "الحالة",
+        "transferSales": "مبيعات تحويل",
+        "total": "الإجمالي"
+      },
+      "title": "تقرير Z للجلسات"
+    },
+    "trialBalance": {
+      "empty": "لا يوجد ميزان مراجعة",
+      "filters": {
+        "groupByType": "تجميع حسب النوع",
+        "period": "فترة",
+        "periodOptions": {
+          "custom": "مخصص",
+          "lastMonth": "شهر الماضي",
+          "month": "شهر",
+          "quarter": "ربع سنوي",
+          "year": "سنوي"
+        }
+      },
+      "group": {
+        "all": "الكل"
+      },
+      "loading": "جاري تحميل ميزان المراجعة...",
+      "results": {
+        "title": "ميزان المراجعة"
+      },
+      "subtitle": "ميزان المراجعة",
+      "summary": {
+        "accounts": "حسابات",
+        "outOfBalance": "out Of Balance",
+        "title": "ميزان المراجعة",
+        "totalCredits": "إجمالي الدائن",
+        "totalDebits": "إجمالي المدين"
+      },
+      "table": {
+        "account": "حساب",
+        "code": "كود",
+        "credit": "دائن",
+        "debit": "مدين",
+        "net": "صافي",
+        "type": "النوع"
+      },
+      "title": "ميزان المراجعة"
+    }
+  },
+  "settings": {
+    "descriptions": {
+      "allocationRules": "Allocation Rules",
+      "coaMapping": "دليل الحسابات Mapping",
+      "costCenters": "التكلفة مراكز",
+      "costClassification": "التكلفة تصنيف",
+      "discountRules": "خصم Rules",
+      "fiscalPeriods": "مالي Periods",
+      "inventoryCosting": "المخزون التكلفة",
+      "posOps": "نقاط البيع Ops",
+      "postingPolicies": "ترحيل Policies",
+      "printingDefaults": "printing افتراضي",
+      "printingShortcuts": "printing Shortcuts",
+      "returnsPolicy": "مرتجعات Policy",
+      "theme": "theme",
+      "thresholds": "الحدود",
+      "unitRules": "وحدة Rules"
+    },
+    "deviceConfig": {
+      "apiBaseUrl": "API العنوان",
+      "apiPlaceholder": "أدخل API",
+      "goToPos": "انتقال إلى نقاط البيع",
+      "kioskHint": "kiosk",
+      "kioskMode": "kiosk Mode",
+      "loading": "جاري تحميل الجهاز الإعدادات...",
+      "save": "حفظ",
+      "subtitle": "إعدادات الجهاز",
+      "tip": "تلميح",
+      "title": "إعدادات الجهاز"
+    },
+    "fields": {
+      "accentColor": "لون التمييز",
+      "accentHint": "accent",
+      "accountMapping": "دليل الحسابات Mapping",
+      "currencyCode": "العملة",
+      "currencyCodeHint": "ISO 4217 كود العملة (مثلاً USD).",
+      "currencyCodePlaceholder": "USD",
+      "allocationBasis": "أساس التوزيع",
+      "allocationMethod": "طريقة التوزيع",
+      "allowDiscounts": "السماح بالخصومات",
+      "allowManualJournal": "السماح بقيود اليومية اليدوية",
+      "allowNegativeStock": "السماح بالمخزون السالب",
+      "allowReturns": "السماح بالمرتجعات",
+      "autoCalculateUnitCost": "حساب تكلفة الوحدة تلقائياً",
+      "autoDeductStock": "خصم المخزون تلقائياً",
+      "autoPrintKOT": "طباعة KOT تلقائياً",
+      "autoPrintReceipt": "طباعة الإيصال تلقائياً",
+      "borderRadius": "نصف قطر الحواف",
+      "classificationDefault": "التصنيف الافتراضي",
+      "cogs": "COGS",
+      "costCentersEnabled": "تفعيل مراكز التكلفة",
+      "costingMethod": "طريقة التكلفة",
+      "defaultCostCenter": "مركز التكلفة الافتراضي",
+      "defaultUnit": "الوحدة الافتراضية",
+      "discountReasonRequired": "سبب الخصم مطلوب",
+      "discounts": "الخصومات",
+      "fiscalPeriodType": "نوع الفترة المالية",
+      "fiscalYearStartDay": "يوم بداية السنة المالية",
+      "fiscalYearStartMonth": "شهر بداية السنة المالية",
+      "inventory": "المخزون",
+      "kitchenTemplate": "قالب المطبخ",
+      "lowStockThreshold": "حد انخفاض المخزون",
+      "maxDiscount": "أقصى خصم",
+      "posBank": "بنك نقاط البيع",
+      "posCash": "نقد نقاط البيع",
+      "postingPolicy": "سياسة الترحيل",
+      "postingPolicyHint": "ترحيل Policy",
+      "quantityPrecision": "دقة الكمية",
+      "receiptTemplate": "قالب الإيصال",
+      "returnReasonRequired": "سبب الإرجاع مطلوب",
+      "returnWindow": "نافذة المرتجعات",
+      "revenue": "الإيرادات",
+      "serviceCharge": "رسوم الخدمة",
+      "tablesEnabled": "تفعيل الطاولات",
+      "taxPayable": "الضريبة المستحقة",
+      "themeMode": "Theme Mode",
+      "tipsEnabled": "تفعيل الإكراميات",
+      "unitConversionPolicy": "سياسة تحويل الوحدات",
+      "zReportTemplate": "قالب تقرير Z"
+    },
+    "loading": "جاري تحميل الإعدادات...",
+    "options": {
+      "batch": "batch",
+      "dark": "داكن",
+      "direct": "مباشر",
+      "directClassification": "مباشر تصنيف",
+      "fifo": "FIFO",
+      "flexible": "flexible",
+      "immediate": "فوري",
+      "indirect": "غير مباشر",
+      "laborHours": "ساعات العمل",
+      "light": "فاتح",
+      "manual": "يدوي",
+      "monthly": "شهري",
+      "overhead": "overhead",
+      "quarterly": "ربع سنوي",
+      "reciprocal": "reciprocal",
+      "sales": "المبيعات",
+      "stepDown": "step Down",
+      "strict": "strict",
+      "units": "وحدات",
+      "wac": "WAC",
+      "yearly": "سنوي"
+    },
+    "printing": {
+      "jobs": {
+        "actions": {
+          "processQueue": "معالجة Queue",
+          "retry": "إعادة المحاولة"
+        },
+        "empty": "لا توجد بيانات مهام",
+        "filters": {
+          "allStatuses": "الكل Statuses",
+          "allTypes": "الكل Types",
+          "status": "الحالة",
+          "type": "النوع"
+        },
+        "loading": "جاري تحميل مهام...",
+        "status": {
+          "cancelled": "ملغاة",
+          "failed": "فاشلة",
+          "locked": "محجوزة",
+          "pending": "قيد الانتظار",
+          "printing": "قيد الطباعة",
+          "success": "ناجحة"
+        },
+        "subtitle": "مهام",
+        "summary": {
+          "completed": "مكتمل",
+          "failed": "فشل",
+          "queued": "queued",
+          "title": "مهام"
+        },
+        "table": {
+          "lastError": "آخر خطأ",
+          "printer": "طابعة",
+          "attempts": "المحاولات",
+          "status": "الحالة",
+          "time": "الوقت",
+          "title": "مهام",
+          "type": "النوع"
+        },
+        "title": "مهام",
+        "types": {
+          "kot": "KOT",
+          "receipt": "إيصال",
+          "report": "تقرير"
+        }
+      },
+      "printers": {
+        "actions": {
+          "add": "إضافة",
+          "create": "إنشاء"
+        },
+        "confirmDisable": "تعطيل الطابعة {{name}}؟",
+        "empty": "لا توجد بيانات الطابعات",
+        "form": {
+          "enabledHint": "مفعل",
+          "ipAddress": "IP العنوان",
+          "name": "الاسم",
+          "port": "port",
+          "target": "target",
+          "type": "النوع"
+        },
+        "loading": "جاري تحميل الطابعات...",
+        "modal": {
+          "addTitle": "إضافة",
+          "editTitle": "تعديل"
+        },
+        "subtitle": "الطابعات",
+        "summary": {
+          "enabled": "مفعل",
+          "kitchen": "المطبخ",
+          "title": "الطابعات"
+        },
+        "table": {
+          "address": "العنوان",
+          "printer": "طابعة",
+          "status": "الحالة",
+          "target": "target",
+          "title": "الطابعات",
+          "type": "النوع"
+        },
+        "targets": {
+          "bar": "بار",
+          "cashier": "كاشير",
+          "kitchen": "المطبخ",
+          "label": "تسمية"
+        },
+        "title": "الطابعات",
+        "types": {
+          "bluetooth": "بلوتوث",
+          "network": "شبكة (Network)",
+          "pdf": "PDF",
+          "usb": "USB",
+          "windows": "طابعة ويندوز"
+        }
+      },
+      "routes": {
+        "actions": {
+          "add": "إضافة",
+          "create": "إنشاء"
+        },
+        "confirmDelete": "تأكيد حذف",
+        "empty": "لا توجد بيانات المسارات",
+        "form": {
+          "activeHint": "نشط",
+          "category": "تصنيف",
+          "categoryPlaceholder": "أدخل تصنيف",
+          "jobType": "مهمة النوع",
+          "printer": "طابعة",
+          "printerPlaceholder": "أدخل طابعة",
+          "report": "تقرير",
+          "reportPlaceholder": "أدخل تقرير",
+          "scopeType": "scope النوع",
+          "station": "محطة",
+          "stationPlaceholder": "أدخل محطة",
+          "template": "قالب",
+          "templateDefault": "قالب افتراضي"
+        },
+        "jobTypes": {
+          "kot": "KOT",
+          "receipt": "إيصال",
+          "report": "تقرير"
+        },
+        "loading": "جاري تحميل المسارات...",
+        "modal": {
+          "addTitle": "إضافة",
+          "editTitle": "تعديل"
+        },
+        "reports": {
+          "zReport": "تقرير Z"
+        },
+        "scopeLabels": {
+          "category": "التصنيف: {{name}}",
+          "categoryFallback": "التصنيف رقم {{id}}",
+          "report": "التقرير: {{report}}",
+          "station": "المحطة: {{station}}"
+        },
+        "scopes": {
+          "category": "تصنيف",
+          "default": "افتراضي",
+          "report": "تقرير",
+          "station": "محطة"
+        },
+        "stations": {
+          "bar": "بار",
+          "cashier": "كاشير",
+          "kitchen": "المطبخ"
+        },
+        "subtitle": "المسارات",
+        "summary": {
+          "active": "نشط",
+          "printers": "الطابعات",
+          "routes": "المسارات",
+          "title": "المسارات"
+        },
+        "table": {
+          "jobType": "مهمة النوع",
+          "printer": "طابعة",
+          "scope": "scope",
+          "status": "الحالة",
+          "template": "قالب",
+          "title": "المسارات"
+        },
+        "title": "المسارات"
+      },
+      "templates": {
+        "actions": {
+          "add": "إضافة",
+          "create": "إنشاء"
+        },
+        "confirmDisable": "تعطيل القالب {{name}}؟",
+        "empty": "لا توجد بيانات قوالب",
+        "form": {
+          "content": "المحتوى",
+          "defaultHint": "افتراضي",
+          "defaultTitle": "افتراضي",
+          "name": "الاسم",
+          "type": "النوع"
+        },
+        "loading": "جاري تحميل قوالب...",
+        "modal": {
+          "addTitle": "إضافة",
+          "editTitle": "تعديل"
+        },
+        "preview": {
+          "empty": "لا توجد بيانات preview",
+          "title": "preview"
+        },
+        "subtitle": "قوالب",
+        "summary": {
+          "active": "نشط",
+          "defaults": "افتراضي",
+          "templates": "قوالب",
+          "title": "قوالب"
+        },
+        "table": {
+          "default": "افتراضي",
+          "status": "الحالة",
+          "template": "قالب",
+          "title": "قوالب",
+          "type": "النوع"
+        },
+        "title": "قوالب",
+        "types": {
+          "kot": "KOT",
+          "receipt": "إيصال",
+          "zReport": "تقرير Z"
+        }
+      }
+    },
+    "sections": {
+      "allocationRules": "توزيع Rules",
+      "coaMapping": "دليل الحسابات Mapping",
+      "costCenters": "التكلفة مراكز",
+      "costClassification": "التكلفة تصنيف",
+      "discountRules": "خصم Rules",
+      "fiscalPeriods": "مالي Periods",
+      "inventoryCosting": "المخزون التكلفة",
+      "posOps": "نقاط البيع Ops",
+      "postingPolicies": "ترحيل Policies",
+      "printingDefaults": "printing افتراضي",
+      "printingShortcuts": "printing Shortcuts",
+      "returnsPolicy": "مرتجعات Policy",
+      "theme": "theme",
+      "thresholds": "الحدود",
+      "unitRules": "وحدة Rules"
+    },
+    "shortcuts": {
+      "jobs": "مهام",
+      "printers": "الطابعات",
+      "routes": "المسارات",
+      "templates": "قوالب"
+    },
+    "subtitle": "الإعدادات",
+    "tabs": {
+      "accounting": "المحاسبة",
+      "costing": "التكلفة",
+      "inventory": "المخزون",
+      "pos": "نقاط البيع",
+      "printing": "printing",
+      "theme": "theme"
+    },
+    "title": "الإعدادات",
+    "users": {
+      "addUser": "إضافة مستخدم",
+      "allBranches": "كافة الفروع",
+      "branch": "الفرع",
+      "createdAt": "تاريخ الإنشاء",
+      "editUser": "تعديل مستخدم",
+      "leaveBlankToKeep": "اتركه فارغاً للحفاظ على الحالية",
+      "password": "كلمة المرور",
+      "role": "الدور",
+      "subtitle": "إدارة مستخدمي النظام، الأدوار، وتعيينات الفروع",
+      "title": "إدارة المستخدمين",
+      "username": "اسم المستخدم"
+    },
+    "backups": {
+      "title": "إدارة النسخ الاحتياطي",
+      "subtitle": "إنشاء وإدارة النسخ الاحتياطية لقاعدة البيانات",
+      "create": "أخذ نسخة احتياطية الآن",
+      "config": "الإعدادات",
+      "path": "مسار حفظ النسخ الاحتياطية",
+      "pathHint": "سيتم حفظ النسخ الاحتياطية في هذا المجلد. تأكد من وجود صلاحيات الكتابة.",
+      "history": "سجل النسخ الاحتياطية",
+      "filename": "اسم الملف",
+      "date": "التاريخ",
+      "size": "الحجم"
+    }
+  },
+  "toast": {
+    "accounts": {
+      "created": "تم إنشاء الحسابات.",
+      "deleted": "تم حذف الحسابات.",
+      "updated": "تم تحديث الحسابات."
+    },
+    "auth": {
+      "loginSuccess": "تسجيل الدخول Success"
+    },
+    "deviceConfig": {
+      "saved": "تم حفظ الجهاز الإعدادات."
+    },
+    "inventory": {
+      "adjustSaved": "تسوية Saved",
+      "transferCreated": "تحويل تم الإنشاء"
+    },
+    "journals": {
+      "draftSaved": "تم حفظ المسودة.",
+      "draftUpdated": "تم تحديث المسودة.",
+      "posted": "تم ترحيل قيود اليومية.",
+      "reversed": "تم عكس قيود اليومية."
+    },
+    "pos": {
+      "orderSubmitted": "تم إرسال الطلب {{orderNumber}}.",
+      "orderSubmittedGeneric": "تم إرسال الطلب.",
+      "confirmClearCart": "هل أنت متأكد من مسح السلة؟",
+      "cashInSaved": "تم تسجيل إدخال النقد.",
+      "cashOutSaved": "تم تسجيل إخراج النقد.",
+      "kitchenJobQueued": "تم إنشاء مهمة طلب المطبخ.",
+      "printJobQueued": "تم إنشاء مهمة الطباعة.",
+      "returnProcessed": "تمت معالجة المرتجع.",
+      "sessionClosed": "تم إغلاق الجلسة.",
+      "sessionOpened": "تم فتح الجلسة.",
+      "settingsSaved": "تم حفظ الإعدادات."
+    },
+    "printJobs": {
+      "processingStarted": "تم بدء المعالجة.",
+      "retryQueued": "تم وضع إعادة المحاولة في قائمة الانتظار."
+    },
+    "printTemplates": {
+      "created": "تم إنشاء طباعة قوالب.",
+      "disabled": "تم تعطيل طباعة قوالب.",
+      "updated": "تم تحديث طباعة قوالب."
+    },
+    "printerRoutes": {
+      "created": "تم إنشاء طابعة المسارات.",
+      "deleted": "تم حذف طابعة المسارات.",
+      "updated": "تم تحديث طابعة المسارات."
+    },
+    "printers": {
+      "created": "تم إنشاء الطابعات.",
+      "disabled": "تم تعطيل الطابعات.",
+      "updated": "تم تحديث الطابعات."
+    },
+    "products": {
+      "archived": "تمت أرشفة المنتجات.",
+      "categories": {
+        "archived": "تمت أرشفة التصنيفات.",
+        "created": "تم إنشاء التصنيفات.",
+        "updated": "تم تحديث التصنيفات."
+      },
+      "created": "تم إنشاء المنتجات.",
+      "units": {
+        "archived": "تمت أرشفة وحدات.",
+        "conversionSaved": "تحويل Saved",
+        "created": "تم إنشاء وحدات.",
+        "updated": "تم تحديث وحدات."
+      },
+      "updated": "تم تحديث المنتجات."
+    },
+    "settings": {
+      "saved": "تم حفظ الإعدادات.",
+      "sections": {
+        "keyboardShortcuts": "اختصارات لوحة المفاتيح"
+      },
+      "descriptions": {
+        "keyboardShortcuts": "تخصيص أزرار الاختصار لعمليات نقطة البيع السريعة"
+      },
+      "fields": {
+        "shortcutSave": "حفظ الطلب",
+        "shortcutPrintReceipt": "طباعة الفاتورة",
+        "shortcutPrintKOT": "طباعة المطبخ",
+        "shortcutClearCart": "مسح السلة"
+      }
+    },
+    "users": {
+      "created": "تم إنشاء المستخدم بنجاح.",
+      "updated": "تم تحديث بيانات المستخدم.",
+      "deleted": "تم حذف المستخدم بنجاح."
+    }
+  },
+  "delivery": {
+    "title": "إدارة التوصيل",
+    "subtitle": "متابعة المناديب والعمولات المستحقة",
+    "addCourier": "إضافة مندوب",
+    "editCourier": "تعديل مندوب",
+    "courierName": "اسم المندوب",
+    "phone": "رقم الهاتف",
+    "commissionPolicy": "سياسة العمولة",
+    "commissionType": "نوع العمولة",
+    "totalOrders": "إجمالي الطلبات",
+    "totalSales": "إجمالي المبيعات",
+    "earnedCommission": "العمولة المكتسبة",
+    "paidCommission": "العمولة المدفوعة",
+    "remainingBalance": "الرصيد المتبقي",
+    "settle": "صرف العمولة",
+    "settleConfirm": "هل أنت متأكد من صرف جميع العمولات المستحقة لهذا المندوب؟",
+    "activeCouriers": "المناديب النشطين",
+    "dailyOrders": "طلبات اليوم",
+    "unpaidCommission": "عمولات غير مدفوعة",
+    "couriersList": "قائمة المناديب",
+    "performanceReport": "تقرير الأداء",
+    "policy": {
+      "NONE": "بدون عمولة",
+      "FIXED_PER_ORDER": "مبلغ ثابت لكل طلب",
+      "PERCENT_OF_ORDER": "نسبة من إجمالي الطلب",
+      "MANUAL": "إدخال يدوي"
+    }
+  }
+}

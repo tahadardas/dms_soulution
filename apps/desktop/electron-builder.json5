@@ -1,0 +1,48 @@
+{
+  "$schema": "https://raw.githubusercontent.com/electron-userland/electron-builder/master/packages/app-builder-lib/scheme.json",
+  "appId": "com.dms.soulution.pos",
+  "productName": "DMS SOULUTION POS",
+  "electronVersion": "40.9.3",
+  "npmRebuild": false,
+  "asar": true,
+  "directories": {
+    "output": "release"
+  },
+  "files": [
+    "dist/**/*",
+    "package.json"
+  ],
+  "extraResources": [
+    {
+      "from": "../web/dist",
+      "to": "web-dist",
+      "filter": ["**/*"]
+    },
+    {
+      "from": "../api/dist",
+      "to": "api/dist",
+      "filter": ["**/*"]
+    },
+    {
+        "from": "../api/src/db/migrations",
+        "to": "api/src/db/migrations",
+        "filter": ["**/*"]
+    },
+    {
+      "from": "../../docs",
+      "to": "docs"
+    }
+  ],
+  "win": {
+    "target": "nsis",
+    "icon": "build/icon.png"
+  },
+  "nsis": {
+    "oneClick": false,
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "DMS SOULUTION",
+    "perMachine": true
+  }
+}

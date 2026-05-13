@@ -1,0 +1,30 @@
+{
+  "name": "dms-soulution-monorepo",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:web\" \"npm run dev:desktop\"",
+    "dev:api": "npm run dev --workspace=@dms/api",
+    "dev:web": "npm run dev --workspace=@dms/web",
+    "dev:desktop": "npm run dev --workspace=@dms/desktop",
+    "build": "npm run build --workspace=@dms/shared && npm run build --workspace=@dms/ui && npx tsc -b apps/api/tsconfig.json && npm run build --workspace=@dms/web && npm run build --workspace=@dms/desktop",
+    "package:windows": "npm run build && npm run dist --workspace=@dms/desktop",
+    "verify:package": "node scripts/verify-package.js",
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "format": "prettier --write ."
+  },
+  "overrides": {
+    "brace-expansion": "1.1.14",
+    "lodash": "4.18.1"
+  },
+  "devDependencies": {
+    "brace-expansion": "1.1.14",
+    "concurrently": "^8.2.2",
+    "prettier": "^3.2.5",
+    "typescript": "^5.3.3"
+  }
+}

@@ -1,0 +1,16 @@
+.dms-date-range-picker {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+}
+
+.dms-date-inputs {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.dms-date-separator {
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+}

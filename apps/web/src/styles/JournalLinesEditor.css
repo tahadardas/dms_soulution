@@ -1,0 +1,36 @@
+.journal-lines {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
+.journal-line-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 2fr auto;
+    gap: var(--space-2);
+    align-items: end;
+    padding: var(--space-3);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    background: var(--bg-secondary);
+}
+
+.journal-line-row__actions {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: var(--space-1);
+}
+
+.journal-lines__footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@media (max-width: 900px) {
+    .journal-line-row {
+        grid-template-columns: 1fr;
+    }
+    .journal-line-row__actions {
+        justify-content: flex-start;
+    }
+}

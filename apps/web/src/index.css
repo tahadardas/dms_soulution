@@ -1,0 +1,29 @@
+@import "@dms/ui/style.css";
+
+#root {
+    min-height: 100vh;
+}
+
+
+
+#root {
+    min-height: 100vh;
+}
+
+[dir="rtl"] .flip-rtl {
+    transform: scaleX(-1);
+}
+
+/* 
+  Many RTL overrides in index.css are now redundant 
+  because of logical properties in @dms/ui 
+*/
+:root[dir='rtl'] .dms-sidebar__item {
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+}
+
+:root[dir='rtl'] .app-topbar__back .flip-rtl,
+:root[dir='rtl'] .dms-page-header__back .flip-rtl {
+    transform: scaleX(-1);
+}

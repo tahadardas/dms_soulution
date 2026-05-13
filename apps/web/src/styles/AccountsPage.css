@@ -1,0 +1,72 @@
+.accounts-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.accounts-page__error {
+    background-color: var(--color-danger-bg);
+    color: var(--color-danger);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+}
+
+.accounts-page__loading {
+    color: var(--text-muted);
+}
+
+.accounts-page__hint {
+    margin-top: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+}
+
+.accounts-page__empty {
+    padding: var(--space-3);
+    border: 1px dashed var(--border-default);
+    border-radius: var(--radius-md);
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.accounts-table__name {
+    display: grid;
+    gap: var(--space-1);
+}
+
+.accounts-table__code {
+    font-size: var(--text-xs);
+    color: var(--text-muted);
+}
+
+.accounts-table__label {
+    font-weight: var(--font-medium);
+    color: var(--text-main);
+}
+
+.accounts-table__actions {
+    display: flex;
+    gap: var(--space-2);
+    flex-wrap: wrap;
+}
+
+.accounts-table__name--level-0 { padding-left: 0; }
+.accounts-table__name--level-1 { padding-left: 16px; }
+.accounts-table__name--level-2 { padding-left: 32px; }
+.accounts-table__name--level-3 { padding-left: 48px; }
+.accounts-table__name--level-4 { padding-left: 64px; }
+.accounts-table__name--level-5 { padding-left: 80px; }
+.accounts-table__name--level-6 { padding-left: 96px; }
+
+.accounts-modal {
+    display: grid;
+    gap: var(--space-3);
+}
+
+.accounts-modal__footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-2);
+}

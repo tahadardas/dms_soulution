@@ -1,0 +1,29 @@
+{
+    "name": "@dms/desktop",
+    "version": "1.0.0",
+    "main": "dist/main.js",
+    "scripts": {
+        "dev": "tsc && electron .",
+        "build": "tsc",
+        "rebuild": "electron-rebuild -f -w better-sqlite3",
+        "dist": "electron-builder",
+        "pack": "electron-builder --dir"
+    },
+    "dependencies": {
+        "@dms/shared": "*",
+        "@fastify/cors": "^11.2.0",
+        "bcryptjs": "^3.0.3",
+        "better-sqlite3": "^12.6.2",
+        "electron-store": "^8.1.0",
+        "fastify": "^5.8.5",
+        "jsonwebtoken": "^9.0.3",
+        "zod": "^3.22.4"
+    },
+    "devDependencies": {
+        "@electron/rebuild": "^3.6.0",
+        "electron": "40.9.3",
+        "electron-builder": "^26.6.0",
+        "typescript": "^5.3.3",
+        "vite": "7.3.3"
+    }
+}

@@ -1,0 +1,14 @@
+node_modules
+dist
+build
+.env
+*.db
+*.db-shm
+*.db-wal
+*.log
+.DS_Store
+*.zip
+.vscode
+.idea
+out
+release

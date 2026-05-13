@@ -1,0 +1,2138 @@
+{
+  "invoices": {
+    "actions": {
+      "newPurchase": "New Purchase Invoice",
+      "newSale": "New Sale Invoice",
+      "post": "Post Invoice",
+      "saveDraft": "Save as Draft"
+    },
+    "fields": {
+      "customer": "Customer",
+      "date": "Date",
+      "invoiceNumber": "Invoice Number",
+      "notes": "Notes",
+      "product": "Product",
+      "quantity": "Quantity",
+      "supplier": "Supplier",
+      "tax": "Tax",
+      "total": "Total",
+      "unitPrice": "Unit Price"
+    },
+    "payment": {
+      "paid": "Paid",
+      "partial": "Partially Paid",
+      "unpaid": "Unpaid"
+    },
+    "stats": {
+      "pendingInvoices": "Pending Invoices",
+      "totalPurchases": "Total Purchases",
+      "totalSales": "Total Sales",
+      "unpaidAmount": "Uncollected Amount"
+    },
+    "status": {
+      "cancelled": "Cancelled",
+      "draft": "Draft",
+      "posted": "Posted"
+    },
+    "table": {
+      "amount": "Amount",
+      "customer": "Customer",
+      "date": "Date",
+      "number": "Number",
+      "payment": "Payment",
+      "supplier": "Supplier"
+    }
+  },
+  "suppliers": {
+    "title": "Suppliers",
+    "subtitle": "Manage suppliers and their financial accounts",
+    "actions": {
+      "newSupplier": "New Supplier",
+      "editSupplier": "Edit Supplier",
+      "viewStatement": "View Statement",
+      "recordPayment": "Record Payment"
+    },
+    "payment": {
+      "details": "Payment Details",
+      "method": "Payment Method"
+    },
+    "paymentMethods": {
+      "cash": "Cash",
+      "bank": "Bank Transfer",
+      "check": "Check"
+    },
+    "hints": {
+      "sourceAccount": "The account from which the payment is made (Cash or Bank)"
+    },
+    "fields": {
+      "name": "Name",
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address",
+      "taxNumber": "Tax Number",
+      "openingBalance": "Opening Balance",
+      "currency": "Currency",
+      "payableAccount": "Payable Account",
+      "advanceAccount": "Advance Account",
+      "amount": "Amount",
+      "sourceAccount": "Source Account",
+      "paymentMethod": "Payment Method",
+      "referenceNumber": "Reference Number"
+    },
+    "stats": {
+      "totalSuppliers": "Total Suppliers",
+      "activePayables": "Total Accounts Payable"
+    },
+    "empty": {
+      "title": "No Suppliers",
+      "description": "Start by adding your first supplier to link with purchase invoices."
+    }
+  },
+  "customers": {
+    "title": "Customers",
+    "subtitle": "Manage customers and their financial accounts",
+    "actions": {
+      "newCustomer": "New Customer",
+      "editCustomer": "Edit Customer",
+      "viewStatement": "View Statement",
+      "recordReceipt": "Record Receipt"
+    },
+    "receipt": {
+      "details": "Receipt Details",
+      "method": "Receipt Method"
+    },
+    "paymentMethods": {
+      "cash": "Cash",
+      "bank": "Bank Transfer",
+      "check": "Check"
+    },
+    "hints": {
+      "destinationAccount": "The account where the payment will be deposited (Cash or Bank)"
+    },
+    "fields": {
+      "name": "Name",
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address",
+      "taxNumber": "Tax Number",
+      "openingBalance": "Opening Balance",
+      "currency": "Currency",
+      "receivableAccount": "Receivable Account",
+      "advanceAccount": "Advance Account",
+      "amount": "Amount",
+      "destinationAccount": "Destination Account",
+      "paymentMethod": "Payment Method",
+      "referenceNumber": "Reference Number"
+    },
+    "stats": {
+      "totalCustomers": "Total Customers",
+      "activeReceivables": "Total Accounts Receivable"
+    },
+    "empty": {
+      "title": "No Customers",
+      "description": "Start by adding your first customer to link with sales invoices."
+    }
+  },
+  "accounts": {
+    "actions": {
+      "newAccount": "New Account"
+    },
+    "deleteConfirm": "Delete account {{code}}?",
+    "editTitle": "Edit",
+    "empty": "No Accounts",
+    "fields": {
+      "code": "Code",
+      "name": "Name",
+      "parent": "Parent",
+      "status": "Status",
+      "type": "Type"
+    },
+    "listTitle": "List",
+    "loading": "Loading Accounts...",
+    "newTitle": "New",
+    "noParent": "No Parent",
+    "searchLabel": "Search",
+    "searchPlaceholder": "Enter Search",
+    "subtitle": "Accounts",
+    "system": "System",
+    "table": {
+      "account": "Account"
+    },
+    "title": "Accounts",
+    "types": {
+      "asset": "Assets",
+      "equity": "Equity",
+      "expense": "Expenses",
+      "liability": "Liabilities",
+      "revenue": "Revenue"
+    }
+  },
+  "audit": {
+    "title": "System Audit Logs",
+    "subtitle": "Track sensitive operations and user activities",
+    "allActions": "All Actions",
+    "fields": {
+      "timestamp": "Timestamp",
+      "user": "User",
+      "action": "Action",
+      "details": "Details"
+    }
+  },
+  "common": {
+    "actions": "Actions",
+    "active": "Active",
+    "all": "All",
+    "allBranches": "All Branches",
+    "appTitle": "DMS Soulution",
+    "back": "Back",
+    "branch": "Branch",
+    "cancel": "Cancel",
+    "close": "Close",
+    "default": "Default",
+    "delete": "Delete",
+    "disable": "Disable",
+    "disabled": "Disabled",
+    "edit": "Edit",
+    "enabled": "Enabled",
+    "endDate": "End Date",
+    "exportCsv": "Export CSV",
+    "filters": "Filters",
+    "groupBy": "Group By",
+    "inactive": "Inactive",
+    "language": {
+      "ar": "AR",
+      "en": "EN"
+    },
+    "login": {
+      "cardTitle": "Welcome Back",
+      "password": "Password",
+      "passwordPlaceholder": "Enter Password",
+      "signIn": "Sign In",
+      "subtitle": "Enter your credentials to continue.",
+      "title": "Sign In",
+      "username": "Username",
+      "usernamePlaceholder": "Enter Username"
+    },
+    "next": "Next",
+    "no": "No",
+    "none": "None",
+    "notes": "Notes",
+    "optional": "Optional",
+    "page": "Page",
+    "pageOf": "{{page}} of {{totalPages}}",
+    "paymentMethods": {
+      "cash": "Cash",
+      "card": "Card",
+      "transfer": "Transfer"
+    },
+    "placeholder": "--",
+    "previous": "Previous",
+    "print": "Print",
+    "refresh": "Refresh",
+    "remove": "Remove",
+    "rowsCount": "{{count}} rows",
+    "save": "Save",
+    "saveChanges": "Save Changes",
+    "search": "Search",
+    "searchMinHint": "Type at least 2 characters to search.",
+    "standardPage": {
+      "contentTitle": "Content",
+      "emptyDescription": "Connect a data source or create a new record to get started.",
+      "emptyTitle": "Nothing to show yet",
+      "errorMessage": "Failed to load latest data.",
+      "errorTitle": "Something went wrong",
+      "fallbackOwnerHint": "Assign team member",
+      "fallbackOwnerLabel": "Owner",
+      "fallbackOwnerValue": "--",
+      "fallbackStatusHint": "Awaiting data",
+      "fallbackStatusLabel": "Status",
+      "fallbackStatusValue": "Draft",
+      "fallbackUpdateHint": "Connect data source",
+      "fallbackUpdateLabel": "Last Updated",
+      "fallbackUpdateValue": "--",
+      "loadingDescription": "Fetching latest data.",
+      "loadingTitle": "Loading",
+      "readyDescription": "This section is ready for actual data.",
+      "readyTitle": "Ready",
+      "summaryTitle": "Summary"
+    },
+    "startDate": "Start Date",
+    "startTime": "Start Time",
+    "endTime": "End Time",
+    "status": "Status",
+    "to": "To",
+    "total": "Total",
+    "type": "Type",
+    "unassigned": "Unassigned",
+    "uncategorized": "Uncategorized",
+    "unknown": "Unknown",
+    "unmapped": "Unmapped",
+    "viewEntry": "View Entry",
+    "viewJournalEntry": "View Journal Entry",
+    "yes": "Yes"
+  },
+  "errors": {
+    "accounts": {
+      "createDenied": "You do not have permission to create accounts.",
+      "deleteDenied": "You do not have permission to delete accounts.",
+      "deleteFailed": "Failed to delete accounts.",
+      "editDenied": "You do not have permission to edit accounts.",
+      "loadFailed": "Failed to load accounts.",
+      "missingFields": "Missing fields.",
+      "saveDenied": "You do not have permission to save accounts.",
+      "saveFailed": "Failed to save accounts."
+    },
+    "audit": {
+      "loadFailed": "Failed to load audit logs."
+    },
+    "auth": {
+      "loginFailed": "Failed to complete authentication."
+    },
+    "dashboard": {
+      "loadFailed": "Failed to load dashboard."
+    },
+    "deviceConfig": {
+      "saveFailed": "Failed to save device configuration."
+    },
+    "inventory": {
+      "adjustDenied": "You do not have permission to adjust inventory.",
+      "adjustQuantityRequired": "Quantity required.",
+      "adjustReasonRequired": "Reason required.",
+      "adjustSaveFailed": "Failed to save adjustment.",
+      "adjustSelectProduct": "Please select a product.",
+      "loadFailed": "Failed to load inventory.",
+      "loadFiltersFailed": "Failed to load filters.",
+      "movementsLoadFailed": "Failed to load movements.",
+      "transferBranchMismatch": "Source and destination branches must be different.",
+      "transferCreateFailed": "Failed to create transfer.",
+      "transferDenied": "You do not have permission to transfer inventory.",
+      "transferQuantityRequired": "Quantity required.",
+      "transferReasonRequired": "Reason required.",
+      "transferSelectProduct": "Please select a product."
+    },
+    "journals": {
+      "accountRequired": "Account required.",
+      "accountsLoadFailed": "Failed to load accounts.",
+      "createDenied": "You do not have permission to create journals.",
+      "descriptionRequired": "Description required.",
+      "draftSaveFailed": "Failed to save draft.",
+      "loadFailed": "Failed to load journals.",
+      "minimumLines": "Minimum lines required.",
+      "postDenied": "You do not have permission to post journals.",
+      "postFailed": "Failed to post journals.",
+      "reverseDenied": "You do not have permission to reverse journals.",
+      "reverseFailed": "Failed to reverse journals.",
+      "saveDenied": "You do not have permission to save journals."
+    },
+    "languageSync": "Failed to sync language preference.",
+    "noAccess": {
+      "contactAdmin": "Contact admin to request access.",
+      "contentDescription": "You do not have permission to view this page.",
+      "contentTitle": "Access Denied",
+      "errorTitle": "Permissions Denied",
+      "goHome": "Go to Dashboard",
+      "requiredPermissions": "Required Permissions: {{perms}}",
+      "subtitle": "You do not have the required permissions.",
+      "summary": {
+        "destination": "Destination",
+        "destinationHint": "Suggested Path",
+        "requiredPerms": "Required Permissions",
+        "requiredPermsHint": "Missing Permissions",
+        "role": "Role",
+        "roleHint": "Current Role"
+      },
+      "summaryTitle": "Access Details",
+      "title": "Access Restricted",
+      "unknownRole": "Unknown"
+    },
+    "notFound": {
+      "contentDescription": "The requested page does not exist.",
+      "contentTitle": "No Content",
+      "emptyDescription": "You can return to the dashboard.",
+      "emptyTitle": "Page Not Found",
+      "goHome": "Go to Dashboard",
+      "returnHome": "Return Home",
+      "subtitle": "We couldn't find this page.",
+      "summary": {
+        "errorCode": "Error Code",
+        "errorHint": "Invalid Path",
+        "path": "Path",
+        "pathHint": "Requested URL",
+        "suggested": "Suggested",
+        "suggestedHint": "Use the sidebar to navigate"
+      },
+      "summaryTitle": "Page Details",
+      "title": "Page Not Found"
+    },
+    "permissionDenied": "You do not have permission to perform this action.",
+    "pos": {
+      "cashOverage": "Entered amount is greater than expected by {{amount}}.",
+      "cashShortage": "Entered amount is less than expected by {{amount}}.",
+      "cashDifferenceReasonRequired": "Cash difference reason is required before closing session.",
+      "invalidCash": "Invalid cash amount.",
+      "invalidCashMovementAmount": "Cash movement amount must be greater than zero.",
+      "cashMovementFailed": "Failed to save cash movement.",
+      "cashMovementReasonRequired": "Cash movement reason is required.",
+      "closeFailed": "Failed to close POS.",
+      "kitchenPrintFailed": "Failed to send kitchen order.",
+      "loadOrderFailed": "Failed to load order.",
+      "loadProductsFailed": "Failed to load products.",
+      "noClosePermission": "No permission to close.",
+      "noLastOrderToPrint": "Save an order before printing.",
+      "noOpenPermission": "No permission to open.",
+      "noPrintPermission": "No permission to print orders.",
+      "noReturnPermission": "No permission to return.",
+      "noSubmitPermission": "No permission to submit.",
+      "openFailed": "Failed to open POS.",
+      "orderNotFound": "Order not found.",
+      "printFailed": "Failed to print order.",
+      "returnFailed": "Return failed.",
+      "returnReasonRequired": "Reason required.",
+      "returnSelectItems": "Select at least one item to return.",
+      "settingsSaveFailed": "Failed to save settings.",
+      "submitFailed": "Failed to submit POS.",
+      "courierRequired": "Courier selection is required."
+    },
+    "printJobs": {
+      "loadFailed": "Failed to load print jobs.",
+      "processDenied": "No permission to process print jobs.",
+      "processFailed": "Failed to process print jobs.",
+      "retryDenied": "No permission to retry print jobs.",
+      "retryFailed": "Failed to retry print jobs."
+    },
+    "printTemplates": {
+      "contentRequired": "Content required.",
+      "disableFailed": "Failed to disable print template.",
+      "loadFailed": "Failed to load print templates.",
+      "manageDenied": "No permission to manage print templates.",
+      "nameRequired": "Name required.",
+      "saveFailed": "Failed to save print template."
+    },
+    "printerRoutes": {
+      "deleteFailed": "Failed to delete printer route.",
+      "loadFailed": "Failed to load printer routes.",
+      "manageDenied": "No permission to manage printer routes.",
+      "saveFailed": "Failed to save printer route.",
+      "selectCategory": "Please select a category.",
+      "selectPrinter": "Please select a printer.",
+      "selectReport": "Please select a report.",
+      "selectStation": "Please select a station."
+    },
+    "printers": {
+      "disableFailed": "Failed to disable printer.",
+      "loadFailed": "Failed to load printers.",
+      "manageDenied": "No permission to manage printers.",
+      "nameRequired": "Name required.",
+      "saveFailed": "Failed to save printer."
+    },
+    "products": {
+      "archiveDenied": "No permission to archive products.",
+      "archiveFailed": "Failed to archive products.",
+      "categories": {
+        "archiveFailed": "Failed to archive categories.",
+        "createFailed": "Failed to create categories.",
+        "loadFailed": "Failed to load categories.",
+        "nameRequired": "Name required.",
+        "updateFailed": "Failed to update categories."
+      },
+      "createDenied": "No permission to create products.",
+      "loadCategoriesFailed": "Failed to load categories.",
+      "loadFailed": "Failed to load products.",
+      "manageCategoriesDenied": "No permission to manage categories.",
+      "manageUnitsDenied": "No permission to manage units.",
+      "missingId": "Missing ID.",
+      "notFound": "Not found.",
+      "recipeValidation": "Recipe validation failed. Select an ingredient and quantity > 0 for each item.",
+      "referencesLoadFailed": "Failed to load references.",
+      "saveDenied": "No permission to save products.",
+      "saveFailed": "Failed to save products.",
+      "units": {
+        "archiveFailed": "Failed to archive units.",
+        "conversionDeleteFailed": "Failed to delete conversion.",
+        "conversionFieldsRequired": "Conversion fields required.",
+        "conversionSameUnit": "Conversion units must be different.",
+        "conversionSaveFailed": "Failed to save conversion.",
+        "createFailed": "Failed to create units.",
+        "loadFailed": "Failed to load units.",
+        "nameRequired": "Name required.",
+        "updateFailed": "Failed to update units."
+      },
+      "validation": {
+        "minStockInvalid": "Invalid Min Stock value.",
+        "nameRequired": "Name required.",
+        "priceInvalid": "Invalid Price value.",
+        "skuRequired": "SKU required.",
+        "typeRequired": "Type required."
+      },
+      "validationFix": "Please correct the highlighted fields."
+    },
+    "reports": {
+      "inventoryLoadFailed": "Failed to load inventory report.",
+      "ledgerLoadFailed": "Failed to load ledger report.",
+      "marginsLoadFailed": "Failed to load margins report.",
+      "salesLoadFailed": "Failed to load sales report.",
+      "sessionsLoadFailed": "Failed to load sessions report.",
+      "sessionsOrdersLoadFailed": "Failed to load sessions orders.",
+      "transactionsLoadFailed": "Failed to load transactions.",
+      "trialBalanceLoadFailed": "Failed to load trial balance."
+    },
+    "settings": {
+      "loadFailed": "Failed to load settings.",
+      "manageDenied": "No permission to manage settings.",
+      "saveFailed": "Failed to save settings."
+    },
+    "users": {
+      "fetchFailed": "Failed to load users list.",
+      "saveFailed": "Failed to save user data.",
+      "deleteFailed": "Failed to delete user."
+    }
+  },
+  "inventory": {
+    "actions": {
+      "newAdjustment": "New Adjustment",
+      "newTransfer": "New Transfer"
+    },
+    "adjust": {
+      "actions": {
+        "save": "Save"
+      },
+      "currentOnHand": "Available: {{quantity}} {{unit}}",
+      "defaultBranch": "Default Branch",
+      "direction": {
+        "decrease": "Decrease",
+        "increase": "Increase"
+      },
+      "emptyRecent": "No recent adjustments",
+      "fields": {
+        "branch": "Branch",
+        "description": "Description",
+        "direction": "Direction",
+        "product": "Product",
+        "quantity": "Quantity",
+        "reason": "Reason",
+        "reference": "Reference",
+        "type": "Type",
+        "unitCost": "Unit Cost"
+      },
+      "newMovement": "New Movement",
+      "productOption": "{{name}} (Available: {{onHand}})",
+      "reasonPlaceholder": "Enter Reason",
+      "recentTitle": "Recent",
+      "selectProduct": "Select Product",
+      "subtitle": "Adjustment",
+      "table": {
+        "date": "Date",
+        "item": "Item",
+        "quantity": "Quantity",
+        "reason": "Reason"
+      },
+      "title": "Adjustment",
+      "types": {
+        "adjust": "Adjustment",
+        "in": "In",
+        "out": "Out"
+      }
+    },
+    "alerts": {
+      "emptyDescription": "No alerts data yet.",
+      "emptyTitle": "No Alerts",
+      "item": "Item",
+      "onHand": "On Hand",
+      "threshold": "Min Threshold",
+      "title": "Alerts"
+    },
+    "empty": {
+      "description": "Description",
+      "title": "Empty"
+    },
+    "filters": {
+      "allBranches": "All Branches",
+      "allCategories": "All Categories",
+      "branch": "Branch",
+      "category": "Category"
+    },
+    "loading": "Loading Inventory...",
+    "movements": {
+      "empty": "No movements data",
+      "filters": {
+        "allBranches": "All Branches",
+        "allTypes": "All Types",
+        "branch": "Branch",
+        "type": "Type"
+      },
+      "loading": "Loading movements...",
+      "subtitle": "Movements",
+      "summary": {
+        "inbound": "Inbound",
+        "outbound": "Outbound",
+        "title": "Movements",
+        "total": "Total"
+      },
+      "table": {
+        "branch": "Branch",
+        "date": "Date",
+        "item": "Item",
+        "itemFallback": "Item #{{id}}",
+        "quantity": "Quantity",
+        "reason": "Reason",
+        "title": "Movements",
+        "type": "Type"
+      },
+      "title": "Inventory Movements"
+    },
+    "searchPlaceholder": "Enter Search",
+    "snapshotTitle": "Snapshot",
+    "subtitle": "Inventory",
+    "summary": {
+      "items": "Items",
+      "itemsHint": "Items",
+      "lowStock": "Low Stock",
+      "lowStockHint": "Low Stock",
+      "pageHint": "Page"
+    },
+    "table": {
+      "category": "Category",
+      "item": "Item",
+      "low": "Low",
+      "min": "Min",
+      "ok": "OK",
+      "onHand": "On Hand",
+      "sku": "SKU: {{sku}}",
+      "title": "Inventory",
+      "uncategorized": "Uncategorized",
+      "unit": "Unit"
+    },
+    "title": "Inventory",
+    "transfers": {
+      "actions": {
+        "create": "Create"
+      },
+      "currentOnHand": "Available: {{quantity}} {{unit}}",
+      "detailsTitle": "Details",
+      "emptyRecent": "No recent transfers",
+      "fields": {
+        "description": "Description",
+        "fromBranch": "From Branch",
+        "product": "Product",
+        "quantity": "Quantity",
+        "reason": "Reason",
+        "reference": "Reference",
+        "toBranch": "To Branch"
+      },
+      "productOption": "{{name}} (Available: {{onHand}})",
+      "recentTitle": "Recent",
+      "selectDestination": "Select Destination",
+      "selectProduct": "Select Product",
+      "selectSource": "Select Source",
+      "subtitle": "Transfers",
+      "table": {
+        "date": "Date",
+        "fromBranch": "From Branch",
+        "item": "Item",
+        "quantity": "Quantity",
+        "reason": "Reason"
+      },
+      "title": "Transfers"
+    }
+  },
+  "journals": {
+    "actions": {
+      "new": "New",
+      "postEntry": "Post Entry",
+      "reverse": "Reverse",
+      "saveDraft": "Save Draft"
+    },
+    "detail": {
+      "balanced": "Balanced",
+      "openSource": "Open Source",
+      "postedAt": "Posted At",
+      "source": "Source",
+      "statusTitle": "Status",
+      "subtitle": "Details",
+      "subtitleWithId": "Journal #{{id}}"
+    },
+    "editor": {
+      "account": "Account",
+      "addLine": "Add Line",
+      "credit": "Credit",
+      "debit": "Debit",
+      "memo": "Memo",
+      "selectAccount": "Select Account"
+    },
+    "empty": "No journals data",
+    "entry": {
+      "balanced": "Balanced",
+      "description": "Description",
+      "descriptionPlaceholder": "Enter Description",
+      "detailsTitle": "Details",
+      "linesTitle": "Lines",
+      "postingDate": "Posting Date",
+      "totalCredit": "Total Credit: {{value}}",
+      "totalDebit": "Total Debit: {{value}}",
+      "unbalanced": "Unbalanced"
+    },
+    "loading": "Loading Journals...",
+    "loadingAccounts": "Loading Accounts",
+    "loadingEntry": "Loading Entry",
+    "modals": {
+      "confirmPost": "Confirm Post",
+      "confirmReverse": "Confirm Reverse",
+      "postBody": "Post Body",
+      "postTitle": "Post",
+      "reverseBody": "Reverse Body",
+      "reverseTitle": "Reverse"
+    },
+    "searchPlaceholder": "Enter Search",
+    "status": {
+      "draft": "Draft",
+      "posted": "Posted"
+    },
+    "summary": {
+      "drafts": "Drafts",
+      "posted": "Posted",
+      "title": "Journals",
+      "unbalanced": "Unbalanced"
+    },
+    "table": {
+      "credit": "Credit",
+      "date": "Date",
+      "debit": "Debit",
+      "description": "Description",
+      "source": "{{type}} #{{id}}",
+      "title": "Journals"
+    }
+  },
+  "nav": {
+    "routes": {
+      "accounts": {
+        "navLabel": "Chart of Accounts",
+        "subtitle": "Chart of Accounts",
+        "title": "Accounts"
+      },
+      "deliveryCouriers": {
+        "navLabel": "Delivery Couriers",
+        "subtitle": "Manage and track courier commissions",
+        "title": "Delivery Couriers"
+      },
+      "dashboard": {
+        "navLabel": "Dashboard",
+        "subtitle": "Dashboard",
+        "title": "Dashboard"
+      },
+      "inventory": {
+        "navLabel": "Inventory",
+        "subtitle": "Inventory",
+        "title": "Inventory"
+      },
+      "inventoryAdjust": {
+        "navLabel": "Inventory Adjustment",
+        "subtitle": "Inventory Adjustment",
+        "title": "Inventory Adjustment"
+      },
+      "inventoryMovements": {
+        "navLabel": "Inventory Movements",
+        "subtitle": "Inventory Movements",
+        "title": "Inventory Movements"
+      },
+      "inventoryTransfers": {
+        "navLabel": "Inventory Transfers",
+        "subtitle": "Inventory Transfers",
+        "title": "Inventory Transfers"
+      },
+      "journals": {
+        "navLabel": "Journals",
+        "subtitle": "Journals",
+        "title": "Journals"
+      },
+      "journalsDetail": {
+        "subtitle": "Entry Details",
+        "title": "Entry Details"
+      },
+      "journalsNew": {
+        "subtitle": "New Entry",
+        "title": "New Entry"
+      },
+      "ledger": {
+        "navLabel": "Ledger",
+        "subtitle": "Ledger",
+        "title": "Ledger"
+      },
+      "login": {
+        "title": "Sign In"
+      },
+      "pos": {
+        "navLabel": "Point of Sale",
+        "subtitle": "Fast sales interface",
+        "title": "POS"
+      },
+      "posSessions": {
+        "navLabel": "Session Management",
+        "subtitle": "View and close open sessions",
+        "title": "Open Sessions"
+      },
+      "purchaseInvoices": {
+        "navLabel": "Purchase Invoices",
+        "subtitle": "Manage inventory purchases",
+        "title": "Purchases"
+      },
+      "salesInvoicesNew": {
+        "title": "New Sales Invoice",
+        "subtitle": "Create sales invoice for customers"
+      },
+      "suppliers": {
+        "navLabel": "Suppliers",
+        "subtitle": "Manage suppliers and their financial accounts",
+        "title": "Suppliers"
+      },
+      "customers": {
+        "navLabel": "Customers",
+        "subtitle": "Manage customers and their financial accounts",
+        "title": "Customers"
+      },
+      "salesInvoices": {
+        "navLabel": "Sales Invoices",
+        "subtitle": "Manage multi-line sales",
+        "title": "Sales"
+      },
+      "printers": {
+        "navLabel": "Printers",
+        "subtitle": "Printers",
+        "title": "Printers"
+      },
+      "printersJobs": {
+        "navLabel": "Print Jobs",
+        "subtitle": "Print Jobs",
+        "title": "Print Jobs"
+      },
+      "printersRoutes": {
+        "navLabel": "Print Routes",
+        "subtitle": "Print Routes",
+        "title": "Print Routes"
+      },
+      "printersTemplates": {
+        "navLabel": "Print Templates",
+        "subtitle": "Print Templates",
+        "title": "Print Templates"
+      },
+      "products": {
+        "navLabel": "Products",
+        "subtitle": "Products",
+        "title": "Products"
+      },
+      "productsDetail": {
+        "subtitle": "Product Details",
+        "title": "Product Details"
+      },
+      "productsNew": {
+        "subtitle": "New Product",
+        "title": "New Product"
+      },
+      "reports": {
+        "navLabel": "Reports",
+        "subtitle": "Reports",
+        "title": "Reports"
+      },
+      "reportsInventory": {
+        "navLabel": "Inventory Report",
+        "subtitle": "Inventory Report",
+        "title": "Inventory Report"
+      },
+      "reportsMargins": {
+        "navLabel": "Margins Report",
+        "subtitle": "Margins Report",
+        "title": "Margins Report"
+      },
+      "reportsSales": {
+        "navLabel": "Sales Report",
+        "subtitle": "Sales Report",
+        "title": "Sales Report"
+      },
+      "reportsSessionsZ": {
+        "navLabel": "Session Z Report",
+        "subtitle": "Session Z Report",
+        "title": "Z Report"
+      },
+      "reportsTrialBalance": {
+        "navLabel": "Trial Balance",
+        "subtitle": "Trial Balance",
+        "title": "Trial Balance"
+      },
+      "settings": {
+        "navLabel": "Settings",
+        "subtitle": "Settings",
+        "title": "Settings"
+      },
+      "users": {
+        "navLabel": "User Management",
+        "subtitle": "Manage system users and permissions",
+        "title": "Users"
+      },
+      "backups": {
+        "navLabel": "Backup Management",
+        "subtitle": "Database backup and recovery",
+        "title": "Backups"
+      },
+      "auditLogs": {
+        "navLabel": "Audit Logs",
+        "subtitle": "Track sensitive system operations",
+        "title": "Audit Logs"
+      },
+      "trialBalance": {
+        "navLabel": "Trial Balance",
+        "subtitle": "Trial Balance",
+        "title": "Trial Balance"
+      }
+    },
+    "sections": {
+      "accounting": "Accounting",
+      "administration": "Administration",
+      "catalog": "Catalog",
+      "general": "General",
+      "inventory": "Inventory",
+      "operations": "Operations",
+      "printing": "Printing",
+      "reports": "Reports",
+      "delivery": "Delivery"
+    },
+    "topbar": {
+      "apiChecking": "Checking API",
+      "apiOffline": "API Offline",
+      "apiOnline": "API Online",
+      "launchPos": "Launch POS",
+      "signOut": "Sign Out"
+    }
+  },
+  "pos": {
+    "addNote": "Add Note",
+    "apiBaseUrl": "API Base URL",
+    "closeSession": "Close Session",
+    "closeSessionTitle": "Close Session",
+    "closingCash": "Closing Cash",
+    "closingNotes": "Closing Notes",
+    "delivery": {
+      "title": "Delivery Information",
+      "personName": "Receiver/Courier Name",
+      "personNamePlaceholder": "Enter name",
+      "phone": "Phone Number",
+      "phonePlaceholder": "09...",
+      "address": "Address",
+      "addressPlaceholder": "Enter address details",
+      "notes": "Notes",
+      "notesPlaceholder": "Additional notes",
+      "courier": "Courier",
+      "searchCourier": "Search courier...",
+      "addNewCourier": "Add new courier",
+      "newCourierTitle": "Add Courier",
+      "newCourierConfirm": "Do you want to save courier \"{{name}}\" permanently or use it once?",
+      "useOnce": "Use Once",
+      "savePermanently": "Save Permanently"
+    },
+    "closingNotesPlaceholder": "Enter closing notes",
+    "customerSelection": "Select Customer",
+    "customerSearchPlaceholder": "Search by name or phone...",
+    "payments": {
+        "cash": "Cash",
+        "card": "Card",
+        "transfer": "Transfer",
+        "credit": "On Account"
+    },
+    "paymentMethod": "Payment Method",
+    "submitCreditOrder": "Submit as Credit",
+    "confirmRefund": "Confirm refund of {{count}} items with total {{total}}?",
+    "currentOrder": "Current Order",
+    "exitPos": "Exit POS",
+    "issueRefund": "Issue Refund",
+    "itemsCount": "{{count}} items",
+    "kioskHint": "Kiosk Mode",
+    "kioskMode": "Kiosk Mode",
+    "loadMore": "Load More",
+    "loadOrder": "Load Order",
+    "loading": "Loading POS...",
+    "loadingProducts": "Loading Products",
+    "noProducts": "No Products",
+    "noSession": "No Session",
+    "openingCash": "Opening Cash",
+    "orderNotes": "Order Notes",
+    "orderNotesPlaceholder": "Enter order notes",
+    "orderNumber": "Order Number",
+    "orderNumberPlaceholder": "Enter order number",
+    "orderSummary": "Order #{{orderNumber}}",
+    "processReturn": "Process Return",
+    "productSearchLabel": "Product Search",
+    "productSearchPlaceholder": "Search by name or code...",
+    "refundTotal": "Refund Total: {{total}}",
+    "remove": "Remove",
+    "returnQtyPlaceholder": "Max {{max}}",
+    "returnReason": "Return Reason",
+    "returnReasonPlaceholder": "Enter return reason",
+    "returns": "Returns",
+    "saveSettings": "Save Settings",
+    "searchMinHint": "Type at least 2 characters to search.",
+    "selectItems": "Select Items",
+    "sessionLabel": "Session {{id}}",
+    "soldReturned": "{{sold}} Sold - {{returned}} Returned",
+    "startSession": "Start Session",
+    "stationSettings": "Station Settings",
+    "submitOrder": "Submit Order",
+    "lineNote": "Line Note",
+    "lineNotePlaceholder": "Add note...",
+    "subtitle": "Point of Sale",
+    "tableTicket": "Table Ticket",
+    "title": "POS",
+    "totalSales": "Total Sales",
+    "totalReturns": "Total Returns",
+    "totalDiscounts": "Total Discounts",
+    "totalCash": "Total Cash",
+    "subtotal": "Subtotal",
+    "discount": "Discount",
+    "serviceCharge": "Service Charge",
+    "tips": "Tips",
+    "currentCash": "Current Cash",
+    "netCashFlow": "Net Cash Flow",
+    "expectedTotal": "Expected Total",
+    "cashDifference": "Cash Difference",
+    "cashDifferenceReason": "Cash Difference Reason",
+    "cashDifferenceReasonPlaceholder": "Enter reason for shortage or overage",
+    "cashIn": "Cash In",
+    "cashOut": "Cash Out",
+    "cashInTitle": "Cash In",
+    "cashOutTitle": "Cash Out",
+    "cashMovementAmount": "Amount",
+    "cashMovementReason": "Reason",
+    "cashMovementReasonPlaceholder": "Enter reason for cash movement",
+    "managerUsername": "Manager Username",
+    "managerUsernamePlaceholder": "Enter manager username if required",
+    "managerPassword": "Manager Password",
+    "noOpenSessions": "No open sessions currently",
+    "user": "User",
+    "branch": "Branch",
+    "station": "Station",
+    "startTime": "Start Time",
+    "closeSessionConfirm": "Are you sure you want to close the session for user",
+    "toolbar": {
+      "save": "Save Order",
+      "saveDelivery": "Save as Pending Delivery",
+      "print": "Print Receipt",
+      "sendKitchen": "Send to Kitchen",
+      "reprintReceipt": "Reprint Receipt",
+      "reprintKOT": "Reprint KOT",
+      "sales": "Sales",
+      "returns": "Returns",
+      "pendingDelivery": "Pending Orders",
+      "cashIn": "Cash In",
+      "cashOut": "Cash Out"
+    },
+    "categories": {
+      "loading": "Loading categories..."
+    },
+    "orderType": {
+      "label": "Order Type",
+      "DINE_IN": "Dine In",
+      "TAKEAWAY": "Takeaway",
+      "DELIVERY": "Delivery"
+    },
+    "paymentMode": {
+      "label": "Payment Mode",
+      "PAY_NOW": "Pay Now",
+      "PAY_LATER": "Pay Later (On Collection)"
+    },
+    "paymentMethod": {
+      "label": "Collection Method",
+      "CASH": "Cash",
+      "CARD": "Card",
+      "TRANSFER": "Transfer"
+    },
+    "pendingOrders": {
+      "title": "Pending Orders",
+      "empty": "No pending orders",
+      "collectBtn": "Collect",
+      "collectTitle": "Collect Delivery Order",
+      "confirmCollect": "Confirm Collection",
+      "collectAmount": "Collected Amount",
+      "collectSuccess": "Order collected successfully ✓",
+      "collectFailed": "Failed to collect order",
+      "orderTotal": "Order Total",
+      "deliveryPerson": "Delivery Person",
+      "itemsCount": "{{count}} items"
+    },
+    "salesDrawer": {
+      "title": "Session Sales",
+      "empty": "No sales yet",
+      "orderNumber": "Order Number",
+      "total": "Total",
+      "status": "Status",
+      "type": "Type",
+      "date": "Date",
+      "actions": "Actions",
+      "returnBtn": "Return"
+    },
+    "returnsDrawer": {
+      "title": "Returns",
+      "empty": "No returns",
+      "orderNumber": "Original Order Number",
+      "refund": "Refund Amount",
+      "reason": "Reason",
+      "cashier": "Cashier",
+      "date": "Date"
+    },
+    "quantity": {
+      "increase": "Increase",
+      "decrease": "Decrease"
+    },
+    "status": {
+      "COMPLETED": "Completed",
+      "VOID": "Void",
+      "RETURNED": "Returned",
+      "PENDING_DELIVERY": "Pending Delivery",
+      "PAID": "Paid",
+      "UNPAID": "Unpaid"
+    },
+    "lastOrder": "Last order: {{orderNumber}} — {{total}}",
+    "orderSaved": "Order saved successfully ✓"
+  },
+  "products": {
+    "actions": {
+      "manageCategories": "Manage Categories",
+      "manageUnits": "Manage Units",
+      "newProduct": "New Product"
+    },
+    "categories": {
+      "actions": {
+        "archive": "Archive",
+        "create": "Create"
+      },
+      "empty": "No Categories",
+      "existingTitle": "Existing",
+      "fields": {
+        "description": "Description",
+        "name": "Name"
+      },
+      "loading": "Loading Categories...",
+      "newTitle": "New",
+      "title": "Categories"
+    },
+    "empty": {
+      "description": "Description",
+      "title": "Empty"
+    },
+    "filters": {
+      "allCategories": "All Categories",
+      "category": "Category"
+    },
+    "form": {
+      "actions": {
+        "archive": "Archive",
+        "create": "Create"
+      },
+      "archiveConfirm": "Archive Confirm",
+      "audit": {
+        "created": "Created",
+        "status": "Status",
+        "updated": "Updated"
+      },
+      "emptyCategories": "No categories available",
+      "emptyUnits": "No units available",
+      "fields": {
+        "category": "Category",
+        "description": "Description",
+        "minStock": "Min Stock",
+        "name": "Name",
+        "price": "Price",
+        "sku": "SKU",
+        "type": "Type",
+        "unit": "Unit"
+      },
+      "loadingEdit": "Loading Edit",
+      "loadingNew": "Loading New",
+      "readOnlyNotice": "Read Only Notice",
+      "recipeHint": "Recipe is only available for finished goods. Change product type to add ingredients.",
+      "recipeUnavailable": "Recipe Unavailable",
+      "sections": {
+        "audit": "Audit",
+        "basics": "Basics",
+        "basicsSubtitle": "Basics",
+        "inventoryPricing": "Inventory Pricing",
+        "inventoryPricingSubtitle": "Inventory Pricing",
+        "recipe": "Recipe"
+      },
+      "selectUnit": "Select Unit",
+      "subtitleEdit": "Subtitle Edit",
+      "subtitleNew": "Subtitle New",
+      "titleEdit": "Edit Title",
+      "titleNew": "New Title",
+      "types": {
+        "finishedGood": "Finished Good",
+        "rawMaterial": "Raw Material",
+        "service": "Service"
+      },
+      "uncategorized": "Uncategorized"
+    },
+    "loading": "Loading Products...",
+    "recipe": {
+      "actions": {
+        "addIngredient": "Add Ingredient"
+      },
+      "defaultUnit": "Default Unit",
+      "empty": "No recipe data",
+      "selectIngredient": "Select Ingredient",
+      "subtitle": "Recipe",
+      "table": {
+        "ingredient": "Ingredient",
+        "quantity": "Quantity",
+        "unit": "Unit",
+        "waste": "Waste"
+      },
+      "createIngredient": "Create Raw Material",
+      "noIngredients": "No raw materials. Create one to build recipes."
+    },
+    "searchPlaceholder": "Enter Search",
+    "summary": {
+      "pageHint": "Page",
+      "results": "Results",
+      "resultsHint": "Results",
+      "showing": "Showing",
+      "showingHint": "Showing",
+      "title": "Products"
+    },
+    "table": {
+      "category": "Category",
+      "price": "Price",
+      "product": "Product",
+      "sku": "SKU: {{sku}}",
+      "title": "Products",
+      "uncategorized": "Uncategorized",
+      "unit": "Unit",
+      "updated": "Updated"
+    },
+    "units": {
+      "actions": {
+        "archive": "Archive",
+        "create": "Create",
+        "saveConversion": "Save Conversion"
+      },
+      "conversions": {
+        "arrow": "Arrow",
+        "empty": "No conversions data",
+        "from": "From",
+        "multiplier": "Multiplier",
+        "multiplierValue": "x {{value}}",
+        "to": "To"
+      },
+      "conversionsTitle": "Conversions",
+      "empty": "No units data",
+      "existingTitle": "Existing",
+      "fields": {
+        "abbreviation": "Abbreviation",
+        "name": "Name"
+      },
+      "loading": "Loading Units...",
+      "newTitle": "New",
+      "title": "Units"
+    }
+  },
+  "reports": {
+    "dashboard": {
+      "actions": {
+        "viewInventory": "View Inventory",
+        "viewMargins": "View Margins",
+        "viewSales": "View Sales",
+        "viewSessions": "View Sessions"
+      },
+      "alerts": {
+        "allClear": "All Clear",
+        "badge": {
+          "success": "Success",
+          "warning": "Warning"
+        },
+        "lowStock": "{{count}} low stock items",
+        "lowStockFallback": "Low Stock Default",
+        "lowStockItem": "{{name}} below min ({{current}}/{{min}})",
+        "noCritical": "No Critical",
+        "title": "Alerts"
+      },
+      "dailySales": "Daily Sales",
+      "kpiBadges": {
+        "action": "Action",
+        "clear": "Clear",
+        "custom": "Custom",
+        "live": "Live",
+        "month": "Month",
+        "perOrder": "Per Order",
+        "tickets": "Tickets",
+        "today": "Today",
+        "week": "Week"
+      },
+      "kpiHints": {
+        "avgOrder": "Avg Order",
+        "avgOrderValue": "Avg order value: {{value}}",
+        "itemsBelowMin": "Items Below Min",
+        "marginRate": "Margin rate: {{value}}%",
+        "openSessionsCash": "Open Sessions Cash",
+        "postedRevenue": "Posted Revenue"
+      },
+      "kpis": {
+        "avgTicket": "Avg Ticket",
+        "cashOnHand": "Cash on Hand",
+        "grossMargin": "Gross Margin",
+        "lowStock": "Low Stock",
+        "orders": "Orders",
+        "sales": "Sales"
+      },
+      "loading": "Loading Dashboard...",
+      "quick": {
+        "month": "Month",
+        "today": "Today",
+        "week": "Week"
+      },
+      "table": {
+        "date": "Date",
+        "revenue": "Revenue"
+      }
+    },
+    "hub": {
+      "actions": {
+        "openReport": "Open Report"
+      },
+      "cards": {
+        "inventory": {
+          "description": "Description",
+          "title": "Inventory"
+        },
+        "margins": {
+          "description": "Description",
+          "title": "Margins"
+        },
+        "sales": {
+          "description": "Description",
+          "title": "Sales"
+        },
+        "sessionsZ": {
+          "description": "Description",
+          "title": "Session Z Report"
+        },
+        "trialBalance": {
+          "description": "Description",
+          "title": "Trial Balance"
+        }
+      },
+      "libraryTitle": "Library",
+      "noAccessDescription": "No Access",
+      "noAccessTitle": "No Access",
+      "overviewTitle": "Overview",
+      "subtitle": "Hub",
+      "summary": {
+        "accessEnabled": "Access Enabled",
+        "accessHint": "Access",
+        "accessLabel": "Access",
+        "accessRestricted": "Access Restricted",
+        "availableHint": "Available",
+        "availableLabel": "Available",
+        "tipHint": "Tip",
+        "tipLabel": "Tip",
+        "tipValue": "Tip"
+      },
+      "title": "Hub"
+    },
+    "inventory": {
+      "details": {
+        "branchLabel": "Branch: {{branch}}",
+        "empty": "No inventory data",
+        "emptyDescription": "No inventory data yet.",
+        "emptyTitle": "No Inventory",
+        "groupSubtitle": "Group",
+        "loading": "Loading Inventory...",
+        "movementFallback": "Movement Default",
+        "movementSubtitle": "{{date}} | {{type}} | Qty {{quantity}}",
+        "reasonLabel": "Reason: {{reason}}",
+        "title": "Inventory"
+      },
+      "emptyDescription": "No inventory data yet.",
+      "emptyTitle": "No Inventory",
+      "groupBy": {
+        "detail": "Detail",
+        "product": "Product",
+        "type": "Type"
+      },
+      "loading": "Loading Inventory...",
+      "results": {
+        "title": "Inventory"
+      },
+      "subtitle": "Inventory",
+      "summary": {
+        "entriesHint": "Entries",
+        "entriesLabel": "Entries",
+        "netHint": "Net",
+        "netLabel": "Net",
+        "qtyInHint": "Qty In",
+        "qtyInLabel": "Qty In",
+        "qtyOutHint": "Qty Out",
+        "qtyOutLabel": "Qty Out",
+        "title": "Inventory"
+      },
+      "table": {
+        "branch": "Branch",
+        "date": "Date",
+        "journal": "Journal",
+        "movementType": "Movement Type",
+        "net": "Net",
+        "netQty": "Net Qty",
+        "product": "Product",
+        "qtyIn": "In",
+        "qtyOut": "Out",
+        "quantity": "Quantity",
+        "type": "Type"
+      },
+      "title": "Inventory"
+    },
+    "ledger": {
+      "empty": "No Ledger",
+      "emptyAccount": "Empty Account",
+      "export": {
+        "line": "Line",
+        "source": "Source"
+      },
+      "filters": {
+        "account": "Account",
+        "accountPlaceholder": "Enter Account",
+        "journalType": "Journal Type"
+      },
+      "loading": "Loading Ledger...",
+      "meta": {
+        "posting": "Posting",
+        "sourceId": "Ref: {{id}}",
+        "sourceType": "Source: {{type}}"
+      },
+      "results": {
+        "title": "Ledger"
+      },
+      "sourceTypes": {
+        "all": "All",
+        "inventory": "Inventory",
+        "manual": "Manual",
+        "posReturns": "POS Returns",
+        "posSales": "POS Sales",
+        "reversal": "Reversal",
+        "system": "System"
+      },
+      "subtitle": "Ledger",
+      "summary": {
+        "closing": "Closing",
+        "credits": "Credits",
+        "debits": "Debits",
+        "opening": "Opening",
+        "title": "Ledger"
+      },
+      "table": {
+        "balance": "Balance",
+        "credit": "Credit",
+        "date": "Date",
+        "debit": "Debit",
+        "description": "Description",
+        "entry": "Entry"
+      },
+      "title": "Ledger"
+    },
+    "margins": {
+      "emptyDescription": "No margins data yet.",
+      "emptyTitle": "No Margins",
+      "groupBy": {
+        "category": "Category",
+        "item": "Item"
+      },
+      "loading": "Loading Margins...",
+      "results": {
+        "title": "Margins"
+      },
+      "subtitle": "Margins",
+      "summary": {
+        "cogsHint": "COGS",
+        "cogsLabel": "COGS",
+        "marginHint": "Margin rate: {{value}}%",
+        "marginLabel": "Margin",
+        "revenueHint": "Revenue",
+        "revenueLabel": "Revenue",
+        "title": "Margins",
+        "unitsHint": "Units",
+        "unitsLabel": "Units"
+      },
+      "table": {
+        "category": "Category",
+        "cogs": "COGS",
+        "date": "Date",
+        "item": "Item",
+        "journal": "Journal",
+        "label": "Label",
+        "margin": "Margin",
+        "order": "Order",
+        "product": "Product",
+        "qty": "Qty",
+        "quantity": "Quantity",
+        "revenue": "Revenue",
+        "total": "Total"
+      },
+      "title": "Margins",
+      "transactions": {
+        "empty": "No transactions data",
+        "emptyDescription": "No transactions data yet.",
+        "emptyTitle": "No Transactions",
+        "loading": "Loading Transactions...",
+        "subtitle": "Transactions",
+        "title": "Transactions"
+      }
+    },
+    "sales": {
+      "emptyDescription": "No sales data yet.",
+      "emptyTitle": "No Sales",
+      "groupBy": {
+        "category": "Category",
+        "item": "Item",
+        "payment": "Payment"
+      },
+      "loading": "Loading Sales...",
+      "results": {
+        "title": "Sales"
+      },
+      "subtitle": "Sales",
+      "summary": {
+        "marginHint": "Margin rate: {{value}}%",
+        "marginLabel": "Margin",
+        "ordersHint": "Orders",
+        "ordersLabel": "Orders",
+        "quantityHint": "Quantity",
+        "quantityLabel": "Quantity",
+        "revenueHint": "Revenue",
+        "revenueLabel": "Revenue",
+        "rowsHint": "Rows",
+        "rowsLabel": "Rows",
+        "title": "Sales"
+      },
+      "table": {
+        "category": "Category",
+        "cost": "Cost",
+        "date": "Date",
+        "item": "Item",
+        "journal": "Journal",
+        "label": "Label",
+        "margin": "Margin",
+        "order": "Order",
+        "orders": "Orders",
+        "payment": "Payment",
+        "paymentMethod": "Payment Method",
+        "product": "Product",
+        "qty": "Qty",
+        "quantity": "Quantity",
+        "revenue": "Revenue",
+        "total": "Total"
+      },
+      "title": "Sales",
+      "transactions": {
+        "empty": "No transactions data",
+        "emptyDescription": "No transactions data yet.",
+        "emptyTitle": "No Transactions",
+        "loading": "Loading Transactions...",
+        "subtitle": "Transactions",
+        "title": "Transactions"
+      }
+    },
+    "sessionsZ": {
+      "emptyDescription": "No Session Z data yet.",
+      "emptyTitle": "No Sessions Z",
+      "groupBy": {
+        "branch": "Branch",
+        "cashier": "Cashier",
+        "none": "None",
+        "status": "Status"
+      },
+      "groupLabels": {
+        "all": "All"
+      },
+      "loading": "Loading Session Z data...",
+      "orders": {
+        "empty": "No orders data",
+        "emptyDescription": "No orders data yet.",
+        "emptyTitle": "No Orders",
+        "loading": "Loading orders...",
+        "sessionTitle": "Session {{id}}",
+        "subtitle": "Orders",
+        "title": "Orders"
+      },
+      "results": {
+        "count": "{{count}} sessions",
+        "title": "Session Z Report"
+      },
+      "subtitle": "Session Z Report",
+      "summary": {
+        "avgSalesHint": "Avg Sales",
+        "avgSalesLabel": "Avg Sales",
+        "closingHint": "Closing",
+        "closingLabel": "Closing",
+        "ordersHint": "Avg orders: {{value}}",
+        "ordersLabel": "Orders",
+        "salesHint": "Sales",
+        "salesLabel": "Sales",
+        "sessionsHint": "Sessions",
+        "sessionsLabel": "Sessions",
+        "title": "Session Z Report"
+      },
+      "table": {
+        "branch": "Branch",
+        "cashier": "Cashier",
+        "actualCash": "Actual Cash",
+        "closing": "Closing",
+        "closingCash": "Closing Cash",
+        "cashDifference": "Cash Difference",
+        "cashIn": "Cash In",
+        "cashOut": "Cash Out",
+        "cashRefunds": "Cash Refunds",
+        "cashSales": "Cash Sales",
+        "cardSales": "Card Sales",
+        "date": "Date",
+        "deliveryCollected": "Delivery Collected",
+        "deliveryPending": "Delivery Pending",
+        "end": "End",
+        "expectedCash": "Expected Cash",
+        "journal": "Journal",
+        "opening": "Opening",
+        "openingCash": "Opening Cash",
+        "order": "Order",
+        "orders": "Orders",
+        "payment": "Payment",
+        "sales": "Sales",
+        "session": "Session",
+        "start": "Start",
+        "status": "Status",
+        "transferSales": "Transfer Sales",
+        "total": "Total"
+      },
+      "title": "Session Z Report"
+    },
+    "trialBalance": {
+      "empty": "No Trial Balance",
+      "filters": {
+        "groupByType": "Group By Type",
+        "period": "Period",
+        "periodOptions": {
+          "custom": "Custom",
+          "lastMonth": "Last Month",
+          "month": "Month",
+          "quarter": "Quarter",
+          "year": "Year"
+        }
+      },
+      "group": {
+        "all": "All"
+      },
+      "loading": "Loading Trial Balance...",
+      "results": {
+        "title": "Trial Balance"
+      },
+      "subtitle": "Trial Balance",
+      "summary": {
+        "accounts": "Accounts",
+        "outOfBalance": "Out of Balance",
+        "title": "Trial Balance",
+        "totalCredits": "Total Credits",
+        "totalDebits": "Total Debits"
+      },
+      "table": {
+        "account": "Account",
+        "code": "Code",
+        "credit": "Credit",
+        "debit": "Debit",
+        "net": "Net",
+        "type": "Type"
+      },
+      "title": "Trial Balance"
+    }
+  },
+  "settings": {
+    "descriptions": {
+      "allocationRules": "Allocation Rules",
+      "coaMapping": "COA Mapping",
+      "costCenters": "Cost Centers",
+      "costClassification": "Cost Classification",
+      "discountRules": "Discount Rules",
+      "fiscalPeriods": "Fiscal Periods",
+      "inventoryCosting": "Inventory Costing",
+      "posOps": "POS Ops",
+      "postingPolicies": "Posting Policies",
+      "printingDefaults": "Printing Defaults",
+      "printingShortcuts": "Printing Shortcuts",
+      "returnsPolicy": "Returns Policy",
+      "theme": "Theme",
+      "thresholds": "Thresholds",
+      "unitRules": "Unit Rules"
+    },
+    "deviceConfig": {
+      "apiBaseUrl": "API Base URL",
+      "apiPlaceholder": "Enter API",
+      "goToPos": "Go to POS",
+      "kioskHint": "Kiosk",
+      "kioskMode": "Kiosk Mode",
+      "loading": "Loading device configuration...",
+      "save": "Save",
+      "subtitle": "Device Settings",
+      "tip": "Tip",
+      "title": "Device Settings"
+    },
+    "fields": {
+      "accentColor": "Accent Color",
+      "accentHint": "Accent",
+      "accountMapping": "COA Mapping",
+      "currencyCode": "Currency",
+      "currencyCodeHint": "ISO 4217 currency code (e.g. USD).",
+      "currencyCodePlaceholder": "USD",
+      "allocationBasis": "Allocation Basis",
+      "allocationMethod": "Allocation Method",
+      "allowDiscounts": "Allow Discounts",
+      "allowManualJournal": "Allow Manual Journals",
+      "allowNegativeStock": "Allow Negative Stock",
+      "allowReturns": "Allow Returns",
+      "autoCalculateUnitCost": "Auto Calculate Unit Cost",
+      "autoDeductStock": "Auto Deduct Stock",
+      "autoPrintKOT": "Auto Print KOT",
+      "autoPrintReceipt": "Auto Print Receipt",
+      "borderRadius": "Border Radius",
+      "classificationDefault": "Default Classification",
+      "cogs": "COGS",
+      "costCentersEnabled": "Enable Cost Centers",
+      "costingMethod": "Costing Method",
+      "defaultCostCenter": "Default Cost Center",
+      "defaultUnit": "Default Unit",
+      "discountReasonRequired": "Discount Reason Required",
+      "discounts": "Discounts",
+      "fiscalPeriodType": "Fiscal Period Type",
+      "fiscalYearStartDay": "Fiscal Year Start Day",
+      "fiscalYearStartMonth": "Fiscal Year Start Month",
+      "inventory": "Inventory",
+      "kitchenTemplate": "Kitchen Template",
+      "lowStockThreshold": "Low Stock Threshold",
+      "maxDiscount": "Max Discount",
+      "posBank": "POS Bank",
+      "posCash": "POS Cash",
+      "postingPolicy": "Posting Policy",
+      "postingPolicyHint": "Posting Policy",
+      "quantityPrecision": "Quantity Precision",
+      "receiptTemplate": "Receipt Template",
+      "returnReasonRequired": "Return Reason Required",
+      "returnWindow": "Return Window",
+      "revenue": "Revenue",
+      "serviceCharge": "Service Charge",
+      "tablesEnabled": "Enable Tables",
+      "taxPayable": "Tax Payable",
+      "themeMode": "Theme Mode",
+      "tipsEnabled": "Enable Tips",
+      "unitConversionPolicy": "Unit Conversion Policy",
+      "zReportTemplate": "Z Report Template"
+    },
+    "loading": "Loading Settings...",
+    "options": {
+      "batch": "Batch",
+      "dark": "Dark",
+      "direct": "Direct",
+      "directClassification": "Direct Classification",
+      "fifo": "FIFO",
+      "flexible": "Flexible",
+      "immediate": "Immediate",
+      "indirect": "Indirect",
+      "laborHours": "Labor Hours",
+      "light": "Light",
+      "manual": "Manual",
+      "monthly": "Monthly",
+      "overhead": "Overhead",
+      "quarterly": "Quarterly",
+      "reciprocal": "Reciprocal",
+      "sales": "Sales",
+      "stepDown": "Step Down",
+      "strict": "Strict",
+      "units": "Units",
+      "wac": "WAC",
+      "yearly": "Yearly"
+    },
+    "printing": {
+      "jobs": {
+        "actions": {
+          "processQueue": "Process Queue",
+          "retry": "Retry"
+        },
+        "empty": "No print jobs",
+        "filters": {
+          "allStatuses": "All Statuses",
+          "allTypes": "All Types",
+          "status": "Status",
+          "type": "Type"
+        },
+        "loading": "Loading jobs...",
+        "status": {
+          "cancelled": "Cancelled",
+          "failed": "Failed",
+          "locked": "Locked",
+          "pending": "Pending",
+          "printing": "Printing",
+          "success": "Success"
+        },
+        "subtitle": "Jobs",
+        "summary": {
+          "completed": "Completed",
+          "failed": "Failed",
+          "queued": "Queued",
+          "title": "Jobs"
+        },
+        "table": {
+          "lastError": "Last Error",
+          "printer": "Printer",
+          "attempts": "Attempts",
+          "status": "Status",
+          "time": "Time",
+          "title": "Jobs",
+          "type": "Type"
+        },
+        "title": "Jobs",
+        "types": {
+          "kot": "KOT",
+          "receipt": "Receipt",
+          "report": "Report"
+        }
+      },
+      "printers": {
+        "actions": {
+          "add": "Add",
+          "create": "Create"
+        },
+        "confirmDisable": "Disable printer {{name}}?",
+        "empty": "No printers found",
+        "form": {
+          "enabledHint": "Enabled",
+          "ipAddress": "IP Address",
+          "name": "Name",
+          "port": "Port",
+          "target": "Target",
+          "type": "Type"
+        },
+        "loading": "Loading printers...",
+        "modal": {
+          "addTitle": "Add",
+          "editTitle": "Edit"
+        },
+        "subtitle": "Printers",
+        "summary": {
+          "enabled": "Enabled",
+          "kitchen": "Kitchen",
+          "title": "Printers"
+        },
+        "table": {
+          "address": "Address",
+          "printer": "Printer",
+          "status": "Status",
+          "target": "Target",
+          "title": "Printers",
+          "type": "Type"
+        },
+        "targets": {
+          "bar": "Bar",
+          "cashier": "Cashier",
+          "kitchen": "Kitchen",
+          "label": "Label"
+        },
+        "title": "Printers",
+        "types": {
+          "bluetooth": "Bluetooth",
+          "network": "Network",
+          "pdf": "PDF",
+          "usb": "USB",
+          "windows": "Windows Printer"
+        }
+      },
+      "routes": {
+        "actions": {
+          "add": "Add",
+          "create": "Create"
+        },
+        "confirmDelete": "Confirm delete",
+        "empty": "No routes found",
+        "form": {
+          "activeHint": "Active",
+          "category": "Category",
+          "categoryPlaceholder": "Enter Category",
+          "jobType": "Job Type",
+          "printer": "Printer",
+          "printerPlaceholder": "Enter Printer",
+          "report": "Report",
+          "reportPlaceholder": "Enter Report",
+          "scopeType": "Scope Type",
+          "station": "Station",
+          "stationPlaceholder": "Enter Station",
+          "template": "Template",
+          "templateDefault": "Template Default"
+        },
+        "jobTypes": {
+          "kot": "KOT",
+          "receipt": "Receipt",
+          "report": "Report"
+        },
+        "loading": "Loading routes...",
+        "modal": {
+          "addTitle": "Add",
+          "editTitle": "Edit"
+        },
+        "reports": {
+          "zReport": "Z Report"
+        },
+        "scopeLabels": {
+          "category": "Category: {{name}}",
+          "categoryFallback": "Category #{{id}}",
+          "report": "Report: {{report}}",
+          "station": "Station: {{station}}"
+        },
+        "scopes": {
+          "category": "Category",
+          "default": "Default",
+          "report": "Report",
+          "station": "Station"
+        },
+        "stations": {
+          "bar": "Bar",
+          "cashier": "Cashier",
+          "kitchen": "Kitchen"
+        },
+        "subtitle": "Routes",
+        "summary": {
+          "active": "Active",
+          "printers": "Printers",
+          "routes": "Routes",
+          "title": "Routes"
+        },
+        "table": {
+          "jobType": "Job Type",
+          "printer": "Printer",
+          "scope": "Scope",
+          "status": "Status",
+          "template": "Template",
+          "title": "Routes"
+        },
+        "title": "Routes"
+      },
+      "templates": {
+        "actions": {
+          "add": "Add",
+          "create": "Create"
+        },
+        "confirmDisable": "Disable template {{name}}?",
+        "empty": "No templates found",
+        "form": {
+          "content": "Content",
+          "defaultHint": "Default",
+          "defaultTitle": "Default",
+          "name": "Name",
+          "type": "Type"
+        },
+        "loading": "Loading templates...",
+        "modal": {
+          "addTitle": "Add",
+          "editTitle": "Edit"
+        },
+        "preview": {
+          "empty": "No preview data",
+          "title": "Preview"
+        },
+        "subtitle": "Templates",
+        "summary": {
+          "active": "Active",
+          "defaults": "Default",
+          "templates": "Templates",
+          "title": "Templates"
+        },
+        "table": {
+          "default": "Default",
+          "status": "Status",
+          "template": "Template",
+          "title": "Templates",
+          "type": "Type"
+        },
+        "title": "Templates",
+        "types": {
+          "kot": "KOT",
+          "receipt": "Receipt",
+          "zReport": "Z Report"
+        }
+      }
+    },
+    "sections": {
+      "allocationRules": "Allocation Rules",
+      "coaMapping": "COA Mapping",
+      "costCenters": "Cost Centers",
+      "costClassification": "Cost Classification",
+      "discountRules": "Discount Rules",
+      "fiscalPeriods": "Fiscal Periods",
+      "inventoryCosting": "Inventory Costing",
+      "posOps": "POS Ops",
+      "postingPolicies": "Posting Policies",
+      "printingDefaults": "Printing Defaults",
+      "printingShortcuts": "Printing Shortcuts",
+      "returnsPolicy": "Returns Policy",
+      "theme": "Theme",
+      "thresholds": "Thresholds",
+      "unitRules": "Unit Rules"
+    },
+    "shortcuts": {
+      "jobs": "Jobs",
+      "printers": "Printers",
+      "routes": "Routes",
+      "templates": "Templates"
+    },
+    "subtitle": "Settings",
+    "tabs": {
+      "accounting": "Accounting",
+      "costing": "Costing",
+      "inventory": "Inventory",
+      "pos": "POS",
+      "printing": "Printing",
+      "theme": "Theme"
+    },
+    "title": "Settings",
+    "users": {
+      "addUser": "Add User",
+      "allBranches": "All Branches",
+      "branch": "Branch",
+      "createdAt": "Created At",
+      "editUser": "Edit User",
+      "leaveBlankToKeep": "Leave blank to keep current",
+      "password": "Password",
+      "role": "Role",
+      "subtitle": "Manage system users, roles, and branch assignments",
+      "title": "User Management",
+      "username": "Username"
+    },
+    "backups": {
+      "title": "Backup Management",
+      "subtitle": "Create and manage database backups",
+      "create": "Take Backup Now",
+      "config": "Settings",
+      "path": "Backup Storage Path",
+      "pathHint": "Backups will be saved in this folder. Make sure write permissions are available.",
+      "history": "Backup History",
+      "filename": "Filename",
+      "date": "Date",
+      "size": "Size"
+    }
+  },
+  "toast": {
+    "accounts": {
+      "created": "Accounts created.",
+      "deleted": "Accounts deleted.",
+      "updated": "Accounts updated."
+    },
+    "auth": {
+      "loginSuccess": "Login Success"
+    },
+    "deviceConfig": {
+      "saved": "Device Settings saved."
+    },
+    "inventory": {
+      "adjustSaved": "Adjustment Saved",
+      "transferCreated": "Transfer Created"
+    },
+    "journals": {
+      "draftSaved": "Draft saved.",
+      "draftUpdated": "Draft updated.",
+      "posted": "Journals posted.",
+      "reversed": "Journals reversed."
+    },
+    "pos": {
+      "orderSubmitted": "Order {{orderNumber}} submitted.",
+      "orderSubmittedGeneric": "Order submitted.",
+      "confirmClearCart": "Are you sure you want to clear the cart?",
+      "cashInSaved": "Cash in recorded.",
+      "cashOutSaved": "Cash out recorded.",
+      "kitchenJobQueued": "Kitchen job created.",
+      "printJobQueued": "Print job created.",
+      "returnProcessed": "Return processed.",
+      "sessionClosed": "Session closed.",
+      "sessionOpened": "Session opened.",
+      "settingsSaved": "Settings saved."
+    },
+    "printJobs": {
+      "processingStarted": "Processing started.",
+      "retryQueued": "Retry added to queue."
+    },
+    "printTemplates": {
+      "created": "Print Template created.",
+      "disabled": "Print Template disabled.",
+      "updated": "Print Template updated."
+    },
+    "printerRoutes": {
+      "created": "Printer Route created.",
+      "deleted": "Printer Route deleted.",
+      "updated": "Printer Route updated."
+    },
+    "printers": {
+      "created": "Printers created.",
+      "disabled": "Printers disabled.",
+      "updated": "Printers updated."
+    },
+    "products": {
+      "archived": "Products archived.",
+      "categories": {
+        "archived": "Categories archived.",
+        "created": "Categories created.",
+        "updated": "Categories updated."
+      },
+      "created": "Products created.",
+      "units": {
+        "archived": "Units archived.",
+        "conversionSaved": "Conversion Saved",
+        "created": "Units created.",
+        "updated": "Units updated."
+      },
+      "updated": "Products updated."
+    },
+    "settings": {
+      "saved": "Settings saved successfully.",
+      "sections": {
+        "keyboardShortcuts": "Keyboard Shortcuts"
+      },
+      "descriptions": {
+        "keyboardShortcuts": "Configure hotkeys for fast POS operations"
+      },
+      "fields": {
+        "shortcutSave": "Save Order",
+        "shortcutPrintReceipt": "Print Receipt",
+        "shortcutPrintKOT": "Print Kitchen",
+        "shortcutClearCart": "Clear Cart"
+      }
+    },
+    "users": {
+      "created": "User created successfully.",
+      "updated": "User updated successfully.",
+      "deleted": "User deleted successfully."
+    }
+  },
+  "delivery": {
+    "title": "Delivery Management",
+    "subtitle": "Track couriers and earned commissions",
+    "addCourier": "Add Courier",
+    "editCourier": "Edit Courier",
+    "courierName": "Courier Name",
+    "phone": "Phone Number",
+    "commissionPolicy": "Commission Policy",
+    "commissionType": "Commission Type",
+    "totalOrders": "Total Orders",
+    "totalSales": "Total Sales",
+    "earnedCommission": "Earned Commission",
+    "paidCommission": "Paid Commission",
+    "remainingBalance": "Remaining Balance",
+    "settle": "Settle Commission",
+    "settleConfirm": "Are you sure you want to settle all earned commissions for this courier?",
+    "activeCouriers": "Active Couriers",
+    "dailyOrders": "Daily Orders",
+    "unpaidCommission": "Unpaid Commission",
+    "couriersList": "Couriers List",
+    "performanceReport": "Performance Report",
+    "policy": {
+      "NONE": "No Commission",
+      "FIXED_PER_ORDER": "Fixed per Order",
+      "PERCENT_OF_ORDER": "Percent of Order",
+      "MANUAL": "Manual Entry"
+    }
+  }
+}

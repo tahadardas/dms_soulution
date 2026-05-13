@@ -1,0 +1,111 @@
+:root {
+  /* --- Functional Colors (Light Default) --- */
+
+  /* Primary Action */
+  --color-primary: #2563EB;
+  --color-primary-hover: #1D4ED8;
+  --color-primary-foreground: #FFFFFF;
+  --brand-primary: var(--color-primary);
+
+  /* Semantic - Status */
+  --color-success: #16A34A;
+  --color-success-bg: #DCFCE7;
+  --color-success-foreground: #FFFFFF;
+  --color-danger: #DC2626;
+  --color-error: var(--color-danger);
+  --color-danger-bg: #FEE2E2;
+  --color-danger-foreground: #FFFFFF;
+  --color-warning: #F59E0B;
+  --color-warning-bg: #FEF3C7;
+  --color-warning-foreground: #FFFFFF;
+  --color-info: #0EA5E9;
+  --color-info-bg: #E0F2FE;
+  --color-info-foreground: #FFFFFF;
+
+  /* Backgrounds */
+  --bg-canvas: #F5F7FA;
+  --bg-surface: #FFFFFF;
+  --bg-surface-hover: #F9FAFB;
+  --bg-secondary: #F3F4F6;
+
+  /* Text */
+  --text-main: #111827;
+  --text-secondary: #4B5563;
+  --text-muted: #6B7280;
+  --text-inverse: #FFFFFF;
+
+  /* Borders */
+  --border-default: #E5E7EB;
+  --border-subtle: var(--border-default);
+  --border-strong: #D1D5DB;
+  --border-focus: var(--color-primary);
+  --border-brand: var(--brand-primary);
+
+  /* --- Spacing --- */
+  --space-1: 0.25rem;
+  /* 4px */
+  --space-2: 0.5rem;
+  /* 8px */
+  --space-3: 0.75rem;
+  /* 12px */
+  --space-4: 1rem;
+  /* 16px */
+  --space-6: 1.5rem;
+  /* 24px */
+  --space-8: 2rem;
+  /* 32px */
+  --space-12: 3rem;
+  /* 48px */
+
+  /* --- Typography --- */
+  --font-sans-en: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-sans-ar: 'Cairo', 'Tajawal', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-sans: var(--font-sans-en);
+  --font-mono: 'JetBrains Mono', monospace;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-bold: 700;
+
+  /* --- Radius --- */
+  --radius-sm: 0.25rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-full: 9999px;
+
+  /* --- Shadows --- */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  /* --- Transitions --- */
+  --transition-base: 200ms ease-in-out;
+}
+
+/* --- Dark Theme Overrides --- */
+[data-theme='dark'] {
+  --color-primary: #3B82F6;
+  --color-primary-hover: #60A5FA;
+
+  /* Backgrounds */
+  --bg-canvas: #0F172A;
+  --bg-surface: #1E293B;
+  --bg-surface-hover: #334155;
+  --bg-secondary: #334155;
+
+  /* Text */
+  --text-main: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+
+  /* Borders */
+  --border-default: #334155;
+  --border-strong: #475569;
+}

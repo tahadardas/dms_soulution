@@ -1,0 +1,79 @@
+.printer-routes-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+}
+
+.printer-routes-page__error {
+    background-color: var(--color-danger-bg);
+    color: var(--color-danger);
+    padding: var(--space-3) var(--space-4);
+    border-radius: var(--radius-md);
+}
+
+.printer-routes-page__loading {
+    color: var(--text-muted);
+}
+
+.printer-routes-page__summary-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: var(--space-3);
+}
+
+.printer-routes-page__summary-label {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+}
+
+.printer-routes-page__summary-value {
+    font-size: var(--text-lg);
+    font-weight: var(--font-bold);
+    color: var(--text-main);
+}
+
+.printer-routes-page__actions {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.printer-routes-page__empty {
+    padding: var(--space-3);
+    border: 1px dashed var(--border-default);
+    border-radius: var(--radius-md);
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.printer-routes-page__modal {
+    display: grid;
+    gap: var(--space-3);
+}
+
+.printer-routes-page__modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-2);
+}
+
+.printer-routes-page__switch {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-3);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    gap: var(--space-3);
+}
+
+.printer-routes-page__switch-title {
+    font-weight: var(--font-medium);
+    color: var(--text-main);
+}
+
+.printer-routes-page__switch-subtitle {
+    font-size: var(--text-sm);
+    color: var(--text-muted);
+}

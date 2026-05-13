@@ -1,0 +1,12 @@
+.permission-gate {
+    display: inline-flex;
+}
+
+.permission-gate--disabled {
+    cursor: not-allowed;
+}
+
+.permission-gate--disabled:focus {
+    outline: 2px dashed var(--border-focus);
+    outline-offset: 2px;
+}

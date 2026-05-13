@@ -1,0 +1,32 @@
+{
+    "name": "@dms/shared",
+    "version": "0.0.1",
+    "private": true,
+    "main": "./dist/index.js",
+    "module": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "require": "./dist/index.js",
+            "import": "./dist/index.js",
+            "default": "./dist/index.js"
+        },
+        "./src/schemas/*": {
+            "types": "./dist/schemas/*.d.ts",
+            "require": "./dist/schemas/*.js",
+            "import": "./dist/schemas/*.js",
+            "default": "./dist/schemas/*.js"
+        }
+    },
+    "scripts": {
+        "build": "tsc",
+        "typecheck": "tsc --noEmit"
+    },
+    "dependencies": {
+        "zod": "^3.22.4"
+    },
+    "devDependencies": {
+        "typescript": "^5.3.3"
+    }
+}
