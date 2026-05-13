@@ -1,13 +1,24 @@
 import type { Database } from 'better-sqlite3';
+import bcrypt from 'bcryptjs';
 import { PERMISSIONS, ROLE_PRESETS } from '../config/permissions';
+import { isProduction } from '../config/security';
 import { seedInventoryStockFromProducts } from './seed-inventory-stock';
+
+const DEFAULT_ADMIN_HASH = '$2b$10$e.3HgANwqDX5o8Rv7WqxpOXPJFjEvF5TFko8SooiEW4ASlVV8rFSS';
+const LEGACY_DEFAULT_ADMIN_HASHES = [
+    DEFAULT_ADMIN_HASH,
+    '$2b$10$qXc6N.3Hj1wdTY6uvah23.LNGb8Lh0ENKuNqhrzrLLtpgKkMa/h7G'
+];
 
 export function seedDatabase(db: Database): void {
     const seed = db.transaction(() => {
         const insertPerm = db.prepare('INSERT OR IGNORE INTO permissions (code, description) VALUES (@code, @description)');
         const insertRole = db.prepare('INSERT OR IGNORE INTO roles (id, name, description) VALUES (@id, @name, @description)');
         const insertRolePerm = db.prepare('INSERT OR IGNORE INTO role_permissions (role_id, permission_code) VALUES (@role_id, @code)');
-        const insertUser = db.prepare('INSERT OR IGNORE INTO users (username, password_hash, role_id) VALUES (@username, @hash, @role_id)');
+        const insertUser = db.prepare(`
+            INSERT OR IGNORE INTO users (username, password_hash, role_id, must_change_password)
+            VALUES (@username, @hash, @role_id, @must_change_password)
+        `);
 
         for (const code of Object.values(PERMISSIONS)) {
             insertPerm.run({ code, description: code });
@@ -21,11 +32,27 @@ export function seedDatabase(db: Database): void {
             }
         }
 
+        const existingAdmin = db.prepare('SELECT id, password_hash FROM users WHERE username = ?').get('admin') as { id: number; password_hash: string } | undefined;
+        if (isProduction() && existingAdmin && LEGACY_DEFAULT_ADMIN_HASHES.includes(existingAdmin.password_hash)) {
+            throw new Error('Production cannot run with the default admin/admin123 credentials.');
+        }
+
+        const bootstrapPassword = process.env.DMS_BOOTSTRAP_ADMIN_PASSWORD;
+        if (!existingAdmin && isProduction() && !bootstrapPassword) {
+            throw new Error('DMS_BOOTSTRAP_ADMIN_PASSWORD is required to create the initial production admin user.');
+        }
+
         insertUser.run({
             username: 'admin',
-            hash: '$2b$10$qXc6N.3Hj1wdTY6uvah23.LNGb8Lh0ENKuNqhrzrLLtpgKkMa/h7G',
-            role_id: 'admin'
+            hash: bootstrapPassword ? bcrypt.hashSync(bootstrapPassword, 10) : DEFAULT_ADMIN_HASH,
+            role_id: 'admin',
+            must_change_password: 1
         });
+
+        for (const defaultHash of LEGACY_DEFAULT_ADMIN_HASHES) {
+            db.prepare('UPDATE users SET must_change_password = 1 WHERE username = ? AND password_hash = ?')
+                .run('admin', defaultHash);
+        }
 
         const branchCount = db.prepare('SELECT COUNT(*) as count FROM branches').get() as { count: number };
         if (branchCount.count === 0) {
@@ -37,30 +64,31 @@ export function seedDatabase(db: Database): void {
             db.prepare('UPDATE users SET branch_id = ? WHERE branch_id IS NULL').run(defaultBranch.id);
         }
 
-        const accountCount = db.prepare('SELECT COUNT(*) as count FROM accounts').get() as { count: number };
-        if (accountCount.count === 0) {
-            const insert = db.prepare('INSERT INTO accounts (code, name, type, is_system) VALUES (@code, @name, @type, 1)');
-            [
-                ['1000', 'Assets', 'ASSET'],
-                ['1010', 'Cash', 'ASSET'],
-                ['1020', 'Bank', 'ASSET'],
-                ['1100', 'Accounts Receivable', 'ASSET'],
-                ['1200', 'Inventory', 'ASSET'],
-                ['2000', 'Liabilities', 'LIABILITY'],
-                ['2100', 'Accounts Payable', 'LIABILITY'],
-                ['2200', 'Sales Tax Payable', 'LIABILITY'],
-                ['3000', 'Equity', 'EQUITY'],
-                ['3100', 'Owner Capital', 'EQUITY'],
-                ['3200', 'Retained Earnings', 'EQUITY'],
-                ['4000', 'Revenue', 'REVENUE'],
-                ['4100', 'Sales', 'REVENUE'],
-                ['4200', 'Service Revenue', 'REVENUE'],
-                ['5000', 'Expenses', 'EXPENSE'],
-                ['5100', 'Cost of Goods Sold', 'EXPENSE'],
-                ['5200', 'Rent', 'EXPENSE'],
-                ['5300', 'Salaries', 'EXPENSE']
-            ].forEach(([code, name, type]) => insert.run({ code, name, type }));
-        }
+        const insertAccount = db.prepare('INSERT OR IGNORE INTO accounts (code, name, type, is_system) VALUES (@code, @name, @type, 1)');
+        [
+            ['1000', 'Assets', 'ASSET'],
+            ['1010', 'Cash', 'ASSET'],
+            ['1020', 'Bank', 'ASSET'],
+            ['1100', 'Current Assets', 'ASSET'],
+            ['1200', 'Inventory', 'ASSET'],
+            ['2000', 'Liabilities', 'LIABILITY'],
+            ['2100', 'Current Liabilities', 'LIABILITY'],
+            ['2200', 'Sales Tax Payable', 'LIABILITY'],
+            ['3000', 'Equity', 'EQUITY'],
+            ['3100', 'Owner Capital', 'EQUITY'],
+            ['3200', 'Retained Earnings', 'EQUITY'],
+            ['4000', 'Revenue', 'REVENUE'],
+            ['4100', 'Sales Revenue', 'REVENUE'],
+            ['4200', 'Discounts and Adjustments', 'REVENUE'],
+            ['5000', 'Expenses', 'EXPENSE'],
+            ['5100', 'Cost of Goods Sold', 'EXPENSE'],
+            ['5200', 'Rent', 'EXPENSE'],
+            ['5300', 'Salaries', 'EXPENSE']
+        ].forEach(([code, name, type]) => insertAccount.run({ code, name, type }));
+
+        db.prepare("UPDATE accounts SET system_role = COALESCE(system_role, 'INVENTORY') WHERE code = '1200'").run();
+        db.prepare("UPDATE accounts SET system_role = COALESCE(system_role, 'SALES_REVENUE') WHERE code = '4100'").run();
+        db.prepare("UPDATE accounts SET system_role = COALESCE(system_role, 'COGS') WHERE code = '5100'").run();
 
         const printerCount = db.prepare('SELECT COUNT(*) as count FROM printers').get() as { count: number };
         if (printerCount.count === 0) {

@@ -19,6 +19,8 @@ export interface ProductStockRow {
     type: string;
     cost: number | null;
     stock_quantity: number | null;
+    unit_id: number | null;
+    base_unit_id: number | null;
 }
 
 export interface StockRow {
@@ -49,6 +51,10 @@ export interface InsertInventoryMovementInput {
     quantity: number;
     unit_cost?: number | null;
     reference_id?: string | null;
+    source_type?: string | null;
+    entered_unit_id?: number | null;
+    entered_quantity?: number | null;
+    base_quantity?: number | null;
     description?: string | null;
     branch_id?: number | null;
     reason?: string | null;
@@ -62,6 +68,10 @@ export interface RebuildMovementRow {
     product_id: number;
     quantity: number;
     unit_cost: number | null;
+    source_type: string | null;
+    entered_unit_id: number | null;
+    entered_quantity: number | null;
+    base_quantity: number | null;
     branch_id: number | null;
     created_at: string | null;
 }
@@ -69,6 +79,7 @@ export interface RebuildMovementRow {
 export function getProductById(db: DatabaseType, productId: number): ProductStockRow | undefined {
     return db.prepare(`
         SELECT id, name, type, cost, stock_quantity
+             , unit_id, base_unit_id
         FROM products
         WHERE id = ?
     `).get(productId) as ProductStockRow | undefined;
@@ -103,10 +114,12 @@ export function insertInventoryMovement(db: DatabaseType, movement: InsertInvent
     db.prepare(`
         INSERT INTO inventory_movements (
             id, date, type, product_id, quantity, unit_cost, reference_id,
+            source_type, entered_unit_id, entered_quantity, base_quantity,
             description, branch_id, reason, created_by
         )
         VALUES (
             @id, @date, @type, @product_id, @quantity, @unit_cost, @reference_id,
+            @source_type, @entered_unit_id, @entered_quantity, @base_quantity,
             @description, @branch_id, @reason, @created_by
         )
     `).run({
@@ -117,6 +130,10 @@ export function insertInventoryMovement(db: DatabaseType, movement: InsertInvent
         quantity: movement.quantity,
         unit_cost: movement.unit_cost ?? null,
         reference_id: movement.reference_id ?? null,
+        source_type: movement.source_type ?? movement.type,
+        entered_unit_id: movement.entered_unit_id ?? null,
+        entered_quantity: movement.entered_quantity ?? Math.abs(movement.quantity),
+        base_quantity: movement.base_quantity ?? movement.quantity,
         description: movement.description ?? null,
         branch_id: movement.branch_id ?? null,
         reason: movement.reason ?? null,
@@ -181,6 +198,7 @@ export function listMovementsForRebuild(db: DatabaseType, branchId?: number): Re
     const params = branchId ? [branchId] : [];
     return db.prepare(`
         SELECT id, date, type, product_id, quantity, unit_cost, branch_id, created_at
+             , source_type, entered_unit_id, entered_quantity, base_quantity
         FROM inventory_movements
         ${branchClause}
         ORDER BY date ASC, created_at ASC, id ASC

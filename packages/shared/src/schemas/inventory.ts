@@ -15,6 +15,7 @@ export const ProductSchema = z.object({
     min_stock_level: z.number().optional(),
     category_id: z.number().nullable().optional(),
     unit_id: z.number().nullable().optional(),
+    base_unit_id: z.number().nullable().optional(),
     is_active: z.boolean().default(true),
     created_by: z.number().nullable().optional(),
     created_at: z.string().optional(),
@@ -102,6 +103,10 @@ export const InventoryMovementSchema = z.object({
     quantity: z.number(), // Positive for IN, Negative for OUT usually handled by logic, but here absolute qty + type
     unit_cost: z.number().optional(), // For IN
     reference_id: z.string().optional(), // PO number or Order ID
+    source_type: z.string().optional(),
+    entered_unit_id: z.number().nullable().optional(),
+    entered_quantity: z.number().optional(),
+    base_quantity: z.number().optional(),
     description: z.string().optional(),
     branch_id: z.number().nullable().optional(),
     reason: z.string().optional(),

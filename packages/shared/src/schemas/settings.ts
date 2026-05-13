@@ -23,7 +23,7 @@ export const CostingSettingsSchema = z.object({
 
 // --- Inventory Settings ---
 export const InventorySettingsSchema = z.object({
-    valuationMethod: z.enum(['WAC', 'FIFO']).default('WAC'),
+    valuationMethod: z.enum(['WAC']).default('WAC'),
     defaultUnit: z.string().default('Unit'),
     lowStockThresholdGlobal: z.number().default(10),
     autoDeductStockOnSale: z.boolean().default(true),

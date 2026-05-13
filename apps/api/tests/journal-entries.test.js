@@ -25,7 +25,7 @@ test('draft journal can be unbalanced but cannot be posted', () => {
             { account_id: cash.id, debit: 100, credit: 0 },
             { account_id: sales.id, debit: 0, credit: 50 }
         ]
-    }, { allowUnbalanced: true });
+    }, { allowUnbalanced: true, unbalancedReason: 'Draft pending balancing line' });
 
     assert.ok(draft.id);
     const row = db.prepare('SELECT posted FROM journal_entries WHERE id = ?').get(draft.id);

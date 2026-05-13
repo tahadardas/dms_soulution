@@ -348,6 +348,15 @@ export class ReportingService {
                       AND p.status = 'COMPLETED'
                 ) as transfer_sales,
                 (
+                    SELECT COALESCE(SUM(amount), 0)
+                    FROM payments p
+                    LEFT JOIN orders o ON o.id = p.order_id
+                    WHERE COALESCE(p.session_id, o.session_id) = s.id
+                      AND p.type = 'PAYMENT'
+                      AND p.method = 'CREDIT'
+                      AND p.status = 'COMPLETED'
+                ) as credit_sales,
+                (
                     SELECT COALESCE(SUM(o.total_amount), 0)
                     FROM orders o
                     WHERE o.session_id = s.id
@@ -377,6 +386,12 @@ export class ReportingService {
                       AND p.method = 'CASH'
                       AND p.status = 'REFUNDED'
                 ) as cash_refunds,
+                (
+                    SELECT COALESCE(SUM(total_refund), 0)
+                    FROM returns r
+                    JOIN orders o ON o.id = r.original_order_id
+                    WHERE o.session_id = s.id
+                ) as returns,
                 (
                     SELECT COALESCE(SUM(total_amount), 0)
                     FROM orders o
@@ -432,7 +447,12 @@ export class ReportingService {
                     expected_cash: item.status === 'OPEN' || item.expected_cash === null || item.expected_cash === 0
                         ? computedExpectedCash
                         : item.expected_cash,
-                    actual_cash: item.actual_cash ?? item.closing_cash ?? null
+                    actual_cash: item.actual_cash ?? item.closing_cash ?? null,
+                    difference: item.cash_difference ?? (
+                        item.actual_cash === null || item.actual_cash === undefined
+                            ? null
+                            : Number(item.actual_cash) - computedExpectedCash
+                    )
                 };
             })
         };
@@ -537,5 +557,50 @@ export class ReportingService {
             ORDER BY m.date DESC
         `).all(...params);
         return { items };
+    }
+
+    getInventoryValuationReport(filters: { asOfDate: string; branchId?: number }) {
+        const branchClause = filters.branchId ? 'AND m.branch_id = ?' : '';
+        const params: any[] = [filters.asOfDate];
+        if (filters.branchId) params.push(filters.branchId);
+
+        const items = this.db.prepare(`
+            WITH movement_values AS (
+                SELECT
+                    m.product_id,
+                    m.branch_id,
+                    SUM(COALESCE(m.base_quantity, m.quantity)) as quantity_on_hand,
+                    SUM(COALESCE(m.base_quantity, m.quantity) * COALESCE(m.unit_cost, 0)) as signed_value
+                FROM inventory_movements m
+                WHERE m.date <= ?
+                  ${branchClause}
+                GROUP BY m.product_id, m.branch_id
+            )
+            SELECT
+                mv.product_id,
+                p.name as product_name,
+                mv.branch_id,
+                b.name as branch_name,
+                mv.quantity_on_hand,
+                CASE
+                    WHEN mv.quantity_on_hand != 0 THEN ABS(mv.signed_value / mv.quantity_on_hand)
+                    ELSE COALESCE(p.cost, 0)
+                END as unit_cost,
+                CASE
+                    WHEN mv.quantity_on_hand != 0 THEN mv.quantity_on_hand * ABS(mv.signed_value / mv.quantity_on_hand)
+                    ELSE 0
+                END as inventory_value
+            FROM movement_values mv
+            JOIN products p ON p.id = mv.product_id
+            LEFT JOIN branches b ON b.id = mv.branch_id
+            ORDER BY p.name, b.name
+        `).all(...params) as any[];
+
+        const totals = items.reduce((acc, row) => ({
+            quantity_on_hand: acc.quantity_on_hand + Number(row.quantity_on_hand || 0),
+            inventory_value: acc.inventory_value + Number(row.inventory_value || 0)
+        }), { quantity_on_hand: 0, inventory_value: 0 });
+
+        return { asOfDate: filters.asOfDate, branchId: filters.branchId ?? null, items, totals };
     }
 }

@@ -82,14 +82,46 @@ export class AccountingService {
     }
 
     deleteAccount(id: number) {
+        const account = this.db.prepare('SELECT id, party_type, party_id FROM accounts WHERE id = ?').get(id) as any;
+        if (!account) {
+            throw new Error('Account not found');
+        }
+        const child = this.db.prepare('SELECT 1 FROM accounts WHERE parent_id = ? LIMIT 1').get(id);
+        if (child) {
+            throw new Error('Account has child accounts and cannot be deleted.');
+        }
         const referenced = this.db.prepare('SELECT 1 FROM journal_lines WHERE account_id = ? LIMIT 1').get(id);
         if (referenced) {
             throw new Error('Account is referenced by journal entries.');
         }
-        const info = this.db.prepare('DELETE FROM accounts WHERE id = ?').run(id);
-        if (info.changes === 0) {
-            throw new Error('Account not found');
+        const linkedParty = this.db.prepare(`
+            SELECT 1
+            FROM accounts
+            WHERE id = ?
+              AND party_type IS NOT NULL
+              AND party_id IS NOT NULL
+            LIMIT 1
+        `).get(id);
+        if (linkedParty) {
+            throw new Error('Account is linked to a customer or supplier and cannot be deleted.');
         }
+        const linkedCustomer = this.db.prepare(`
+            SELECT 1 FROM customers
+            WHERE receivable_account_id = ? OR advance_account_id = ?
+            LIMIT 1
+        `).get(id, id);
+        if (linkedCustomer) {
+            throw new Error('Account is linked to a customer and cannot be deleted.');
+        }
+        const linkedSupplier = this.db.prepare(`
+            SELECT 1 FROM suppliers
+            WHERE payable_account_id = ? OR advance_account_id = ?
+            LIMIT 1
+        `).get(id, id);
+        if (linkedSupplier) {
+            throw new Error('Account is linked to a supplier and cannot be deleted.');
+        }
+        const info = this.db.prepare('DELETE FROM accounts WHERE id = ?').run(id);
         return { success: true };
     }
 
@@ -97,21 +129,38 @@ export class AccountingService {
 
     createJournalEntry(
         entry: Omit<JournalEntry, 'id' | 'posted'> & { branch_id?: number | null; reversed_of?: string | null },
-        options: { allowUnbalanced?: boolean } = {}
+        options: { allowUnbalanced?: boolean; unbalancedReason?: string | null; createdBy?: number | null } = {}
     ): JournalEntry {
-        // Validate balances unless draft is allowed
         const totalDebit = entry.lines.reduce((sum, line) => sum + line.debit, 0);
         const totalCredit = entry.lines.reduce((sum, line) => sum + line.credit, 0);
+        const isBalanced = Math.abs(totalDebit - totalCredit) <= 0.001;
 
-        if (!options.allowUnbalanced && Math.abs(totalDebit - totalCredit) > 0.001) { // Float tolerance
+        for (const line of entry.lines) {
+            if ((line.debit || 0) < 0 || (line.credit || 0) < 0) {
+                throw new Error('Journal lines cannot contain negative amounts');
+            }
+            if ((line.debit || 0) > 0 && (line.credit || 0) > 0) {
+                throw new Error('A journal line cannot contain both debit and credit amounts');
+            }
+        }
+
+        if (!options.allowUnbalanced && !isBalanced) {
             throw new Error(`Unbalanced Entry: Debit ${totalDebit} != Credit ${totalCredit}`);
         }
+        if (options.allowUnbalanced && !isBalanced && !String(options.unbalancedReason || '').trim()) {
+            throw new Error('A reason is required for an unbalanced draft journal entry');
+        }
+
+        this.assertSourceCanBeUsed(entry.source_type, entry.source_id ?? null);
 
         const id = crypto.randomUUID();
 
         const insertEntry = this.db.prepare(`
-            INSERT INTO journal_entries (id, date, description, posted, source_type, source_id, reversed_of, branch_id)
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO journal_entries (
+                id, date, description, posted, source_type, source_id,
+                reversed_of, branch_id, unbalanced_reason, created_by
+            )
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         `);
         const insertLine = this.db.prepare('INSERT INTO journal_lines (entry_id, account_id, debit, credit, description) VALUES (?, ?, ?, ?, ?)');
 
@@ -124,7 +173,9 @@ export class AccountingService {
                 entry.source_type,
                 entry.source_id,
                 (entry as any).reversed_of || null,
-                entry.branch_id ?? null
+                entry.branch_id ?? null,
+                isBalanced ? null : options.unbalancedReason ?? null,
+                options.createdBy ?? null
             );
             for (const line of entry.lines) {
                 insertLine.run(id, line.account_id, line.debit, line.credit, line.description || '');
@@ -137,6 +188,18 @@ export class AccountingService {
     }
 
     postEntry(id: string, userId?: number): void {
+        const entry = this.db.prepare(`
+            SELECT id, posted, source_type, source_id
+            FROM journal_entries
+            WHERE id = ?
+        `).get(id) as { id: string; posted: number; source_type: string; source_id: string | null } | undefined;
+        if (!entry) {
+            throw new Error('Entry not found');
+        }
+        if (entry.posted) {
+            throw new Error('Entry is already posted');
+        }
+
         const totals = this.db.prepare(`
             SELECT SUM(debit) as total_debit, SUM(credit) as total_credit
             FROM journal_lines WHERE entry_id = ?
@@ -144,6 +207,7 @@ export class AccountingService {
         if (Math.abs((totals.total_debit || 0) - (totals.total_credit || 0)) > 0.001) {
             throw new Error('Entry is not balanced');
         }
+        this.assertSourceCanBeUsed(entry.source_type, entry.source_id, id);
 
         const stmt = this.db.prepare(`
             UPDATE journal_entries
@@ -151,8 +215,23 @@ export class AccountingService {
             WHERE id = ? AND posted = 0
         `);
         const info = stmt.run(userId ?? null, id);
-        if (info.changes === 0) {
-            throw new Error('Entry not found');
+    }
+
+    private assertSourceCanBeUsed(sourceType: string, sourceId?: string | null, currentEntryId?: string): void {
+        if (!sourceId || sourceType === 'MANUAL' || sourceType === 'REVERSAL') {
+            return;
+        }
+        const duplicate = this.db.prepare(`
+            SELECT id
+            FROM journal_entries
+            WHERE source_type = ?
+              AND source_id = ?
+              AND posted = 1
+              AND id != COALESCE(?, '')
+            LIMIT 1
+        `).get(sourceType, sourceId, currentEntryId ?? null) as { id: string } | undefined;
+        if (duplicate) {
+            throw new Error(`Source document ${sourceType}/${sourceId} has already been posted`);
         }
     }
 
@@ -206,14 +285,20 @@ export class AccountingService {
         return { ...entry, lines, total_debit: totals.total_debit || 0, total_credit: totals.total_credit || 0 };
     }
 
-    updateJournalEntry(id: string, data: { date: string; description: string; lines: JournalLine[] }) {
+    updateJournalEntry(id: string, data: { date: string; description: string; lines: JournalLine[]; unbalancedReason?: string | null }) {
         const entry = this.db.prepare('SELECT posted FROM journal_entries WHERE id = ?').get(id) as { posted: number } | undefined;
         if (!entry) throw new Error('Entry not found');
         if (entry.posted) throw new Error('Posted journal entries cannot be edited');
+        const totalDebit = data.lines.reduce((sum, line) => sum + (line.debit || 0), 0);
+        const totalCredit = data.lines.reduce((sum, line) => sum + (line.credit || 0), 0);
+        const isBalanced = Math.abs(totalDebit - totalCredit) <= 0.001;
+        if (!isBalanced && !String(data.unbalancedReason || '').trim()) {
+            throw new Error('A reason is required for an unbalanced draft journal entry');
+        }
 
         const transaction = this.db.transaction(() => {
-            this.db.prepare('UPDATE journal_entries SET date = ?, description = ? WHERE id = ?')
-                .run(data.date, data.description, id);
+            this.db.prepare('UPDATE journal_entries SET date = ?, description = ?, unbalanced_reason = ?, updated_at = datetime(\'now\') WHERE id = ?')
+                .run(data.date, data.description, isBalanced ? null : data.unbalancedReason ?? null, id);
             this.db.prepare('DELETE FROM journal_lines WHERE entry_id = ?').run(id);
             const insertLine = this.db.prepare('INSERT INTO journal_lines (entry_id, account_id, debit, credit, description) VALUES (?, ?, ?, ?, ?)');
             for (const line of data.lines) {
@@ -273,6 +358,7 @@ export class AccountingService {
         const joinClause = joinClauses.length ? `AND ${joinClauses.join(' AND ')}` : '';
 
         const sql = `
+            WITH account_totals AS (
             SELECT 
                 a.id,
                 a.code, 
@@ -287,7 +373,27 @@ export class AccountingService {
             LEFT JOIN journal_entries je ON jl.entry_id = je.id ${joinClause}
             WHERE a.is_active = 1
             GROUP BY a.id
-            ORDER BY a.code
+            )
+            SELECT
+                *,
+                CASE
+                    WHEN type IN ('ASSET', 'EXPENSE') THEN 'DEBIT'
+                    ELSE 'CREDIT'
+                END as normal_side,
+                CASE
+                    WHEN type IN ('ASSET', 'EXPENSE') THEN net_balance
+                    ELSE -net_balance
+                END as signed_balance,
+                CASE
+                    WHEN net_balance > 0 THEN net_balance
+                    ELSE 0
+                END as debit_balance,
+                CASE
+                    WHEN net_balance < 0 THEN ABS(net_balance)
+                    ELSE 0
+                END as credit_balance
+            FROM account_totals
+            ORDER BY code
         `;
 
         const items = this.db.prepare(sql).all(...params) as any[];
@@ -295,9 +401,12 @@ export class AccountingService {
             (acc, row) => ({
                 total_debit: acc.total_debit + (row.total_debit || 0),
                 total_credit: acc.total_credit + (row.total_credit || 0),
+                debit_balance: acc.debit_balance + (row.debit_balance || 0),
+                credit_balance: acc.credit_balance + (row.credit_balance || 0),
+                signed_balance: acc.signed_balance + (row.signed_balance || 0),
                 net_balance: acc.net_balance + (row.net_balance || 0)
             }),
-            { total_debit: 0, total_credit: 0, net_balance: 0 }
+            { total_debit: 0, total_credit: 0, debit_balance: 0, credit_balance: 0, signed_balance: 0, net_balance: 0 }
         );
 
         return { items, totals };
@@ -309,10 +418,18 @@ export class AccountingService {
         endDate?: string;
         branchId?: number;
         sourceType?: string;
+        partyType?: string;
+        partyId?: number;
     }) {
-        const account = this.db.prepare('SELECT id, code, name, type FROM accounts WHERE id = ?').get(filters.accountId) as any;
+        const account = this.db.prepare('SELECT id, code, name, type, party_type, party_id FROM accounts WHERE id = ?').get(filters.accountId) as any;
         if (!account) {
             throw new Error('Account not found');
+        }
+        if (filters.partyType && String(account.party_type || '').toUpperCase() !== String(filters.partyType).toUpperCase()) {
+            throw new Error('Account does not belong to the requested party type');
+        }
+        if (filters.partyId !== undefined && Number(account.party_id) !== filters.partyId) {
+            throw new Error('Account does not belong to the requested party');
         }
 
         const params: any[] = [filters.accountId];

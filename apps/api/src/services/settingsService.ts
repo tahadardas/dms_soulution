@@ -61,7 +61,10 @@ export class SettingsService {
             }
         }
         if (category === 'inventory') {
-            const allowedMethods = ['WAC', 'FIFO'];
+            const allowedMethods = ['WAC'];
+            if (normalizedInput.valuationMethod === 'FIFO') {
+                throw new Error('FIFO valuation is not implemented in this build. The system currently supports WAC only.');
+            }
             if (normalizedInput.valuationMethod && !allowedMethods.includes(normalizedInput.valuationMethod)) {
                 normalizedInput.valuationMethod = 'WAC';
             }

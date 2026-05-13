@@ -18,6 +18,9 @@ export const authenticate = async (request: FastifyRequest, reply: FastifyReply)
         }
 
         const decoded = jwt.verify(token, SECRET_KEY) as TokenPayload;
+        if (decoded.mustChangePassword && !request.url.startsWith('/auth/change-password')) {
+            return reply.code(403).send({ message: 'Password change required', mustChangePassword: true });
+        }
         request.user = decoded;
     } catch (err) {
         return reply.code(401).send({ message: 'Invalid or expired token' });

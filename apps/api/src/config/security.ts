@@ -22,7 +22,7 @@ export function getRefreshSecret(): string {
 
 export function getCorsOrigins(): boolean | string[] {
     const isDesktop = process.env.DMS_DESKTOP === 'true';
-    if (isDesktop) return true;
+    if (isDesktop && !isProduction()) return true;
 
     const raw = process.env.DMS_CORS_ORIGINS;
     if (!raw) {
@@ -43,4 +43,3 @@ export function getCorsOrigins(): boolean | string[] {
 
     return origins.includes('*') ? true : origins;
 }
-

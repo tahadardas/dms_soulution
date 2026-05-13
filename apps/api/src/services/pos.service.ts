@@ -6,6 +6,7 @@ import { SettingsService } from './settingsService';
 import { PrintingService } from './printingService';
 import { PolicyService } from './policy.service';
 import { DeliveryCourierService } from './deliveryCourier.service';
+import { DocumentService, DocumentStatus } from './documentService';
 
 interface OpenSessionDTO {
     userId: number;
@@ -41,6 +42,8 @@ interface CreateOrderDTO {
     deliveryCourierOneTime?: boolean;
     deliveryCommissionAmount?: number;
     deliveryCommissionType?: 'NONE' | 'FIXED_PER_ORDER' | 'PERCENT_OF_ORDER' | 'MANUAL';
+    sourceDocumentType?: string;
+    sourceDocumentId?: string;
     printNow?: boolean;
     printTypes?: Array<'RECEIPT' | 'KOT'>;
     discountAmount?: number;
@@ -104,6 +107,7 @@ export class POSService {
     private printingService: PrintingService;
     private policyService: PolicyService;
     private deliveryCourierService: DeliveryCourierService;
+    private documentService: DocumentService;
 
     constructor(private db: Database) {
         this.inventoryService = new InventoryService(db);
@@ -112,6 +116,63 @@ export class POSService {
         this.printingService = new PrintingService(db);
         this.policyService = new PolicyService(db);
         this.deliveryCourierService = new DeliveryCourierService(db);
+        this.documentService = new DocumentService(db);
+    }
+
+    private syncPosOrderDocument(input: {
+        orderId: string;
+        orderNumber: string;
+        branchId: number;
+        status: DocumentStatus;
+        totalBeforeDiscount: number;
+        discountAmount: number;
+        taxAmount?: number;
+        totalAmount: number;
+        journalEntryId?: string | null;
+        postedBy?: number | null;
+        createdBy?: number | null;
+    }): void {
+        this.documentService.upsertDocument({
+            documentTypeCode: 'POS_ORDER',
+            sourceTable: 'orders',
+            sourceId: input.orderId,
+            documentNumber: input.orderNumber,
+            status: input.status,
+            branchId: input.branchId,
+            currencyCode: 'SYP',
+            exchangeRate: 1,
+            totalBeforeDiscount: input.totalBeforeDiscount,
+            discountAmount: input.discountAmount,
+            taxAmount: input.taxAmount || 0,
+            totalAmount: input.totalAmount,
+            journalEntryId: input.journalEntryId ?? null,
+            postedBy: input.postedBy ?? null,
+            postedAt: input.status === 'POSTED' ? new Date().toISOString() : null,
+            createdBy: input.createdBy ?? null
+        });
+    }
+
+    private syncCashMovementDocument(input: {
+        id: string;
+        type: 'CASH_IN' | 'CASH_OUT';
+        branchId?: number | null;
+        amount: number;
+        userId: number;
+    }): void {
+        this.documentService.upsertDocument({
+            documentTypeCode: input.type,
+            sourceTable: 'cash_movements',
+            sourceId: input.id,
+            status: 'POSTED',
+            branchId: input.branchId ?? null,
+            currencyCode: 'SYP',
+            exchangeRate: 1,
+            totalBeforeDiscount: input.amount,
+            totalAmount: input.amount,
+            postedBy: input.userId,
+            postedAt: new Date().toISOString(),
+            createdBy: input.userId
+        });
     }
 
     openSession(data: OpenSessionDTO) {
@@ -348,6 +409,14 @@ export class POSService {
             VALUES (?, ?, ?, ?, 'CASH', ?, ?, 'COMPLETED', ?, ?)
         `).run(id, data.sessionId, session.branch_id ?? null, type, amount, reason, approvedBy || null, userId);
 
+        this.syncCashMovementDocument({
+            id,
+            type,
+            branchId: session.branch_id ?? null,
+            amount,
+            userId
+        });
+
         this.policyService.writeAuditLog({
             userId,
             action: type === 'CASH_IN' ? 'POS.CASH_IN' : 'POS.CASH_OUT',
@@ -565,9 +634,10 @@ export class POSService {
                     delivery_person_name, delivery_phone, delivery_address, delivery_notes,
                     delivery_courier_id, delivery_courier_name, delivery_courier_phone, 
                     delivery_courier_one_time, delivery_commission_amount, 
-                    delivery_commission_type, delivery_commission_status
+                    delivery_commission_type, delivery_commission_status,
+                    source_document_type, source_document_id
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
             `).run(
                 orderId, data.sessionId, data.customerId || null, branchId, orderNumber, 
                 orderStatus, 0, data.tableNumber || null, paymentMethod, orderType, 
@@ -580,7 +650,9 @@ export class POSService {
                 data.deliveryCourierOneTime ? 1 : 0,
                 0, // delivery_commission_amount (update later)
                 deliveryCommissionType,
-                deliveryCommissionStatus
+                deliveryCommissionStatus,
+                data.sourceDocumentType || null,
+                data.sourceDocumentId || null
             );
 
             const insertLine = this.db.prepare(`
@@ -702,12 +774,26 @@ export class POSService {
                 if (accounts.postingPolicy === 'IMMEDIATE') {
                     this.accountingService.postEntry(entry.id!);
                 }
+                this.db.prepare('UPDATE orders SET journal_entry_id = ? WHERE id = ?').run(entry.id, orderId);
 
                 // Create payment record
                 this.db.prepare(`
                     INSERT INTO payments (id, order_id, session_id, type, method, amount, status, created_by)
                     VALUES (?, ?, ?, 'PAYMENT', ?, ?, 'COMPLETED', ?)
                 `).run(randomUUID(), orderId, data.sessionId, paymentMethod, finalAmount, userId);
+
+                this.syncPosOrderDocument({
+                    orderId,
+                    orderNumber,
+                    branchId,
+                    status: accounts.postingPolicy === 'IMMEDIATE' ? 'POSTED' : 'DRAFT',
+                    totalBeforeDiscount: totalAmount,
+                    discountAmount: actualDiscount,
+                    totalAmount: finalAmount,
+                    journalEntryId: entry.id ?? null,
+                    postedBy: accounts.postingPolicy === 'IMMEDIATE' ? userId : null,
+                    createdBy: userId
+                });
             } else {
                 // Pending delivery — only COGS/inventory, NO cash entry
                 const entry = this.accountingService.createJournalEntry({
@@ -724,6 +810,20 @@ export class POSService {
                 if (accounts.postingPolicy === 'IMMEDIATE' && totalCogs > 0) {
                     this.accountingService.postEntry(entry.id!);
                 }
+                this.db.prepare('UPDATE orders SET journal_entry_id = ? WHERE id = ?').run(entry.id, orderId);
+
+                this.syncPosOrderDocument({
+                    orderId,
+                    orderNumber,
+                    branchId,
+                    status: accounts.postingPolicy === 'IMMEDIATE' && totalCogs > 0 ? 'POSTED' : 'DRAFT',
+                    totalBeforeDiscount: totalAmount,
+                    discountAmount: actualDiscount,
+                    totalAmount: finalAmount,
+                    journalEntryId: entry.id ?? null,
+                    postedBy: accounts.postingPolicy === 'IMMEDIATE' && totalCogs > 0 ? userId : null,
+                    createdBy: userId
+                });
             }
 
 

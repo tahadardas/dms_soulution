@@ -2,6 +2,7 @@ import { FastifyInstance } from 'fastify';
 import z from 'zod';
 import { AuthService } from '../services/auth';
 import { AuditService } from '../services/audit';
+import { authenticate } from '../middleware/auth';
 
 const LoginSchema = z.object({
     username: z.string(),
@@ -10,6 +11,11 @@ const LoginSchema = z.object({
 
 const RefreshSchema = z.object({
     refreshToken: z.string()
+});
+
+const ChangePasswordSchema = z.object({
+    currentPassword: z.string().min(1),
+    newPassword: z.string().min(8)
 });
 
 const LOGIN_WINDOW_MS = 60_000;
@@ -57,7 +63,8 @@ export async function authRoutes(fastify: FastifyInstance) {
 
             return result;
         } catch (err: any) {
-            if (String(err?.message || '').includes('Too many login attempts')) {
+            const message = String(err?.message || '');
+            if (message.includes('Too many login attempts') || message.includes('temporarily locked')) {
                 return reply.code(429).send({ message: err.message });
             }
             return reply.code(401).send({ message: 'Invalid credentials' });
@@ -71,6 +78,21 @@ export async function authRoutes(fastify: FastifyInstance) {
             return result;
         } catch (err) {
             return reply.code(401).send({ message: 'Invalid refresh token' });
+        }
+    });
+
+    fastify.post('/auth/change-password', {
+        preHandler: [authenticate]
+    }, async (request, reply) => {
+        const body = ChangePasswordSchema.parse(request.body);
+        const userId = request.user?.userId;
+        if (!userId) {
+            return reply.code(401).send({ message: 'Unauthorized' });
+        }
+        try {
+            return await AuthService.changePassword(userId, body.currentPassword, body.newPassword);
+        } catch (err: any) {
+            return reply.code(400).send({ message: err.message });
         }
     });
 }

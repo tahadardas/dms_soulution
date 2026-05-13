@@ -60,6 +60,21 @@ export async function invoiceRoutes(fastify: FastifyInstance) {
         }
     });
 
+    fastify.get('/customers/:id/statement', {
+        preHandler: [authenticate, requirePermission(PERMISSIONS.INV_SALES_INV)]
+    }, async (request, reply) => {
+        const { id } = request.params as { id: string };
+        const query = request.query as any;
+        try {
+            return service.getCustomerStatement(Number(id), {
+                startDate: query.startDate,
+                endDate: query.endDate
+            });
+        } catch (err: any) {
+            reply.status(400).send({ error: err.message });
+        }
+    });
+
     fastify.post('/suppliers', {
         preHandler: [authenticate, requirePermission(PERMISSIONS.INV_PURCHASE), auditAction('Supplier.Create')]
     }, async (request, reply) => {
@@ -91,6 +106,21 @@ export async function invoiceRoutes(fastify: FastifyInstance) {
                 ...(request.body as any),
                 supplier_id: Number(id)
             }, userId);
+        } catch (err: any) {
+            reply.status(400).send({ error: err.message });
+        }
+    });
+
+    fastify.get('/suppliers/:id/statement', {
+        preHandler: [authenticate, requirePermission(PERMISSIONS.INV_PURCHASE)]
+    }, async (request, reply) => {
+        const { id } = request.params as { id: string };
+        const query = request.query as any;
+        try {
+            return service.getSupplierStatement(Number(id), {
+                startDate: query.startDate,
+                endDate: query.endDate
+            });
         } catch (err: any) {
             reply.status(400).send({ error: err.message });
         }
@@ -148,6 +178,19 @@ export async function invoiceRoutes(fastify: FastifyInstance) {
         }
     });
 
+    fastify.post('/purchase-invoices/:id/return', {
+        preHandler: [authenticate, requirePermission(PERMISSIONS.INV_PURCHASE), auditAction('PurchaseInvoice.Return')]
+    }, async (request, reply) => {
+        const { id } = request.params as { id: string };
+        const userId = (request as any).user?.userId;
+        const body = request.body as { reason?: string } | undefined;
+        try {
+            return service.reversePostedPurchaseInvoice(id, userId, body?.reason);
+        } catch (err: any) {
+            reply.status(400).send({ error: err.message });
+        }
+    });
+
     // --- Sales Invoices ---
 
     fastify.get('/sales-invoices', {
@@ -195,6 +238,31 @@ export async function invoiceRoutes(fastify: FastifyInstance) {
         const userId = (request as any).user?.userId;
         try {
             return service.postSalesInvoice(id, userId);
+        } catch (err: any) {
+            reply.status(400).send({ error: err.message });
+        }
+    });
+
+    fastify.post('/sales-invoices/:id/payments', {
+        preHandler: [authenticate, requirePermission(PERMISSIONS.INV_SALES_INV), auditAction('SalesInvoice.Payment')]
+    }, async (request, reply) => {
+        const { id } = request.params as { id: string };
+        const userId = (request as any).user?.userId;
+        try {
+            return service.recordSalesInvoicePayment(id, request.body as any, userId);
+        } catch (err: any) {
+            reply.status(400).send({ error: err.message });
+        }
+    });
+
+    fastify.post('/sales-invoices/:id/return', {
+        preHandler: [authenticate, requirePermission(PERMISSIONS.INV_SALES_INV), auditAction('SalesInvoice.Return')]
+    }, async (request, reply) => {
+        const { id } = request.params as { id: string };
+        const userId = (request as any).user?.userId;
+        const body = request.body as { reason?: string } | undefined;
+        try {
+            return service.reversePostedSalesInvoice(id, userId, body?.reason);
         } catch (err: any) {
             reply.status(400).send({ error: err.message });
         }

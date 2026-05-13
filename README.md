@@ -41,7 +41,9 @@ For a fresh database, a default admin user is seeded:
 - **Username**: `admin`
 - **Password**: `admin123`
 
-If you already have a local `dms.db`, update the admin password manually or delete the DB to re-seed.
+The default admin is marked as `must_change_password` and must change the password after first login. Production startup is blocked if the database contains the default `admin/admin123` credential.
+
+For a fresh production database, set `DMS_BOOTSTRAP_ADMIN_PASSWORD` to create the initial admin account. That password is treated as temporary and must be changed after first login.
 
 ## Tests
 
@@ -53,7 +55,14 @@ npm run test --workspace=@dms/api
 
 ## Environment
 
-- Override the database path with `DMS_DB_PATH` (use `:memory:` for tests).
+Copy `.env.example` and configure:
+
+- `DMS_DB_PATH`: database path. Use `:memory:` for tests.
+- `JWT_SECRET`: required in production; must not be the development default.
+- `REFRESH_SECRET`: required in production; must not be the development default.
+- `DMS_CORS_ORIGINS`: required in production; comma-separated explicit origins. `*` is rejected.
+- `DMS_BOOTSTRAP_ADMIN_PASSWORD`: required only when bootstrapping the first production admin.
+- `DMS_HOST` / `DMS_PORT`: API bind host and port.
 
 ## LAN Usage
 

@@ -34,6 +34,7 @@ export interface ProductInput {
     min_stock_level?: number | null;
     category_id?: number | null;
     unit_id?: number | null;
+    base_unit_id?: number | null;
     is_active?: number | boolean;
 }
 
@@ -98,6 +99,9 @@ export interface StockInInput extends GetStockLevelInput {
     unitCost?: number | null;
     type?: InventoryMovementType;
     referenceId?: string | null;
+    sourceType?: string | null;
+    enteredUnitId?: number | null;
+    enteredQuantity?: number | null;
     description?: string | null;
     reason?: string | null;
     date?: string;
@@ -108,6 +112,9 @@ export interface StockOutInput extends GetStockLevelInput {
     quantity: number;
     type?: InventoryMovementType;
     referenceId?: string | null;
+    sourceType?: string | null;
+    enteredUnitId?: number | null;
+    enteredQuantity?: number | null;
     description?: string | null;
     reason?: string | null;
     date?: string;
@@ -128,6 +135,9 @@ export interface AdjustStockInput extends GetStockLevelInput {
     unitCost?: number | null;
     reason: string;
     referenceId?: string | null;
+    sourceType?: string | null;
+    enteredUnitId?: number | null;
+    enteredQuantity?: number | null;
     description?: string | null;
     date?: string;
     createdBy?: number | null;
@@ -155,6 +165,9 @@ export interface ReturnStockInput extends GetStockLevelInput {
     quantity: number;
     unitCost?: number | null;
     referenceId: string;
+    sourceType?: string | null;
+    enteredUnitId?: number | null;
+    enteredQuantity?: number | null;
     description?: string | null;
     reason?: string | null;
     date?: string;
@@ -164,6 +177,7 @@ export interface ReturnStockInput extends GetStockLevelInput {
 export interface ConsumeRecipeInput extends GetStockLevelInput {
     quantity: number;
     referenceId: string;
+    sourceType?: string | null;
     date?: string;
     createdBy?: number | null;
     allowNegativeStock?: boolean;
@@ -181,6 +195,9 @@ type InventoryMovementInput = {
     quantity: number;
     unit_cost?: number | null;
     reference_id?: string | null;
+    source_type?: string | null;
+    entered_unit_id?: number | null;
+    entered_quantity?: number | null;
     description?: string | null;
     branch_id?: number | null;
     reason?: string | null;
@@ -202,11 +219,11 @@ export class InventoryService {
         const stmt = this.db.prepare(`
             INSERT INTO products (
                 name, sku, type, description, price, cost, stock_quantity, min_stock_level,
-                category_id, unit_id, is_active, created_by, updated_by, updated_at
+                category_id, unit_id, base_unit_id, is_active, created_by, updated_by, updated_at
             )
             VALUES (
                 @name, @sku, @type, @description, @price, 0, 0, @min_stock_level,
-                @category_id, @unit_id, @is_active, @created_by, @updated_by, datetime('now')
+                @category_id, @unit_id, @base_unit_id, @is_active, @created_by, @updated_by, datetime('now')
             )
         `);
         const payload = {
@@ -215,6 +232,7 @@ export class InventoryService {
             min_stock_level: product.min_stock_level ?? null,
             category_id: product.category_id ?? null,
             unit_id: product.unit_id ?? null,
+            base_unit_id: product.base_unit_id ?? product.unit_id ?? null,
             is_active: typeof product.is_active === 'boolean' ? (product.is_active ? 1 : 0) : (product.is_active ?? 1),
             created_by: userId ?? null,
             updated_by: userId ?? null
@@ -240,6 +258,7 @@ export class InventoryService {
                 min_stock_level = @min_stock_level,
                 category_id = @category_id,
                 unit_id = @unit_id,
+                base_unit_id = @base_unit_id,
                 is_active = @is_active,
                 updated_by = @updated_by,
                 updated_at = datetime('now')
@@ -254,6 +273,7 @@ export class InventoryService {
             min_stock_level: next.min_stock_level ?? null,
             category_id: next.category_id ?? null,
             unit_id: next.unit_id ?? null,
+            base_unit_id: next.base_unit_id ?? next.unit_id ?? null,
             is_active: typeof next.is_active === 'boolean' ? (next.is_active ? 1 : 0) : (next.is_active ?? 1),
             updated_by: userId ?? null
         });
@@ -269,10 +289,12 @@ export class InventoryService {
 
     getProductById(id: number) {
         return this.db.prepare(`
-            SELECT p.*, c.name as category_name, u.name as unit_name, u.abbreviation as unit_abbr
+            SELECT p.*, c.name as category_name, u.name as unit_name, u.abbreviation as unit_abbr,
+                   bu.name as base_unit_name, bu.abbreviation as base_unit_abbr
             FROM products p
             LEFT JOIN categories c ON c.id = p.category_id
             LEFT JOIN units u ON u.id = p.unit_id
+            LEFT JOIN units bu ON bu.id = p.base_unit_id
             WHERE p.id = ?
         `).get(id);
     }
@@ -553,6 +575,42 @@ export class InventoryService {
         return product;
     }
 
+    private getBaseUnitId(product: ProductStockRow): number | null {
+        return product.base_unit_id ?? product.unit_id ?? null;
+    }
+
+    private convertEnteredQuantityToBase(product: ProductStockRow, enteredUnitId: number | null | undefined, enteredQuantity: number | null | undefined, fallbackQuantity: number) {
+        const normalizedEnteredQuantity = enteredQuantity ?? Math.abs(fallbackQuantity);
+        if (!Number.isFinite(normalizedEnteredQuantity) || normalizedEnteredQuantity <= 0) {
+            throw new Error('enteredQuantity must be greater than zero');
+        }
+
+        const baseUnitId = this.getBaseUnitId(product);
+        if (!enteredUnitId || !baseUnitId || enteredUnitId === baseUnitId) {
+            return {
+                baseQuantity: normalizedEnteredQuantity,
+                enteredUnitId: enteredUnitId ?? baseUnitId,
+                enteredQuantity: normalizedEnteredQuantity
+            };
+        }
+
+        const conversion = this.db.prepare(`
+            SELECT multiplier
+            FROM unit_conversions
+            WHERE from_unit_id = ? AND to_unit_id = ?
+        `).get(enteredUnitId, baseUnitId) as { multiplier: number } | undefined;
+
+        if (!conversion) {
+            throw new Error(`Missing unit conversion from unit ${enteredUnitId} to product base unit ${baseUnitId}`);
+        }
+
+        return {
+            baseQuantity: normalizedEnteredQuantity * conversion.multiplier,
+            enteredUnitId,
+            enteredQuantity: normalizedEnteredQuantity
+        };
+    }
+
     private normalizeMovementType(type: string): InventoryMovementType {
         const normalized = type.toUpperCase();
         const allowed: readonly string[] = [
@@ -583,11 +641,11 @@ export class InventoryService {
         return totalQty > 0 ? totalValue / totalQty : unitCost;
     }
 
-    private applyFifoCost(currentQty: number, currentCost: number, incomingQty: number, unitCost: number) {
-        return this.applyWeightedAverageCost(currentQty, currentCost, incomingQty, unitCost);
+    private applyFifoCost(currentQty: number, currentCost: number, incomingQty: number, unitCost: number): never {
+        throw new Error('FIFO valuation is not enabled in this build. Set inventory.valuationMethod to WAC.');
     }
 
-    private applyCosting(currentQty: number, currentCost: number, incomingQty: number, unitCost: number) {
+    private applyCosting(currentQty: number, currentCost: number, incomingQty: number, unitCost: number): number {
         const { valuationMethod } = this.getInventorySettings();
         if (valuationMethod === 'FIFO') {
             return this.applyFifoCost(currentQty, currentCost, incomingQty, unitCost);
@@ -598,8 +656,10 @@ export class InventoryService {
     private stockInCore(input: StockInInput): StockLevelResult & { movementId: string } {
         const branchId = this.resolveBranchId(input.branchId);
         const productId = this.normalizeId(input.productId, 'productId');
-        const quantity = this.requirePositiveQuantity(input.quantity);
+        this.requirePositiveQuantity(input.quantity);
         const product = this.requireProduct(productId);
+        const movementQuantity = this.convertEnteredQuantityToBase(product, input.enteredUnitId, input.enteredQuantity, input.quantity);
+        const quantity = this.requirePositiveQuantity(movementQuantity.baseQuantity);
         const current = getStockRow(this.db, branchId, productId);
         const oldQuantity = current?.quantity_on_hand ?? 0;
         const oldAverageCost = current?.average_cost ?? product.cost ?? 0;
@@ -625,6 +685,10 @@ export class InventoryService {
             quantity,
             unit_cost: unitCost,
             reference_id: input.referenceId ?? movementId,
+            source_type: input.sourceType ?? type,
+            entered_unit_id: movementQuantity.enteredUnitId,
+            entered_quantity: movementQuantity.enteredQuantity,
+            base_quantity: quantity,
             description: input.description ?? null,
             branch_id: branchId,
             reason: input.reason ?? null,
@@ -645,8 +709,10 @@ export class InventoryService {
     private stockOutCore(input: StockOutInput): StockOutResult {
         const branchId = this.resolveBranchId(input.branchId);
         const productId = this.normalizeId(input.productId, 'productId');
-        const quantity = this.requirePositiveQuantity(input.quantity);
+        this.requirePositiveQuantity(input.quantity);
         const product = this.requireProduct(productId);
+        const movementQuantity = this.convertEnteredQuantityToBase(product, input.enteredUnitId, input.enteredQuantity, input.quantity);
+        const quantity = this.requirePositiveQuantity(movementQuantity.baseQuantity);
         const current = getStockRow(this.db, branchId, productId);
         const currentQuantity = current?.quantity_on_hand ?? 0;
         const currentAverageCost = current?.average_cost ?? product.cost ?? 0;
@@ -675,6 +741,10 @@ export class InventoryService {
             quantity: -quantity,
             unit_cost: currentAverageCost,
             reference_id: input.referenceId ?? movementId,
+            source_type: input.sourceType ?? type,
+            entered_unit_id: movementQuantity.enteredUnitId,
+            entered_quantity: movementQuantity.enteredQuantity,
+            base_quantity: -quantity,
             description: input.description ?? null,
             branch_id: branchId,
             reason: input.reason ?? null,
@@ -768,6 +838,7 @@ export class InventoryService {
                     quantity,
                     type: 'TRANSFER_OUT',
                     referenceId,
+                    sourceType: 'TRANSFER',
                     description: input.description ?? 'Transfer out',
                     reason: input.reason,
                     date,
@@ -781,6 +852,7 @@ export class InventoryService {
                     unitCost: out.unitCost,
                     type: 'TRANSFER_IN',
                     referenceId,
+                    sourceType: 'TRANSFER',
                     description: input.description ?? 'Transfer in',
                     reason: input.reason,
                     date,
@@ -881,6 +953,9 @@ export class InventoryService {
                 branchId,
                 productId,
                 referenceId: movement.reference_id ?? `${type}-${crypto.randomUUID()}`,
+                sourceType: movement.source_type ?? type,
+                enteredUnitId: movement.entered_unit_id ?? null,
+                enteredQuantity: movement.entered_quantity ?? Math.abs(quantity),
                 description: movement.description,
                 reason: movement.reason,
                 date: movement.date,
@@ -1106,7 +1181,8 @@ export class InventoryService {
                 const current = getStockRow(this.db, branchId, productId);
                 const currentQuantity = current?.quantity_on_hand ?? 0;
                 const currentAverageCost = current?.average_cost ?? product.cost ?? 0;
-                const absoluteQuantity = Math.abs(movement.quantity);
+                const signedMovementQuantity = movement.base_quantity ?? movement.quantity;
+                const absoluteQuantity = Math.abs(signedMovementQuantity);
 
                 if (absoluteQuantity === 0) {
                     warnings.push(`Skipped zero-quantity movement ${movement.id}`);
@@ -1128,7 +1204,7 @@ export class InventoryService {
                 }
 
                 if (type === 'ADJUST' || type === 'ADJUSTMENT') {
-                    const signedQuantity = movement.quantity;
+                    const signedQuantity = signedMovementQuantity;
                     if (signedQuantity > 0) {
                         const unitCost = movement.unit_cost ?? currentAverageCost;
                         const nextAverageCost = this.applyCosting(currentQuantity, currentAverageCost, signedQuantity, unitCost);

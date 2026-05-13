@@ -32,6 +32,10 @@ export interface TrialBalanceRow {
     total_debit: number;
     total_credit: number;
     net_balance: number;
+    debit_balance: number;
+    credit_balance: number;
+    normal_side: 'DEBIT' | 'CREDIT';
+    signed_balance: number;
 }
 
 export interface TrialBalanceReport {
@@ -39,6 +43,9 @@ export interface TrialBalanceReport {
     totals: {
         total_debit: number;
         total_credit: number;
+        debit_balance: number;
+        credit_balance: number;
+        signed_balance: number;
         net_balance: number;
     };
 }
