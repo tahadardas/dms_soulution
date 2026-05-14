@@ -12,7 +12,7 @@
     "dev:web": "npm run dev --workspace=@dms/web",
     "dev:desktop": "npm run dev --workspace=@dms/desktop",
     "build": "npm run build --workspace=@dms/shared && npm run build --workspace=@dms/ui && npx tsc -b apps/api/tsconfig.json && npm run build --workspace=@dms/web && npm run build --workspace=@dms/desktop",
-    "package:windows": "npm run build && npm run dist --workspace=@dms/desktop",
+    "package:windows": "npm run build && npm run dist --workspace=@dms/desktop && npm rebuild",
     "verify:package": "node scripts/verify-package.js",
     "typecheck": "npm run typecheck --workspaces --if-present",
     "lint": "npm run lint --workspaces --if-present",
