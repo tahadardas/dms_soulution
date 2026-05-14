@@ -54,6 +54,9 @@ export const migration: Migration = {
     name: 'document_model_and_currency_foundation',
     up(db: Database): void {
         db.exec(`
+            DROP TRIGGER IF EXISTS prevent_inventory_update;
+            DROP TRIGGER IF EXISTS prevent_inventory_delete;
+
             CREATE TABLE IF NOT EXISTS currencies (
                 code TEXT PRIMARY KEY,
                 name TEXT NOT NULL,
@@ -455,6 +458,18 @@ export const migration: Migration = {
             CREATE INDEX IF NOT EXISTS idx_source_document_links_linked ON source_document_links(linked_document_type, linked_document_id);
             CREATE INDEX IF NOT EXISTS idx_payment_allocations_payment ON payment_allocations(payment_document_type, payment_document_id);
             CREATE INDEX IF NOT EXISTS idx_payment_allocations_invoice ON payment_allocations(invoice_document_type, invoice_document_id);
+
+            CREATE TRIGGER IF NOT EXISTS prevent_inventory_update
+            BEFORE UPDATE ON inventory_movements
+            BEGIN
+                SELECT RAISE(ABORT, 'Inventory movements are immutable');
+            END;
+
+            CREATE TRIGGER IF NOT EXISTS prevent_inventory_delete
+            BEFORE DELETE ON inventory_movements
+            BEGIN
+                SELECT RAISE(ABORT, 'Inventory movements are immutable');
+            END;
         `);
     }
 };
