@@ -55,6 +55,9 @@ export const migration: Migration = {
         ensureColumn(db, 'customers', 'is_active', 'INTEGER NOT NULL DEFAULT 1');
 
         db.exec(`
+            DROP TRIGGER IF EXISTS prevent_inventory_update;
+            DROP TRIGGER IF EXISTS prevent_inventory_delete;
+
             UPDATE products SET base_unit_id = unit_id WHERE base_unit_id IS NULL;
             UPDATE inventory_movements
             SET source_type = COALESCE(source_type, type),
@@ -74,6 +77,18 @@ export const migration: Migration = {
                 ON sales_invoices(journal_entry_id);
             CREATE INDEX IF NOT EXISTS idx_orders_source_document
                 ON orders(source_document_type, source_document_id);
+
+            CREATE TRIGGER IF NOT EXISTS prevent_inventory_update
+            BEFORE UPDATE ON inventory_movements
+            BEGIN
+                SELECT RAISE(ABORT, 'Inventory movements are immutable');
+            END;
+
+            CREATE TRIGGER IF NOT EXISTS prevent_inventory_delete
+            BEFORE DELETE ON inventory_movements
+            BEGIN
+                SELECT RAISE(ABORT, 'Inventory movements are immutable');
+            END;
         `);
     }
 };
