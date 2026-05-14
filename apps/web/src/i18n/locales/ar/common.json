@@ -1,4 +1,18 @@
 {
+  "nav": {
+    "routes": {
+      "dashboard": {
+        "title": "لوحة التحكم",
+        "subtitle": "نظرة عامة على أداء الأعمال والإحصائيات الحيوية"
+      },
+      "pos": {
+        "title": "نقطة البيع"
+      },
+      "products": {
+        "title": "المنتجات"
+      }
+    }
+  },
   "invoices": {
     "actions": {
       "newPurchase": "فاتورة شراء جديدة",
@@ -1599,6 +1613,63 @@
         "total": "الإجمالي"
       },
       "title": "تقرير Z للجلسات"
+    },
+    "dashboard": {
+      "table": {
+        "date": "التاريخ",
+        "revenue": "الإيرادات"
+      },
+      "quick": {
+        "today": "اليوم",
+        "week": "أسبوع",
+        "month": "شهر"
+      },
+      "kpis": {
+        "sales": "المبيعات",
+        "grossMargin": "هامش الربح",
+        "orders": "الطلبات",
+        "avgTicket": "متوسط الفاتورة",
+        "cashOnHand": "النقد المتوفر",
+        "lowStock": "نقص المخزون"
+      },
+      "kpiHints": {
+        "postedRevenue": "الإيرادات المرحلة",
+        "marginRate": "معدل الهامش {{value}}%",
+        "avgOrderValue": "متوسط القيمة {{value}}",
+        "avgOrder": "متوسط الطلب",
+        "openSessionsCash": "النقد في الجلسات المفتوحة",
+        "itemsBelowMin": "أصناف دون الحد الأدنى"
+      },
+      "kpiBadges": {
+        "today": "اليوم",
+        "week": "هذا الأسبوع",
+        "month": "هذا الشهر",
+        "custom": "مخصص",
+        "tickets": "تذاكر",
+        "live": "مباشر",
+        "action": "يتطلب إجراء",
+        "clear": "سليم"
+      },
+      "actions": {
+        "viewSales": "عرض المبيعات",
+        "viewMargins": "عرض الهوامش",
+        "viewSessions": "عرض الجلسات",
+        "viewInventory": "عرض المخزون"
+      },
+      "dailySales": "المبيعات اليومية",
+      "loading": "جارٍ التحميل...",
+      "alerts": {
+        "title": "تنبيهات النظام",
+        "lowStock": "{{count}} أصناف منخفضة",
+        "allClear": "لا توجد تنبيهات",
+        "noCritical": "كل شيء يبدو جيداً! لا توجد تنبيهات حرجة حالياً.",
+        "lowStockItem": "الصنف {{name}} منخفض (المتوفر: {{current}}، الحد الأدنى: {{min}})",
+        "lowStockItemShort": "المتوفر: {{current}} (الحد: {{min}})",
+        "badge": {
+          "warning": "تحذير",
+          "success": "سليم"
+        }
+      }
     },
     "trialBalance": {
       "empty": "لا يوجد ميزان مراجعة",

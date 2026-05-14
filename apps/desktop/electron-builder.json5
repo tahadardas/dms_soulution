@@ -3,7 +3,7 @@
   "appId": "com.dms.soulution.pos",
   "productName": "DMS SOULUTION POS",
   "electronVersion": "40.9.3",
-  "npmRebuild": false,
+  "npmRebuild": true,
   "asar": true,
   "directories": {
     "output": "release"

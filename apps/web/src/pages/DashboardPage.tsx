@@ -1,11 +1,20 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { Button, Card, CardContent, CardHeader, CardTitle, DateRangePicker, PageHeader, StatusBadge, Table, Column } from '@dms/ui';
+import { Button, Card, CardContent, CardHeader, CardTitle, DateRangePicker, StatusBadge, Table, Column } from '@dms/ui';
 import { useNavigate } from 'react-router-dom';
-import { BackButton } from '../components/BackButton';
 import { useApi } from '../hooks/useApi';
 import { useTranslation } from 'react-i18next';
 import { useCurrency } from '../hooks/useCurrency';
 import { formatDate, formatMoney, normalizeLocale } from '../utils/format';
+import { 
+    TrendingUp, 
+    ShoppingCart, 
+    ArrowUpRight, 
+    Wallet, 
+    AlertTriangle, 
+    Calendar,
+    ChevronRight,
+    Zap
+} from 'lucide-react';
 import '../styles/DashboardPage.css';
 
 interface DashboardStats {
@@ -44,33 +53,39 @@ const KPICard: React.FC<{
     badgeVariant?: 'success' | 'warning' | 'danger' | 'info';
     actionLabel?: string;
     onAction?: () => void;
-}> = ({ title, value, hint, badgeText, badgeVariant = 'info', actionLabel, onAction }) => (
-    <Card padding="lg" className="dashboard-kpi">
+    icon: React.ReactNode;
+    trend?: 'up' | 'down' | 'neutral';
+}> = ({ title, value, hint, badgeText, badgeVariant = 'info', actionLabel, onAction, icon, trend }) => (
+    <Card padding="lg" className={`dashboard-kpi dashboard-kpi--${badgeVariant}`}>
         <div className="dashboard-kpi__header">
-            <p className="dashboard-kpi__label">{title}</p>
+            <div className="dashboard-kpi__icon-box">
+                {icon}
+            </div>
             {badgeText && (
-                <StatusBadge variant={badgeVariant} size="sm">
+                <StatusBadge variant={badgeVariant} size="sm" className="dashboard-kpi__badge">
                     {badgeText}
                 </StatusBadge>
             )}
         </div>
-        <p className="dashboard-kpi__value">{value}</p>
-        {hint && <p className="dashboard-kpi__change dashboard-kpi__change--neutral">{hint}</p>}
+        <div className="dashboard-kpi__content">
+            <p className="dashboard-kpi__label">{title}</p>
+            <p className="dashboard-kpi__value">{value}</p>
+            {hint && (
+                <div className="dashboard-kpi__footer">
+                    <span className={`dashboard-kpi__trend dashboard-kpi__trend--${trend || 'neutral'}`}>
+                        {trend === 'up' && <ArrowUpRight size={14} />}
+                        {hint}
+                    </span>
+                </div>
+            )}
+        </div>
         {actionLabel && onAction && (
-            <Button variant="ghost" size="sm" onClick={onAction}>
+            <button className="dashboard-kpi__action" onClick={onAction}>
                 {actionLabel}
-            </Button>
+                <ChevronRight size={14} className="flip-rtl" />
+            </button>
         )}
     </Card>
-);
-
-const AlertItem: React.FC<{ title: string; type: 'warning' | 'danger' | 'info' | 'success'; badgeLabel: string }> = ({ title, type, badgeLabel }) => (
-    <div className="dashboard-alert">
-        <StatusBadge variant={type} size="sm">
-            {badgeLabel}
-        </StatusBadge>
-        <span className="dashboard-alert__text">{title}</span>
-    </div>
 );
 
 export const DashboardPage: React.FC = () => {
@@ -151,36 +166,39 @@ export const DashboardPage: React.FC = () => {
     );
 
     return (
-        <div className="dashboard">
-            <PageHeader
-                title={t('nav.routes.dashboard.title')}
-                subtitle={t('nav.routes.dashboard.subtitle')}
-                backButton={<BackButton />}
-                actions={
-                    <div className="dashboard-header__actions">
-                        <div className="dashboard-quick-filters">
-                            <Button
-                                variant={quickRange === 'today' ? 'primary' : 'secondary'}
-                                size="sm"
-                                onClick={() => setRangeForQuick('today')}
-                            >
-                                {t('reports.dashboard.quick.today')}
-                            </Button>
-                            <Button
-                                variant={quickRange === 'week' ? 'primary' : 'secondary'}
-                                size="sm"
-                                onClick={() => setRangeForQuick('week')}
-                            >
-                                {t('reports.dashboard.quick.week')}
-                            </Button>
-                            <Button
-                                variant={quickRange === 'month' ? 'primary' : 'secondary'}
-                                size="sm"
-                                onClick={() => setRangeForQuick('month')}
-                            >
-                                {t('reports.dashboard.quick.month')}
-                            </Button>
-                        </div>
+        <div className="dashboard-v2">
+            <div className="dashboard-hero">
+                <div className="dashboard-hero__content">
+                    <div className="hero-badge">{t('common.welcomeBack')}</div>
+                    <h1>{t('nav.routes.dashboard.title')}</h1>
+                    <p>{t('nav.routes.dashboard.subtitle')}</p>
+                </div>
+                <div className="dashboard-hero__actions">
+                    <div className="premium-filter-group">
+                        <Button
+                            variant={quickRange === 'today' ? 'primary' : 'ghost'}
+                            size="sm"
+                            onClick={() => setRangeForQuick('today')}
+                        >
+                            {t('reports.dashboard.quick.today')}
+                        </Button>
+                        <Button
+                            variant={quickRange === 'week' ? 'primary' : 'ghost'}
+                            size="sm"
+                            onClick={() => setRangeForQuick('week')}
+                        >
+                            {t('reports.dashboard.quick.week')}
+                        </Button>
+                        <Button
+                            variant={quickRange === 'month' ? 'primary' : 'ghost'}
+                            size="sm"
+                            onClick={() => setRangeForQuick('month')}
+                        >
+                            {t('reports.dashboard.quick.month')}
+                        </Button>
+                    </div>
+                    <div className="premium-datepicker-wrapper">
+                        <Calendar size={16} className="datepicker-icon" />
                         <DateRangePicker
                             value={range}
                             onChange={(next) => {
@@ -189,64 +207,52 @@ export const DashboardPage: React.FC = () => {
                             }}
                             startLabel={t('common.startDate')}
                             endLabel={t('common.endDate')}
-                            separatorLabel={t('common.to')}
+                            separatorLabel="-"
                         />
                     </div>
-                }
-            />
+                </div>
+            </div>
 
-            {error && <div className="dashboard-error">{error}</div>}
-            {loading && <div className="dashboard-loading">{t('reports.dashboard.loading')}</div>}
+            {error && <div className="dashboard-error-v2"><AlertTriangle /> {error}</div>}
 
-            <div className="dashboard-kpi-grid">
+            <div className="dashboard-grid-v2">
                 <KPICard
                     title={t('reports.dashboard.kpis.sales')}
-                    value={stats ? formatCurrency(stats.totalSales) : t('common.placeholder')}
+                    value={stats ? formatCurrency(stats.totalSales) : '...'}
                     hint={t('reports.dashboard.kpiHints.postedRevenue')}
-                    badgeText={
-                        quickRange === 'today'
-                            ? t('reports.dashboard.kpiBadges.today')
-                            : quickRange === 'week'
-                                ? t('reports.dashboard.kpiBadges.week')
-                                : quickRange === 'month'
-                                    ? t('reports.dashboard.kpiBadges.month')
-                                    : t('reports.dashboard.kpiBadges.custom')
-                    }
+                    icon={<TrendingUp size={24} />}
+                    badgeText={t(`reports.dashboard.kpiBadges.${quickRange}`)}
                     badgeVariant="info"
+                    trend="up"
                     actionLabel={t('reports.dashboard.actions.viewSales')}
                     onAction={() => navigate('/reports/sales')}
                 />
                 <KPICard
                     title={t('reports.dashboard.kpis.grossMargin')}
-                    value={stats ? formatCurrency(stats.grossMargin) : t('common.placeholder')}
+                    value={stats ? formatCurrency(stats.grossMargin) : '...'}
                     hint={stats ? t('reports.dashboard.kpiHints.marginRate', { value: ((stats.grossMargin / (stats.totalSales || 1)) * 100).toFixed(1) }) : undefined}
-                    badgeText={stats ? `${((stats.grossMargin / (stats.totalSales || 1)) * 100).toFixed(1)}%` : t('common.placeholder')}
+                    icon={<ArrowUpRight size={24} />}
+                    badgeText={stats ? `${((stats.grossMargin / (stats.totalSales || 1)) * 100).toFixed(1)}%` : '...'}
                     badgeVariant={stats && stats.grossMargin >= 0 ? 'success' : 'danger'}
+                    trend={stats && stats.grossMargin >= 0 ? 'up' : 'down'}
                     actionLabel={t('reports.dashboard.actions.viewMargins')}
                     onAction={() => navigate('/reports/margins')}
                 />
                 <KPICard
                     title={t('reports.dashboard.kpis.orders')}
-                    value={stats ? stats.totalOrders.toString() : t('common.placeholder')}
+                    value={stats ? stats.totalOrders.toString() : '...'}
                     hint={stats ? t('reports.dashboard.kpiHints.avgOrderValue', { value: formatCurrency(stats.averageOrderValue) }) : undefined}
+                    icon={<ShoppingCart size={24} />}
                     badgeText={t('reports.dashboard.kpiBadges.tickets')}
                     badgeVariant="info"
                     actionLabel={t('reports.dashboard.actions.viewSessions')}
                     onAction={() => navigate('/reports/sessions-z')}
                 />
                 <KPICard
-                    title={t('reports.dashboard.kpis.avgTicket')}
-                    value={stats ? formatCurrency(stats.averageOrderValue) : t('common.placeholder')}
-                    hint={t('reports.dashboard.kpiHints.avgOrder')}
-                    badgeText={t('reports.dashboard.kpiBadges.perOrder')}
-                    badgeVariant="info"
-                    actionLabel={t('reports.dashboard.actions.viewSales')}
-                    onAction={() => navigate('/reports/sales')}
-                />
-                <KPICard
                     title={t('reports.dashboard.kpis.cashOnHand')}
-                    value={stats ? formatCurrency(stats.cashOnHand) : t('common.placeholder')}
+                    value={stats ? formatCurrency(stats.cashOnHand) : '...'}
                     hint={t('reports.dashboard.kpiHints.openSessionsCash')}
+                    icon={<Wallet size={24} />}
                     badgeText={t('reports.dashboard.kpiBadges.live')}
                     badgeVariant="success"
                     actionLabel={t('reports.dashboard.actions.viewSessions')}
@@ -254,65 +260,77 @@ export const DashboardPage: React.FC = () => {
                 />
                 <KPICard
                     title={t('reports.dashboard.kpis.lowStock')}
-                    value={stats ? stats.lowStockCount.toString() : t('common.placeholder')}
-                    hint={t('reports.dashboard.kpiHints.itemsBelowMin')}
-                    badgeText={stats?.lowStockCount ? t('reports.dashboard.kpiBadges.action') : t('reports.dashboard.kpiBadges.clear')}
-                    badgeVariant={stats?.lowStockCount ? 'warning' : 'success'}
+                    value={stats ? stats.lowStockCount.toString() : '...'}
+                    hint={t('reports.dashboard.kpiHints.itemsNeedingRestock')}
+                    icon={<AlertTriangle size={24} />}
+                    badgeText={stats?.lowStockCount ? t('reports.dashboard.kpiBadges.critical') : t('reports.dashboard.kpiBadges.healthy')}
+                    badgeVariant={stats?.lowStockCount ? 'danger' : 'success'}
                     actionLabel={t('reports.dashboard.actions.viewInventory')}
                     onAction={() => navigate('/inventory')}
                 />
             </div>
 
-            <Card>
-                <CardHeader>
-                    <CardTitle>{t('reports.dashboard.alerts.title')}</CardTitle>
-                    <StatusBadge variant={stats?.lowStockCount ? 'warning' : 'success'} size="sm">
-                        {stats?.lowStockCount ? t('reports.dashboard.alerts.lowStock', { count: stats.lowStockCount }) : t('reports.dashboard.alerts.allClear')}
-                    </StatusBadge>
-                </CardHeader>
-                <CardContent>
-                    {stats?.lowStockCount ? (
-                        <>
-                            {(stats.lowStockItems || []).map((item) => (
-                                <AlertItem
-                                    key={item.id}
-                                    type="warning"
-                                    badgeLabel={t('reports.dashboard.alerts.badge.warning')}
-                                    title={t('reports.dashboard.alerts.lowStockItem', {
-                                        name: item.name,
-                                        current: item.stock_quantity,
-                                        min: item.min_stock_level
-                                    })}
-                                />
-                            ))}
-                            {(stats.lowStockItems || []).length === 0 && (
-                                <AlertItem
-                                    type="warning"
-                                    badgeLabel={t('reports.dashboard.alerts.badge.warning')}
-                                    title={t('reports.dashboard.alerts.lowStockFallback')}
-                                />
-                            )}
-                        </>
-                    ) : (
-                        <AlertItem
-                            type="success"
-                            badgeLabel={t('reports.dashboard.alerts.badge.success')}
-                            title={t('reports.dashboard.alerts.noCritical')}
-                        />
-                    )}
-                </CardContent>
-            </Card>
+            <div className="dashboard-lower-grid">
+                <Card className="glass-card main-chart-card">
+                    <CardHeader>
+                        <CardTitle className="with-icon">
+                            <TrendingUp size={18} /> {t('reports.dashboard.dailySales')}
+                        </CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <Table data={sales} columns={salesColumns} isLoading={loading} />
+                    </CardContent>
+                </Card>
 
-            <Card>
-                <CardHeader>
-                    <CardTitle>{t('reports.dashboard.dailySales')}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                    <Table data={sales} columns={salesColumns} isLoading={loading} />
-                </CardContent>
-            </Card>
+                <div className="side-cards">
+                    <Card className="glass-card status-card">
+                        <CardHeader>
+                            <CardTitle className="with-icon">
+                                <AlertTriangle size={18} /> {t('reports.dashboard.alerts.title')}
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent>
+                            <div className="premium-alerts">
+                                {stats?.lowStockCount ? (
+                                    stats.lowStockItems?.slice(0, 5).map((item) => (
+                                        <div key={item.id} className="premium-alert-item warning">
+                                            <div className="alert-dot" />
+                                            <div className="alert-content">
+                                                <p className="alert-title">{item.name}</p>
+                                                <p className="alert-desc">{t('reports.dashboard.alerts.lowStockItemShort', { current: item.stock_quantity, min: item.min_stock_level })}</p>
+                                            </div>
+                                        </div>
+                                    ))
+                                ) : (
+                                    <div className="premium-alert-item success">
+                                        <div className="alert-dot" />
+                                        <p className="alert-title">{t('reports.dashboard.alerts.noCritical')}</p>
+                                    </div>
+                                )}
+                            </div>
+                            <Button variant="ghost" size="sm" className="full-width-btn" onClick={() => navigate('/inventory')}>
+                                {t('reports.dashboard.actions.viewInventory')}
+                            </Button>
+                        </CardContent>
+                    </Card>
+
+                    <Card className="premium-quick-actions">
+                        <div className="quick-actions-grid">
+                            <button className="qa-btn" onClick={() => navigate('/pos')}>
+                                <Zap size={20} />
+                                <span>{t('nav.routes.pos.title')}</span>
+                            </button>
+                            <button className="qa-btn" onClick={() => navigate('/products/new')}>
+                                <ShoppingCart size={20} />
+                                <span>{t('nav.routes.products.title')}</span>
+                            </button>
+                        </div>
+                    </Card>
+                </div>
+            </div>
         </div>
     );
 };
 
 export default DashboardPage;
+

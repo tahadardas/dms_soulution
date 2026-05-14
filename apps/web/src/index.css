@@ -1,10 +1,18 @@
 @import "@dms/ui/style.css";
 
-#root {
-    min-height: 100vh;
+:root {
+    --font-sans: 'Inter', 'Cairo', system-ui, -apple-system, sans-serif;
+    --brand-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    --premium-glass: rgba(255, 255, 255, 0.7);
+    --glass-blur: 12px;
 }
 
-
+body {
+    font-family: var(--font-sans);
+    background-color: #f8fafc;
+    color: #0f172a;
+    -webkit-font-smoothing: antialiased;
+}
 
 #root {
     min-height: 100vh;

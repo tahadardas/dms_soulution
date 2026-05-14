@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next';
 import { useApi } from '../../hooks/useApi';
 import { ProductCategoryTabs } from './ProductCategoryTabs';
 import { Product } from '../../context/POSContext';
+import { useKey } from 'react-use';
+import { useRef } from 'react';
 
 const PAGE_SIZE = 24;
 
@@ -48,6 +50,22 @@ export const OrderPad = ({
     const [categories, setCategories] = useState<ProductCategory[]>([]);
     const [selectedCategoryId, setSelectedCategoryId] = useState<number | null>(null);
     const [categoriesLoading, setCategoriesLoading] = useState(true);
+    const searchRef = useRef<HTMLInputElement>(null);
+
+    useKey('/', (e) => {
+        if (document.activeElement?.tagName !== 'INPUT' && document.activeElement?.tagName !== 'TEXTAREA') {
+            e.preventDefault();
+            searchRef.current?.focus();
+        }
+    });
+
+    // Alt + 1-9 for categories
+    useKey((e) => e.altKey && e.key >= '1' && e.key <= '9', (e) => {
+        const index = parseInt(e.key) - 1;
+        if (categories[index]) {
+            setSelectedCategoryId(categories[index].id);
+        }
+    }, {}, [categories]);
 
     useEffect(() => {
         const timer = setTimeout(() => setDebouncedSearch(search.trim()), 300);
@@ -132,8 +150,9 @@ export const OrderPad = ({
         <div className="pos-order-pad">
             <div className="pos-search">
                 <Input
+                    ref={searchRef}
                     label={t('pos.productSearchLabel')}
-                    placeholder={t('pos.productSearchPlaceholder')}
+                    placeholder={t('pos.productSearchPlaceholder') + ' (/)'}
                     value={search}
                     onChange={(event) => setSearch((event.target as HTMLInputElement).value)}
                 />

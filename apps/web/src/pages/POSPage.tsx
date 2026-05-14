@@ -10,6 +10,7 @@ import { getFallbackPathForRole } from '../routes';
 import PermissionGate from '../components/PermissionGate';
 import { PERMISSIONS } from '../lib/permissions';
 import { useCan } from '../hooks/useCan';
+import { useKey } from 'react-use';
 
 import { POSToolbar } from './pos-components/POSToolbar';
 import { CartPanel } from './pos-components/CartPanel';
@@ -206,6 +207,19 @@ export const POSPage: React.FC = () => {
             setIsClosing(false);
         }
     };
+
+    // Keyboard Shortcuts
+    useKey('F8', (e) => { e.preventDefault(); if (!isSubmitting) handleSubmitOrder(); }, {}, [isSubmitting]);
+    useKey('F9', (e) => { e.preventDefault(); handlePrintLast(); }, {}, [lastOrder]);
+    useKey('F10', (e) => { e.preventDefault(); handleSendKitchen(); }, {}, [lastOrder]);
+    useKey('Escape', () => {
+        setShowSalesDrawer(false);
+        setShowReturnsDrawer(false);
+        setShowPendingDrawer(false);
+        setShowReturns(false);
+        setShowCloseSession(false);
+        setCashMovementType(null);
+    });
 
     const openCashMovement = (type: 'CASH_IN' | 'CASH_OUT') => {
         setCashMovementType(type);

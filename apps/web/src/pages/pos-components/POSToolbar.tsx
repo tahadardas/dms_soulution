@@ -47,7 +47,7 @@ export const POSToolbar: React.FC<POSToolbarProps> = ({
                     onClick={onSaveOrder}
                     isLoading={isSubmitting}
                 >
-                    {orderType === 'DELIVERY' ? t('pos.toolbar.saveDelivery') : t('pos.toolbar.save')}
+                    {orderType === 'DELIVERY' ? t('pos.toolbar.saveDelivery') : t('pos.toolbar.save')} (F8)
                 </Button>
 
                 <Button
@@ -56,7 +56,7 @@ export const POSToolbar: React.FC<POSToolbarProps> = ({
                     onClick={onPrintLast}
                     isLoading={isSubmitting && !!lastOrder}
                 >
-                    {t('pos.toolbar.print')}
+                    {t('pos.toolbar.print')} (F9)
                 </Button>
 
                 <Button
@@ -65,7 +65,7 @@ export const POSToolbar: React.FC<POSToolbarProps> = ({
                     onClick={onSendKitchen}
                     isLoading={isSubmitting && !!lastOrder}
                 >
-                    {t('pos.toolbar.sendKitchen')}
+                    {t('pos.toolbar.sendKitchen')} (F10)
                 </Button>
             </div>
 

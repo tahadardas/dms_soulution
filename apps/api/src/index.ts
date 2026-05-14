@@ -1,4 +1,4 @@
-import Fastify from 'fastify';
+import Fastify, { FastifyInstance } from 'fastify';
 import cors from '@fastify/cors';
 import { getDB } from './database';
 import { PrintingService } from './services/printingService';
@@ -31,22 +31,28 @@ fastify.register(cors, {
     origin: getCorsOrigins()
 });
 
-fastify.register(authRoutes);
-fastify.register(adminRoutes);
-fastify.register(posRoutes);
-fastify.register(insightRoutes);
-fastify.register(userRoutes);
-fastify.register(userSettingsRoutes);
-fastify.register(backupRoutes);
-fastify.register(invoiceRoutes);
-fastify.register(deliveryCourierRoutes);
-fastify.register(accountingRoutes);
-fastify.register(inventoryRoutes);
-fastify.register(reportsRoutes);
-fastify.register(branchesRoutes);
-fastify.register(settingsRoutes);
-fastify.register(documentRoutes);
-fastify.register(printingRoutes, { prefix: '/printing' });
+const registerRoutes = async (instance: FastifyInstance) => {
+    instance.register(authRoutes);
+    instance.register(adminRoutes);
+    instance.register(posRoutes);
+    instance.register(insightRoutes);
+    instance.register(userRoutes);
+    instance.register(userSettingsRoutes);
+    instance.register(backupRoutes);
+    instance.register(invoiceRoutes);
+    instance.register(deliveryCourierRoutes);
+    instance.register(accountingRoutes);
+    instance.register(inventoryRoutes);
+    instance.register(reportsRoutes);
+    instance.register(branchesRoutes);
+    instance.register(settingsRoutes);
+    instance.register(documentRoutes);
+    instance.register(printingRoutes, { prefix: '/printing' });
+};
+
+// Register for both root and /api prefix for compatibility
+fastify.register(registerRoutes);
+fastify.register(registerRoutes, { prefix: '/api' });
 
 fastify.get('/', async () => {
     return { hello: 'world' };

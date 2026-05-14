@@ -201,8 +201,8 @@ const getDeviceInfo = () => ({
     hostname: os.hostname()
 });
 
-const buildHeaders = (accessToken?: string): Record<string, string> => {
-    const headers: Record<string, string> = { 'Content-Type': 'application/json' };
+const buildHeaders = (accessToken?: string, contentType = 'application/json'): Record<string, string> => {
+    const headers: Record<string, string> = { 'Content-Type': contentType };
     if (accessToken) headers.Authorization = `Bearer ${accessToken}`;
     return headers;
 };
@@ -212,10 +212,16 @@ const apiFetch = async <T>(
     pathName: string,
     options: { method?: string; accessToken?: string; body?: unknown } = {}
 ): Promise<T> => {
+    const method = options.method || 'GET';
+    const isPostOrPut = ['POST', 'PUT', 'PATCH'].includes(method);
+    
+    // Ensure body is an object if it's a POST/PUT to avoid Fastify "empty body" error
+    const body = options.body !== undefined ? options.body : (isPostOrPut ? {} : undefined);
+
     const response = await fetch(`${apiUrl.replace(/\/$/, '')}${pathName}`, {
-        method: options.method || 'GET',
+        method,
         headers: buildHeaders(options.accessToken),
-        body: options.body === undefined ? undefined : JSON.stringify(options.body)
+        body: body !== undefined ? JSON.stringify(body) : undefined
     });
     const text = await response.text();
     const data = text ? JSON.parse(text) : {};

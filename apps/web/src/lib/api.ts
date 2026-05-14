@@ -16,18 +16,28 @@ export const apiFetch = async <T>(
     options: RequestInit = {},
     token?: string | null
 ): Promise<T> => {
+    const method = options.method?.toUpperCase() || 'GET';
+    const isMutation = ['POST', 'PUT', 'PATCH'].includes(method);
+    
     const headers = new Headers(options.headers || {});
-    if (!headers.has('Content-Type') && options.body) {
+    if (!headers.has('Content-Type') && (options.body || isMutation)) {
         headers.set('Content-Type', 'application/json');
     }
     if (token) {
         headers.set('Authorization', `Bearer ${token}`);
     }
 
-    const response = await fetch(buildApiUrl(baseUrl, path), {
+    const fetchOptions: RequestInit = {
         ...options,
-        headers
-    });
+        method,
+        headers,
+    };
+
+    if (isMutation && !fetchOptions.body) {
+        fetchOptions.body = '{}';
+    }
+
+    const response = await fetch(buildApiUrl(baseUrl, path), fetchOptions);
 
     if (!response.ok) {
         let message = response.statusText;

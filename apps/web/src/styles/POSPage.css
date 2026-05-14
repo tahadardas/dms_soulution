@@ -6,7 +6,21 @@
     justify-content: flex-start;
     gap: var(--space-6);
     padding: var(--space-6);
-    background: linear-gradient(180deg, #f8fafc, #eef2f7);
+    background: linear-gradient(135deg, #f8fafc 0%, #eef2f7 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.pos-start::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: var(--brand-gradient);
+    filter: blur(100px);
+    opacity: 0.1;
+    top: -100px;
+    right: -100px;
 }
 
 .pos-start .dms-page-header {
@@ -114,9 +128,23 @@
 }
 
 .pos-product-tile:hover:not(:disabled) {
-    transform: translateY(-4px);
-    border-color: var(--color-primary);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    transform: translateY(-4px) scale(1.02);
+    border-color: #6366f1;
+    box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.2);
+}
+
+.pos-product-tile::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(180deg, transparent 0%, rgba(99, 102, 241, 0.05) 100%);
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.pos-product-tile:hover::after {
+    opacity: 1;
 }
 
 .pos-product-tile:active:not(:disabled) {
@@ -227,6 +255,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-bottom: var(--space-4);
+    border-bottom: 2px solid #f1f5f9;
 }
 
 .pos-cart__title {
