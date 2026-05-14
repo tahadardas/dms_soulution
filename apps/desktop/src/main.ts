@@ -428,7 +428,7 @@ ipcMain.handle('get-config', () => {
     return {
         apiUrl: getApiUrl(),
         kioskMode: store.get('kioskMode', false),
-        language: store.get('language', 'en'),
+        language: store.get('language', 'ar'),
         deviceKey: getDeviceKey(),
     };
 });
@@ -458,7 +458,7 @@ ipcMain.handle('device:setKey', (_event, deviceKey: string) => {
 });
 
 ipcMain.handle('get-language', () => {
-    return store.get('language', 'en') as string;
+    return store.get('language', 'ar') as string;
 });
 
 ipcMain.handle('save-language', (_event, language: string) => {

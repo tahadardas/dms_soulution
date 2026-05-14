@@ -22,7 +22,10 @@ export function getRefreshSecret(): string {
 
 export function getCorsOrigins(): boolean | string[] {
     const isDesktop = process.env.DMS_DESKTOP === 'true';
-    if (isDesktop && !isProduction()) return true;
+
+    // Desktop apps (Electron) load from file:// protocol which sends origin: null.
+    // Since this is a local-only app, allow all origins for desktop mode.
+    if (isDesktop) return true;
 
     const raw = process.env.DMS_CORS_ORIGINS;
     if (!raw) {

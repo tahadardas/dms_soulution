@@ -9,11 +9,11 @@ export const LANGUAGE_STORAGE_KEY = 'dms-language';
 const isElectron = typeof window !== 'undefined' && !!(window as any).electronAPI;
 
 const detectLanguage = (): string => {
-    if (typeof window === 'undefined') return 'en';
+    if (typeof window === 'undefined') return 'ar';
     const stored = localStorage.getItem(LANGUAGE_STORAGE_KEY);
     if (stored === 'ar' || stored === 'en') return stored;
-    const browser = navigator.language || 'en';
-    return browser.startsWith('ar') ? 'ar' : 'en';
+    // Default to Arabic for this POS system
+    return 'ar';
 };
 
 const applyDirection = (lang: string) => {
