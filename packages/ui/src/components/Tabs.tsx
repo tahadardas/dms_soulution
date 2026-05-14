@@ -12,9 +12,10 @@ export interface TabsProps {
     defaultTab?: string;
     onTabChange?: (tabId: string) => void;
     children?: React.ReactNode;
+    className?: string;
 }
 
-export const Tabs: React.FC<TabsProps> = ({ tabs, defaultTab, onTabChange, children }) => {
+export const Tabs: React.FC<TabsProps> = ({ tabs, defaultTab, onTabChange, children, className = '' }) => {
     const [activeTab, setActiveTab] = useState(defaultTab || tabs[0]?.id);
 
     const handleTabClick = (tabId: string) => {
@@ -23,7 +24,7 @@ export const Tabs: React.FC<TabsProps> = ({ tabs, defaultTab, onTabChange, child
     };
 
     return (
-        <div className="dms-tabs">
+        <div className={`dms-tabs ${className}`}>
             <div className="dms-tabs__list" role="tablist">
                 {tabs.map(tab => (
                     <button

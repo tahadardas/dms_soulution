@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState, ReactNode } from 'react
 import { useApi } from '../hooks/useApi';
 import { useAuth } from './AuthContext';
 import { OrderType } from '../types/orders';
+import { POSOrderSchema } from '@dms/shared';
 
 export interface Product {
     id: number;
@@ -224,31 +225,39 @@ export const POSProvider = ({ children }: { children: ReactNode }) => {
 
     const submitOrder = async () => {
         if (!session || cart.length === 0) return;
+        const orderData = {
+            sessionId: session.id,
+            items: cart.map(i => ({ productId: i.id, quantity: i.quantity, note: i.note })),
+            tableNumber: activeTable,
+            notes,
+            orderType,
+            paymentMode,
+            paymentMethod,
+            deliveryPersonName: deliveryInfo.personName,
+            deliveryPhone: deliveryInfo.phone,
+            deliveryAddress: deliveryInfo.address,
+            deliveryNotes: deliveryInfo.notes,
+            deliveryCourierId: deliveryInfo.courierId,
+            deliveryCourierOneTime: deliveryInfo.courierOneTime,
+            deliveryCommissionAmount: deliveryInfo.commissionAmount,
+            deliveryCommissionType: deliveryInfo.commissionType,
+            discountAmount: discount.amount,
+            discountType: discount.type,
+            serviceCharge,
+            tipsAmount,
+            customerId
+        };
+
+        const validation = POSOrderSchema.safeParse(orderData);
+        if (!validation.success) {
+            console.error('POS Validation failed:', validation.error.format());
+            throw new Error(validation.error.issues[0].message);
+        }
+
         try {
             const data = await api<any>('/pos/orders', {
                 method: 'POST',
-                body: JSON.stringify({
-                    sessionId: session.id,
-                    items: cart.map(i => ({ productId: i.id, quantity: i.quantity, note: i.note })),
-                    tableNumber: activeTable,
-                    notes,
-                    orderType,
-                    paymentMode,
-                    paymentMethod,
-                    deliveryPersonName: deliveryInfo.personName,
-                    deliveryPhone: deliveryInfo.phone,
-                    deliveryAddress: deliveryInfo.address,
-                    deliveryNotes: deliveryInfo.notes,
-                    deliveryCourierId: deliveryInfo.courierId,
-                    deliveryCourierOneTime: deliveryInfo.courierOneTime,
-                    deliveryCommissionAmount: deliveryInfo.commissionAmount,
-                    deliveryCommissionType: deliveryInfo.commissionType,
-                    discountAmount: discount.amount,
-                    discountType: discount.type,
-                    serviceCharge,
-                    tipsAmount,
-                    customerId
-                })
+                body: JSON.stringify(validation.data)
             });
 
             // Handle Printing - Removed from submitOrder to separate saving from printing

@@ -1,0 +1,29 @@
+.dms-form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.dms-form-field__label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-main);
+}
+
+.dms-form-field__required {
+    color: var(--status-error);
+}
+
+.dms-form-field__error-text {
+    font-size: 0.75rem;
+    color: var(--status-error);
+}
+
+.dms-money-input {
+    width: 100%;
+}
+
+.dms-money-input .dms-input-wrapper {
+    position: relative;
+}

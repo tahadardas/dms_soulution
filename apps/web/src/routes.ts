@@ -1,3 +1,4 @@
+import React, { lazy } from 'react';
 import { matchPath } from 'react-router-dom';
 import { PERMISSIONS, PermissionCode } from './lib/permissions';
 
@@ -13,6 +14,7 @@ export interface AppRouteMeta {
     permissions?: PermissionCode[];
     parentId?: string;
     layout: AppLayoutType;
+    component: React.LazyExoticComponent<React.ComponentType<any>>;
 }
 
 export const APP_ROUTES: AppRouteMeta[] = [
@@ -24,7 +26,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navLabelKey: 'nav.routes.dashboard.navLabel',
         navSectionKey: 'nav.sections.operations',
         permissions: [PERMISSIONS.RPT_VIEW, PERMISSIONS.ACC_VIEW_REPORTS],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/DashboardPage'))
     },
     {
         id: 'pos',
@@ -34,7 +37,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navLabelKey: 'nav.routes.pos.navLabel',
         navSectionKey: 'nav.sections.operations',
         permissions: [PERMISSIONS.POS_SALE],
-        layout: 'pos'
+        layout: 'pos',
+        component: lazy(() => import('./pages/POSPage'))
     },
     {
         id: 'pos-sessions',
@@ -44,7 +48,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navLabelKey: 'nav.routes.posSessions.navLabel',
         navSectionKey: 'nav.sections.operations',
         permissions: [PERMISSIONS.POS_CLOSE_SESSION],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/POSSessionsPage'))
     },
     {
         id: 'delivery-couriers',
@@ -54,7 +59,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navLabelKey: 'nav.routes.deliveryCouriers.navLabel',
         navSectionKey: 'nav.sections.operations',
         permissions: [PERMISSIONS.DELIVERY_COURIER_VIEW],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/DeliveryCouriersPage'))
     },
     {
         id: 'products',
@@ -64,7 +70,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navLabelKey: 'nav.routes.products.navLabel',
         navSectionKey: 'nav.sections.catalog',
         permissions: [PERMISSIONS.PRD_VIEW],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/ProductsPage'))
     },
     {
         id: 'products-new',
@@ -73,7 +80,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         subtitleKey: 'nav.routes.productsNew.subtitle',
         parentId: 'products',
         permissions: [PERMISSIONS.PRD_CREATE],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/ProductNewPage'))
     },
     {
         id: 'products-detail',
@@ -82,7 +90,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         subtitleKey: 'nav.routes.productsDetail.subtitle',
         parentId: 'products',
         permissions: [PERMISSIONS.PRD_VIEW],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/ProductDetailPage'))
     },
     {
         id: 'inventory',
@@ -92,7 +101,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navLabelKey: 'nav.routes.inventory.navLabel',
         navSectionKey: 'nav.sections.inventory',
         permissions: [PERMISSIONS.INV_VIEW],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/InventoryPage'))
     },
     {
         id: 'inventory-movements',
@@ -103,7 +113,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navSectionKey: 'nav.sections.inventory',
         parentId: 'inventory',
         permissions: [PERMISSIONS.INV_VIEW],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/InventoryMovementsPage'))
     },
     {
         id: 'inventory-adjust',
@@ -114,7 +125,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navSectionKey: 'nav.sections.inventory',
         parentId: 'inventory',
         permissions: [PERMISSIONS.INV_ADJUST],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/InventoryAdjustPage'))
     },
     {
         id: 'inventory-transfers',
@@ -125,7 +137,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navSectionKey: 'nav.sections.inventory',
         parentId: 'inventory',
         permissions: [PERMISSIONS.INV_TRANSFER],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/InventoryTransfersPage'))
     },
     {
         id: 'purchase-invoices',
@@ -135,7 +148,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navLabelKey: 'nav.routes.purchaseInvoices.navLabel',
         navSectionKey: 'nav.sections.inventory',
         permissions: [PERMISSIONS.INV_PURCHASE],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/PurchaseInvoicesPage'))
     },
     {
         id: 'suppliers',
@@ -145,7 +159,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navLabelKey: 'nav.routes.suppliers.navLabel',
         navSectionKey: 'nav.sections.inventory',
         permissions: [PERMISSIONS.INV_PURCHASE],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/SuppliersPage'))
     },
     {
         id: 'suppliers-new',
@@ -153,7 +168,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         titleKey: 'suppliers.actions.newSupplier',
         parentId: 'suppliers',
         permissions: [PERMISSIONS.INV_PURCHASE],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/SupplierFormPage'))
     },
     {
         id: 'suppliers-detail',
@@ -161,7 +177,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         titleKey: 'suppliers.actions.editSupplier',
         parentId: 'suppliers',
         permissions: [PERMISSIONS.INV_PURCHASE],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/SupplierFormPage'))
     },
     {
         id: 'suppliers-payment',
@@ -169,7 +186,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         titleKey: 'suppliers.actions.recordPayment',
         parentId: 'suppliers',
         permissions: [PERMISSIONS.INV_PURCHASE],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/SupplierPaymentPage'))
     },
     {
         id: 'purchase-invoices-new',
@@ -178,7 +196,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         subtitleKey: 'nav.routes.purchaseInvoicesNew.subtitle',
         parentId: 'purchase-invoices',
         permissions: [PERMISSIONS.INV_PURCHASE],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/PurchaseInvoiceFormPage'))
     },
     {
         id: 'purchase-invoices-detail',
@@ -187,7 +206,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         subtitleKey: 'nav.routes.purchaseInvoicesDetail.subtitle',
         parentId: 'purchase-invoices',
         permissions: [PERMISSIONS.INV_PURCHASE],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/PurchaseInvoiceFormPage'))
     },
     {
         id: 'customers',
@@ -197,7 +217,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navLabelKey: 'nav.routes.customers.navLabel',
         navSectionKey: 'nav.sections.inventory',
         permissions: [PERMISSIONS.INV_SALES_INV],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/CustomersPage'))
     },
     {
         id: 'customers-new',
@@ -205,7 +226,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         titleKey: 'customers.actions.newCustomer',
         parentId: 'customers',
         permissions: [PERMISSIONS.INV_SALES_INV],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/CustomerFormPage'))
     },
     {
         id: 'customers-detail',
@@ -213,7 +235,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         titleKey: 'customers.actions.editCustomer',
         parentId: 'customers',
         permissions: [PERMISSIONS.INV_SALES_INV],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/CustomerFormPage'))
     },
     {
         id: 'customers-receipt',
@@ -221,7 +244,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         titleKey: 'customers.actions.recordReceipt',
         parentId: 'customers',
         permissions: [PERMISSIONS.INV_SALES_INV],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/CustomerReceiptPage'))
     },
     {
         id: 'sales-invoices',
@@ -231,7 +255,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navLabelKey: 'nav.routes.salesInvoices.navLabel',
         navSectionKey: 'nav.sections.inventory',
         permissions: [PERMISSIONS.INV_SALES_INV],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/SalesInvoicesPage'))
     },
     {
         id: 'sales-invoices-new',
@@ -240,7 +265,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         subtitleKey: 'nav.routes.salesInvoicesNew.subtitle',
         parentId: 'sales-invoices',
         permissions: [PERMISSIONS.INV_SALES_INV],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/SalesInvoiceFormPage'))
     },
     {
         id: 'sales-invoices-detail',
@@ -249,7 +275,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         subtitleKey: 'nav.routes.salesInvoicesDetail.subtitle',
         parentId: 'sales-invoices',
         permissions: [PERMISSIONS.INV_SALES_INV],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/SalesInvoiceFormPage'))
     },
     {
         id: 'accounts',
@@ -259,7 +286,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navLabelKey: 'nav.routes.accounts.navLabel',
         navSectionKey: 'nav.sections.accounting',
         permissions: [PERMISSIONS.ACC_VIEW_COA],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/AccountsPage'))
     },
     {
         id: 'journals',
@@ -269,7 +297,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navLabelKey: 'nav.routes.journals.navLabel',
         navSectionKey: 'nav.sections.accounting',
         permissions: [PERMISSIONS.ACC_VIEW_REPORTS],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/JournalsPage'))
     },
     {
         id: 'journals-new',
@@ -278,7 +307,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         subtitleKey: 'nav.routes.journalsNew.subtitle',
         parentId: 'journals',
         permissions: [PERMISSIONS.ACC_CREATE_JOURNAL],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/JournalNewPage'))
     },
     {
         id: 'journals-detail',
@@ -287,7 +317,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         subtitleKey: 'nav.routes.journalsDetail.subtitle',
         parentId: 'journals',
         permissions: [PERMISSIONS.ACC_VIEW_REPORTS],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/JournalDetailPage'))
     },
     {
         id: 'ledger',
@@ -297,7 +328,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navLabelKey: 'nav.routes.ledger.navLabel',
         navSectionKey: 'nav.sections.accounting',
         permissions: [PERMISSIONS.ACC_VIEW_REPORTS],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/LedgerPage'))
     },
     {
         id: 'trial-balance',
@@ -307,7 +339,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navLabelKey: 'nav.routes.trialBalance.navLabel',
         navSectionKey: 'nav.sections.accounting',
         permissions: [PERMISSIONS.ACC_VIEW_REPORTS],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/TrialBalancePage'))
     },
     {
         id: 'reports',
@@ -317,7 +350,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navLabelKey: 'nav.routes.reports.navLabel',
         navSectionKey: 'nav.sections.reports',
         permissions: [PERMISSIONS.RPT_VIEW, PERMISSIONS.ACC_VIEW_REPORTS],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/ReportsPage'))
     },
     {
         id: 'reports-sales',
@@ -328,7 +362,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navSectionKey: 'nav.sections.reports',
         parentId: 'reports',
         permissions: [PERMISSIONS.RPT_VIEW, PERMISSIONS.ACC_VIEW_REPORTS],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/ReportsSalesPage'))
     },
     {
         id: 'reports-sessions-z',
@@ -339,7 +374,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navSectionKey: 'nav.sections.reports',
         parentId: 'reports',
         permissions: [PERMISSIONS.RPT_VIEW, PERMISSIONS.ACC_VIEW_REPORTS],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/ReportsSessionsZPage'))
     },
     {
         id: 'reports-inventory',
@@ -350,7 +386,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navSectionKey: 'nav.sections.reports',
         parentId: 'reports',
         permissions: [PERMISSIONS.RPT_VIEW, PERMISSIONS.ACC_VIEW_REPORTS],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/ReportsInventoryPage'))
     },
     {
         id: 'reports-margins',
@@ -361,7 +398,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navSectionKey: 'nav.sections.reports',
         parentId: 'reports',
         permissions: [PERMISSIONS.RPT_VIEW, PERMISSIONS.ACC_VIEW_REPORTS],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/ReportsMarginsPage'))
     },
     {
         id: 'reports-trial-balance',
@@ -372,7 +410,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navSectionKey: 'nav.sections.reports',
         parentId: 'reports',
         permissions: [PERMISSIONS.RPT_VIEW, PERMISSIONS.ACC_VIEW_REPORTS],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/ReportsTrialBalancePage'))
     },
     {
         id: 'printers',
@@ -382,7 +421,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navLabelKey: 'nav.routes.printers.navLabel',
         navSectionKey: 'nav.sections.printing',
         permissions: [PERMISSIONS.SET_MANAGE_PRINTERS],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/PrintersPage'))
     },
     {
         id: 'printers-routes',
@@ -393,7 +433,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navSectionKey: 'nav.sections.printing',
         parentId: 'printers',
         permissions: [PERMISSIONS.SET_MANAGE_PRINTERS],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/PrinterRoutesPage'))
     },
     {
         id: 'printers-jobs',
@@ -404,7 +445,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navSectionKey: 'nav.sections.printing',
         parentId: 'printers',
         permissions: [PERMISSIONS.SET_MANAGE_PRINTERS],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/PrinterJobsPage'))
     },
     {
         id: 'printers-templates',
@@ -415,7 +457,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navSectionKey: 'nav.sections.printing',
         parentId: 'printers',
         permissions: [PERMISSIONS.SET_MANAGE_PRINTERS],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/PrinterTemplatesPage'))
     },
     {
         id: 'users',
@@ -425,7 +468,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navLabelKey: 'nav.routes.users.navLabel',
         navSectionKey: 'nav.sections.administration',
         permissions: [PERMISSIONS.SET_MANAGE_USERS],
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/UserManagementPage'))
     },
     {
         id: 'settings',
@@ -436,7 +480,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navSectionKey: 'nav.sections.administration',
         permissions: [PERMISSIONS.SET_MANAGE_SETTINGS],
         parentId: 'dashboard',
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/SettingsPage'))
     },
     {
         id: 'backups',
@@ -447,7 +492,8 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navSectionKey: 'nav.sections.administration',
         permissions: [PERMISSIONS.SET_MANAGE_SETTINGS],
         parentId: 'settings',
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/BackupManagementPage'))
     },
     {
         id: 'audit-logs',
@@ -458,13 +504,15 @@ export const APP_ROUTES: AppRouteMeta[] = [
         navSectionKey: 'nav.sections.administration',
         permissions: [PERMISSIONS.SET_VIEW_AUDIT],
         parentId: 'settings',
-        layout: 'admin'
+        layout: 'admin',
+        component: lazy(() => import('./pages/AuditLogsPage'))
     },
     {
         id: 'login',
         path: '/login',
         titleKey: 'nav.routes.login.title',
-        layout: 'public'
+        layout: 'public',
+        component: lazy(() => import('./pages/LoginPage'))
     }
 ];
 

@@ -6,6 +6,7 @@
     "packages/*"
   ],
   "scripts": {
+    "test": "vitest run",
     "dev": "concurrently \"npm run dev:api\" \"npm run dev:web\" \"npm run dev:desktop\"",
     "dev:api": "npm run dev --workspace=@dms/api",
     "dev:web": "npm run dev --workspace=@dms/web",
@@ -25,6 +26,7 @@
     "brace-expansion": "1.1.14",
     "concurrently": "^8.2.2",
     "prettier": "^3.2.5",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vitest": "^4.1.6"
   }
 }

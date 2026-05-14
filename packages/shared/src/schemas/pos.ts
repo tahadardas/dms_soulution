@@ -1,123 +1,131 @@
 import { z } from 'zod';
 
-export const POSSessionStatusSchema = z.enum(['OPEN', 'CLOSED']);
-
-export const OrderStatusSchema = z.enum([
-    'DRAFT',
-    'COMPLETED',
-    'VOID',
-    'RETURNED'
-]);
-
-export const PaymentMethodSchema = z.enum([
-    'CASH',
-    'CARD',
-    'TRANSFER'
-]);
-
-export const POSProductSchema = z.object({
-    id: z.number().int(),
-    name: z.string(),
-    sku: z.string().optional(),
-    price: z.number().nonnegative()
-});
-
-export const OpenPOSSessionSchema = z.object({
-    userId: z.number().int().positive().optional(),
-    branchId: z.number().int().positive().nullable().optional(),
-    openingCash: z.number().nonnegative().default(0)
-});
-
-export const ClosePOSSessionSchema = z.object({
-    sessionId: z.string().uuid(),
-    closingCash: z.number().nonnegative(),
-    notes: z.string().optional()
-});
+export const POSSessionStatusEnum = z.enum(['OPEN', 'CLOSED']);
+export type POSSessionStatus = z.infer<typeof POSSessionStatusEnum>;
 
 export const POSSessionSchema = z.object({
-    id: z.string().uuid(),
-    user_id: z.number().int().positive().optional(),
-    branch_id: z.number().int().positive().nullable().optional(),
-    status: POSSessionStatusSchema,
-    opening_cash: z.number().optional(),
-    closing_cash: z.number().nullable().optional(),
-    start_time: z.string().optional(),
-    end_time: z.string().nullable().optional(),
-    notes: z.string().nullable().optional()
+    id: z.union([z.string(), z.number()]),
+    userId: z.number(),
+    branchId: z.number().nullable().optional(),
+    status: POSSessionStatusEnum,
+    openingCash: z.number(),
+    closingCash: z.number().optional().nullable(),
+    openedAt: z.string().optional(),
+    closedAt: z.string().optional().nullable(),
+    notes: z.string().optional().nullable()
 });
+export type POSSession = z.infer<typeof POSSessionSchema>;
+
+export const OpenPOSSessionSchema = z.object({
+    userId: z.number(),
+    branchId: z.number().nullable().optional(),
+    openingCash: z.number(),
+    stationId: z.string().optional().nullable()
+});
+export type OpenPOSSession = z.infer<typeof OpenPOSSessionSchema>;
+
+export const ClosePOSSessionSchema = z.object({
+    sessionId: z.union([z.string(), z.number()]),
+    closingCash: z.number(),
+    notes: z.string().optional().nullable(),
+    managerUsername: z.string().optional().nullable(),
+    managerPassword: z.string().optional().nullable(),
+    reason: z.string().optional().nullable(),
+    userId: z.number().optional()
+});
+export type ClosePOSSession = z.infer<typeof ClosePOSSessionSchema>;
+
+export const OrderStatusEnum = z.enum(['PENDING', 'PAID', 'VOID', 'COMPLETED', 'CANCELLED']);
+export type OrderStatus = z.infer<typeof OrderStatusEnum>;
+
+export const PaymentMethodEnum = z.enum(['CASH', 'CARD', 'TRANSFER', 'CREDIT']);
+export type PaymentMethod = z.infer<typeof PaymentMethodEnum>;
+
+export const POSCartItemSchema = z.object({
+    productId: z.number(),
+    quantity: z.number().min(0.001),
+    note: z.string().optional().nullable(),
+    unitPrice: z.number().optional()
+});
+export type CreateOrderItem = z.infer<typeof POSCartItemSchema>;
+
+export const POSOrderSchema = z.object({
+    sessionId: z.union([z.string(), z.number()]),
+    items: z.array(POSCartItemSchema).min(1, 'Cart cannot be empty'),
+    tableNumber: z.string().optional().nullable(),
+    orderType: z.enum(['DINE_IN', 'TAKEAWAY', 'DELIVERY']),
+    paymentMode: z.enum(['PAY_NOW', 'PAY_LATER']),
+    paymentMethod: PaymentMethodEnum,
+    customerId: z.number().optional().nullable(),
+    discountAmount: z.number().default(0),
+    discountType: z.enum(['PERCENTAGE', 'FIXED']).default('PERCENTAGE'),
+    serviceCharge: z.number().default(0),
+    tipsAmount: z.number().default(0),
+    deliveryPersonName: z.string().optional().nullable(),
+    deliveryPhone: z.string().optional().nullable(),
+    deliveryAddress: z.string().optional().nullable(),
+    deliveryNotes: z.string().optional().nullable(),
+    deliveryCourierId: z.number().optional().nullable(),
+    deliveryCommissionAmount: z.number().optional().nullable(),
+    deliveryCommissionType: z.enum(['NONE', 'FIXED_PER_ORDER', 'PERCENT_OF_ORDER', 'MANUAL']).optional().nullable()
+});
+export type CreateOrder = z.infer<typeof POSOrderSchema>;
+export type POSOrder = CreateOrder; // For backward compatibility
 
 export const OrderLineSchema = z.object({
-    id: z.number().int().positive().optional(),
-    product_id: z.number().int().positive(),
-    product_name: z.string().optional(),
-    quantity: z.number().positive(),
-    unit_price: z.number().nonnegative().optional(),
-    total_price: z.number().nonnegative().optional(),
-    returned_quantity: z.number().nonnegative().optional(),
-    notes: z.string().nullable().optional()
+    id: z.number(),
+    orderId: z.union([z.string(), z.number()]),
+    productId: z.number(),
+    quantity: z.number(),
+    unitPrice: z.number(),
+    total: z.number(),
+    note: z.string().optional().nullable()
 });
-
-export const CreateOrderItemSchema = z.object({
-    productId: z.number().int().positive(),
-    quantity: z.number().positive(),
-    note: z.string().optional()
-});
-
-export const CreateOrderSchema = z.object({
-    sessionId: z.string().uuid(),
-    customerId: z.number().int().positive().optional(),
-    items: z.array(CreateOrderItemSchema).min(1),
-    notes: z.array(z.string()).optional(),
-    tableNumber: z.string().nullable().optional(),
-    orderType: z.enum(['DINE_IN', 'TAKEAWAY', 'DELIVERY']).optional(),
-    paymentMode: z.enum(['PAY_NOW', 'PAY_LATER']).optional(),
-    paymentMethod: PaymentMethodSchema.optional()
-});
+export type OrderLine = z.infer<typeof OrderLineSchema>;
 
 export const OrderSchema = z.object({
-    id: z.string().uuid(),
-    session_id: z.string().uuid().optional(),
-    customer_id: z.number().int().positive().nullable().optional(),
-    order_number: z.string(),
-    status: OrderStatusSchema,
-    total_amount: z.number().nonnegative(),
-    table_number: z.string().nullable().optional(),
-    payment_method: PaymentMethodSchema.optional(),
-    created_at: z.string().optional(),
-    lines: z.array(OrderLineSchema).optional()
+    id: z.union([z.string(), z.number()]),
+    orderNumber: z.string(),
+    totalAmount: z.number(),
+    status: OrderStatusEnum,
+    createdAt: z.string().optional()
 });
+export type Order = z.infer<typeof OrderSchema>;
+
+export const POSProductSchema = z.object({
+    id: z.number(),
+    name: z.string(),
+    price: z.number(),
+    sku: z.string(),
+    type: z.string().optional().nullable()
+});
+export type POSProduct = z.infer<typeof POSProductSchema>;
 
 export const ReturnLineSchema = z.object({
-    orderLineId: z.number().int().positive(),
-    quantity: z.number().positive()
+    id: z.number(),
+    returnId: z.number(),
+    orderLineId: z.number(),
+    quantity: z.number(),
+    unitPrice: z.number().optional(),
+    total: z.number().optional()
 });
-
-export const CreateReturnSchema = z.object({
-    orderId: z.string().uuid(),
-    reason: z.string().min(1),
-    items: z.array(ReturnLineSchema).min(1)
-});
+export type ReturnLine = z.infer<typeof ReturnLineSchema>;
 
 export const POSReturnSchema = z.object({
-    id: z.string().uuid(),
-    original_order_id: z.string().uuid(),
-    reason: z.string(),
-    total_refund: z.number().nonnegative(),
-    created_by: z.number().int().positive().optional(),
-    created_at: z.string().optional()
+    id: z.number(),
+    orderId: z.union([z.string(), z.number()]),
+    totalRefund: z.number(),
+    reason: z.string().optional().nullable(),
+    createdAt: z.string().optional()
 });
-
-export type POSSessionStatus = z.infer<typeof POSSessionStatusSchema>;
-export type OrderStatus = z.infer<typeof OrderStatusSchema>;
-export type PaymentMethod = z.infer<typeof PaymentMethodSchema>;
-export type POSProduct = z.infer<typeof POSProductSchema>;
-export type OpenPOSSession = z.infer<typeof OpenPOSSessionSchema>;
-export type ClosePOSSession = z.infer<typeof ClosePOSSessionSchema>;
-export type POSSession = z.infer<typeof POSSessionSchema>;
-export type OrderLine = z.infer<typeof OrderLineSchema>;
-export type CreateOrderItem = z.infer<typeof CreateOrderItemSchema>;
-export type CreateOrder = z.infer<typeof CreateOrderSchema>;
-export type Order = z.infer<typeof OrderSchema>;
-export type ReturnLine = z.infer<typeof ReturnLineSchema>;
-export type CreateReturn = z.infer<typeof CreateReturnSchema>;
 export type POSReturn = z.infer<typeof POSReturnSchema>;
+
+export const CreateReturnSchema = z.object({
+    orderId: z.union([z.string(), z.number()]),
+    items: z.array(z.object({
+        orderLineId: z.number(),
+        quantity: z.number()
+    })),
+    reason: z.string().optional().nullable()
+});
+export type CreateReturn = z.infer<typeof CreateReturnSchema>;

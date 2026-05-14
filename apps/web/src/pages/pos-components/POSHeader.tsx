@@ -10,6 +10,9 @@ interface POSHeaderProps {
         totalReturns: number;
         totalDiscounts: number;
         netAmount: number;
+        expectedCash?: number;
+        cashIn?: number;
+        cashOut?: number;
     };
     onLogout: () => void;
     onExit: () => void;

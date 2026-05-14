@@ -1,6 +1,8 @@
 {
     "name": "@dms/desktop",
     "version": "1.0.0",
+    "description": "DMS SOULUTION POS - Desktop Application",
+    "author": "DMS Team",
     "main": "dist/main.js",
     "scripts": {
         "dev": "tsc && electron .",

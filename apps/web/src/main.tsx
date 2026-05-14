@@ -4,6 +4,7 @@ import { ThemeProvider, ToastProvider } from '@dms/ui';
 import { HashRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
+import ErrorBoundary from './components/ErrorBoundary';
 import { POSProvider } from './context/POSContext';
 import { AuthProvider } from './context/AuthContext';
 import { AppConfigProvider } from './context/AppConfigContext';
@@ -19,7 +20,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
                         <I18nextProvider i18n={i18n}>
                             <AuthProvider>
                                 <POSProvider>
-                                    <App />
+                                    <ErrorBoundary>
+                                        <App />
+                                    </ErrorBoundary>
                                 </POSProvider>
                             </AuthProvider>
                         </I18nextProvider>
