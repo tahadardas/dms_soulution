@@ -5,6 +5,10 @@
   "electronVersion": "40.9.3",
   "npmRebuild": true,
   "asar": true,
+  "asarUnpack": [
+    "**/node_modules/better-sqlite3/**/*",
+    "**/node_modules/bindings/**/*"
+  ],
   "directories": {
     "output": "release"
   },

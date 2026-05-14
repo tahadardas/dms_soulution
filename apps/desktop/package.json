@@ -8,7 +8,7 @@
         "dev": "tsc && electron .",
         "build": "tsc",
         "rebuild": "electron-rebuild -f -w better-sqlite3",
-        "dist": "electron-builder",
+        "dist": "npm run rebuild && electron-builder",
         "pack": "electron-builder --dir"
     },
     "dependencies": {

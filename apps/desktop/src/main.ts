@@ -99,8 +99,8 @@ const startApiProcess = (): Promise<void> => {
                 DMS_DB_PATH: paths.db,
                 NODE_ENV: 'production',
                 NODE_PATH: [
-                    path.join(process.resourcesPath, 'app.asar', 'node_modules'),
-                    path.join(process.resourcesPath, 'app.asar.unpacked', 'node_modules')
+                    path.join(process.resourcesPath, 'app.asar.unpacked', 'node_modules'),
+                    path.join(process.resourcesPath, 'app.asar', 'node_modules')
                 ].join(path.delimiter),
                 ELECTRON_RUN_AS_NODE: '1',
                 JWT_SECRET: 'dms_soulution_pos_production_secret_2026_safe',
